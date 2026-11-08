@@ -24,6 +24,7 @@ from langgraph.types import Command, Send, interrupt
 from foghorn.common.lifecycle import emit_event
 from foghorn.common.stream import emit
 from foghorn.contracts.interrupts import Answer, Decision, PolicyCheck, build_interrupt
+from foghorn.contracts.meta import M_EVAL_RUN_ID
 from foghorn.data import api as data
 from foghorn.data import catalog
 from foghorn.flows.incident_commander import chaos, comms
@@ -112,6 +113,12 @@ def incident_id(state: Mapping[str, Any]) -> str:
 def lifecycle(state: Mapping[str, Any], config: RunnableConfig, type_: str, ikey: str, /, **payload: Any) -> None:
     inc = inc_of(state)
     sev = str(inc.get("severity", "SEV3"))
+    # Runs started by `eval_runner` are SIMULATIONS (thread metadata carries foghorn_eval_run_id). Their lifecycle
+    # events are recorded but must never trigger real downstream work (a postmortem pipeline per scored scenario piled
+    # up pending reviews and spent model money): routing.yaml `r-eval-incident` records events flagged `simulated`.
+    eval_run_id = (config.get("metadata") or {}).get(M_EVAL_RUN_ID)
+    if eval_run_id:
+        payload = {"simulated": True, "eval_run_id": eval_run_id, **payload}
     emit_event(
         type_,
         idempotency_key=f"{type_}:{incident_id(state)}:{ikey}",

@@ -60,6 +60,10 @@ rules:
     when: {type: change.requested}
     route: {graph: change_gate, thread: by_event, input: change_gate, kind: change}
 
+  - id: r-eval-incident             # incidents driven by an eval run are simulations: record them, never post-process them
+    when: {type: incident.resolved, payload.simulated: true}
+    action: record
+
   - id: r-postmortem
     when: {type: incident.resolved, payload.severity: [SEV1, SEV2]}
     route: {graph: postmortem_pipeline, thread: by_incident, input: postmortem, kind: incident}

@@ -76,4 +76,9 @@ def structured(llm: BaseChatModel, schema: type[BaseModel] | dict[str, Any], **k
     name = type(llm).__name__
     if name == "ChatAnthropic":
         return llm.with_structured_output(schema, method="json_schema", **kw)
+    if name == "ChatOpenAI":
+        # OpenAI's strict `json_schema` mode rejects any object that is not closed (every nested dict needs
+        # additionalProperties:false), so free-form fields such as `PlanProposal.params` fail with a 400. Forced tool
+        # calling accepts them. Found by running the commander on a real key; the offline model cannot catch it.
+        return llm.with_structured_output(schema, method="function_calling", **kw)
     return llm.with_structured_output(schema, **kw)
