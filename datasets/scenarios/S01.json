@@ -1,0 +1,117 @@
+{
+  "scenario_id": "S01",
+  "stats": {
+    "alerts": 11,
+    "changes": 7,
+    "events": 27,
+    "logs": 921,
+    "reports": 4
+  },
+  "summary": "Customers report errors when placing orders; the checkout error budget is burning.",
+  "tier": 1,
+  "title": "Checkout 500s after the 14:02 deploy",
+  "trigger": {
+    "alert_event": "evt_S01_0011",
+    "as_of": "2026-11-05T14:06:30Z"
+  },
+  "truth": {
+    "affected": [
+      "checkout-service",
+      "edge-gateway",
+      "web-frontend"
+    ],
+    "budget": {
+      "max_supervisor_hops": 7,
+      "max_tool_calls": 10
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "checkout",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.098,
+      "checkout_p95_ms_peak": 740.2
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "chg-check-9247"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/error_rate"
+      },
+      {
+        "kind": "log",
+        "ref": "checkout-service:NullPointerException"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "rollback_deploy:checkout-service"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "rollback_deploy:checkout-service",
+      "recovery": {
+        "rollback_deploy:checkout-service": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 2.5
+        }
+      },
+      "requires_approval": [
+        "rollback_deploy:checkout-service"
+      ]
+    },
+    "root_cause": {
+      "category": "bad_deploy",
+      "change_id": "chg-check-9247",
+      "component": "checkout-service",
+      "summary": "Deploy 2026.11.05.2 of checkout-service introduced a NullPointerException in OrderMapper; about 9% of checkouts fail with HTTP 500."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 1,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.04,
+      "red_herrings": 0,
+      "signal_strength": 1.0,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-05T14:03:00Z",
+    "seed_key": "S01",
+    "step_s": 60,
+    "window": [
+      "2026-11-05T12:33:00Z",
+      "2026-11-05T14:48:00Z"
+    ]
+  }
+}

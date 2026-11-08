@@ -1,0 +1,228 @@
+{
+  "event_types": [
+    "alert.fired",
+    "alert.resolved",
+    "customer.report",
+    "deploy.finished",
+    "deploy.started",
+    "flag.changed",
+    "slo.burn_rate"
+  ],
+  "first_events": [
+    {
+      "attributes": {},
+      "causation_id": null,
+      "correlation_id": null,
+      "dedupe_key": "deploy:shipping-service:chg-shipp-1485",
+      "id": "evt_S10_0001",
+      "idempotency_key": null,
+      "occurred_at": "2026-11-05T09:22:42Z",
+      "payload": {
+        "actor": "deploybot",
+        "change_id": "chg-shipp-1485",
+        "previous": "previous",
+        "summary": "deploy 2026.11.01.2 (9 commits)",
+        "version": "2026.11.01.2"
+      },
+      "received_at": null,
+      "schema_version": "foghorn.event/1",
+      "severity": "info",
+      "source": "deploybot",
+      "subject": {
+        "component": "shipping-service",
+        "environment": "prod"
+      },
+      "trace": {
+        "scenario_id": "S10",
+        "seq": 1,
+        "stream": null
+      },
+      "type": "deploy.started"
+    },
+    {
+      "attributes": {},
+      "causation_id": null,
+      "correlation_id": null,
+      "dedupe_key": "deploy:shipping-service:chg-shipp-1485",
+      "id": "evt_S10_0002",
+      "idempotency_key": null,
+      "occurred_at": "2026-11-05T09:26:42Z",
+      "payload": {
+        "actor": "deploybot",
+        "change_id": "chg-shipp-1485",
+        "previous": "previous",
+        "status": "succeeded",
+        "summary": "deploy 2026.11.01.2 (9 commits)",
+        "version": "2026.11.01.2"
+      },
+      "received_at": null,
+      "schema_version": "foghorn.event/1",
+      "severity": "info",
+      "source": "deploybot",
+      "subject": {
+        "component": "shipping-service",
+        "environment": "prod"
+      },
+      "trace": {
+        "scenario_id": "S10",
+        "seq": 2,
+        "stream": null
+      },
+      "type": "deploy.finished"
+    },
+    {
+      "attributes": {},
+      "causation_id": null,
+      "correlation_id": null,
+      "dedupe_key": "flag:catalog-service:cfg-1d47",
+      "id": "evt_S10_0003",
+      "idempotency_key": null,
+      "occurred_at": "2026-11-05T09:32:06Z",
+      "payload": {
+        "actor": "k.tanaka",
+        "change_id": "cfg-1d47",
+        "flag": "semantic_rerank",
+        "from": 0,
+        "summary": "semantic_rerank rollout -> 100%",
+        "to": 100
+      },
+      "received_at": null,
+      "schema_version": "foghorn.event/1",
+      "severity": "info",
+      "source": "feature-flags",
+      "subject": {
+        "component": "catalog-service",
+        "environment": "prod"
+      },
+      "trace": {
+        "scenario_id": "S10",
+        "seq": 3,
+        "stream": null
+      },
+      "type": "flag.changed"
+    },
+    {
+      "attributes": {},
+      "causation_id": null,
+      "correlation_id": null,
+      "dedupe_key": "deploy:notification-service:chg-notif-9264",
+      "id": "evt_S10_0004",
+      "idempotency_key": null,
+      "occurred_at": "2026-11-05T09:43:06Z",
+      "payload": {
+        "actor": "deploybot",
+        "change_id": "chg-notif-9264",
+        "previous": "previous",
+        "summary": "deploy 2026.10.03.1 (9 commits)",
+        "version": "2026.10.03.1"
+      },
+      "received_at": null,
+      "schema_version": "foghorn.event/1",
+      "severity": "info",
+      "source": "deploybot",
+      "subject": {
+        "component": "notification-service",
+        "environment": "prod"
+      },
+      "trace": {
+        "scenario_id": "S10",
+        "seq": 4,
+        "stream": null
+      },
+      "type": "deploy.started"
+    },
+    {
+      "attributes": {},
+      "causation_id": null,
+      "correlation_id": null,
+      "dedupe_key": "deploy:shipping-service:chg-shipp-5768",
+      "id": "evt_S10_0005",
+      "idempotency_key": null,
+      "occurred_at": "2026-11-05T09:44:18Z",
+      "payload": {
+        "actor": "deploybot",
+        "change_id": "chg-shipp-5768",
+        "previous": "previous",
+        "summary": "deploy 2026.10.07.5 (7 commits)",
+        "version": "2026.10.07.5"
+      },
+      "received_at": null,
+      "schema_version": "foghorn.event/1",
+      "severity": "info",
+      "source": "deploybot",
+      "subject": {
+        "component": "shipping-service",
+        "environment": "prod"
+      },
+      "trace": {
+        "scenario_id": "S10",
+        "seq": 5,
+        "stream": null
+      },
+      "type": "deploy.started"
+    },
+    {
+      "attributes": {},
+      "causation_id": null,
+      "correlation_id": null,
+      "dedupe_key": "deploy:notification-service:chg-notif-9264",
+      "id": "evt_S10_0006",
+      "idempotency_key": null,
+      "occurred_at": "2026-11-05T09:47:06Z",
+      "payload": {
+        "actor": "deploybot",
+        "change_id": "chg-notif-9264",
+        "previous": "previous",
+        "status": "succeeded",
+        "summary": "deploy 2026.10.03.1 (9 commits)",
+        "version": "2026.10.03.1"
+      },
+      "received_at": null,
+      "schema_version": "foghorn.event/1",
+      "severity": "info",
+      "source": "deploybot",
+      "subject": {
+        "component": "notification-service",
+        "environment": "prod"
+      },
+      "trace": {
+        "scenario_id": "S10",
+        "seq": 6,
+        "stream": null
+      },
+      "type": "deploy.finished"
+    }
+  ],
+  "scenario": {
+    "scenario_id": "S10",
+    "stats": {
+      "alerts": 18,
+      "changes": 8,
+      "events": 38,
+      "logs": 946,
+      "reports": 6
+    },
+    "summary": "Cart and checkout are slow with a growing error rate; two changes landed minutes before.",
+    "tier": 3,
+    "title": "Two changes, one culprit",
+    "trigger": {
+      "alert_event": "evt_S10_0015",
+      "as_of": "2026-11-05T10:48:30Z"
+    },
+    "world": {
+      "difficulty": {
+        "evidence_lag_min": 2,
+        "noise_sigma": 0.06,
+        "signal_strength": 0.7
+      },
+      "n_points": 135,
+      "onset": "2026-11-05T10:45:00Z",
+      "seed_key": "S10",
+      "step_s": 60,
+      "window": [
+        "2026-11-05T09:15:00Z",
+        "2026-11-05T11:30:00Z"
+      ]
+    }
+  }
+}

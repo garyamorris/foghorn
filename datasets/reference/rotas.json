@@ -1,0 +1,83 @@
+[
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-commerce",
+    "members": [
+      "e.petrova",
+      "j.okafor",
+      "t.kowalski"
+    ],
+    "rotation": "weekly",
+    "team": "commerce"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-payments",
+    "members": [
+      "a.bello",
+      "t.kowalski"
+    ],
+    "rotation": "weekly",
+    "team": "payments"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-platform",
+    "members": [
+      "m.lee",
+      "s.whitfield"
+    ],
+    "rotation": "weekly",
+    "team": "platform"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-dba",
+    "members": [
+      "m.lee",
+      "p.raman"
+    ],
+    "rotation": "weekly",
+    "team": "data-infra"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-growth",
+    "members": [
+      "j.okafor",
+      "n.adeyemi"
+    ],
+    "rotation": "weekly",
+    "team": "growth"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-fulfilment",
+    "members": [
+      "e.petrova",
+      "n.adeyemi"
+    ],
+    "rotation": "weekly",
+    "team": "fulfilment"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-messaging",
+    "members": [
+      "e.petrova",
+      "n.adeyemi"
+    ],
+    "rotation": "weekly",
+    "team": "messaging"
+  },
+  {
+    "handoff": "Mon 09:00 UTC",
+    "id": "rota-commander",
+    "members": [
+      "a.bello",
+      "s.whitfield"
+    ],
+    "rotation": "weekly",
+    "team": "sre"
+  }
+]

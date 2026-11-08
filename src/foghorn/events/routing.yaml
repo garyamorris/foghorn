@@ -1,0 +1,111 @@
+# Declarative routing for Foghorn events (docs/design/03 section 3.4; ARCHITECTURE.md section 4.2).
+#
+# * Rules are evaluated top to bottom; the FIRST match wins unless the rule says `continue: true`
+#   (then evaluation carries on, so one event can be ledgered AND routed, or routed to two graphs).
+# * `when` keys (all must hold): type | source | severity | component (string or list; `*` globs),
+#   payload.<dotted.path> | attributes.<dotted.path> (value or list), open_incident_on_component: true,
+#   in_storm: true (an alert storm is already declared), window: {count_ge, within_s} (alert burst detector).
+# * `fallback: true` marks a catch-all that is skipped when an earlier (continue) rule already produced a step.
+# * An action is either `route` (create a run on a graph) or one of:
+#     record (store only), ledger (change feed: store only), update_suppression_table, resume_thread, dead_letter,
+#     suppress (store as suppressed; `reason`).
+# * `route.input` names a builder over `foghorn.contracts.inputs` (see routing.py INPUT_BUILDERS).
+# * `route.thread` is how the deterministic thread id is derived: by_event | by_correlation | by_incident |
+#   by_eval_run | by_dedupe_key.
+# * The `event_router` graph is the single ingress for work: it validates, enriches, classifies and then handles the
+#   event or delegates to incident_commander / storm_correlator / change_gate.
+version: 1
+defaults: {priority: P2, max_attempts: 3, backoff_s: [1, 4, 16]}
+priority_from_severity: {critical: P0, high: P1, medium: P2, low: P3, info: P3}
+priority_from_incident_severity: {SEV1: P0, SEV2: P1, SEV3: P2, SEV4: P3}
+
+rules:
+  - id: r-approval-decided          # a decision delivered as an event resumes the thread (dashboard decisions already did)
+    when: {type: approval.decided, source: [ui, ui.inject, api]}
+    action: resume_thread
+    priority: P0
+
+  - id: r-maintenance
+    when: {type: [maintenance.window.started, maintenance.window.ended]}
+    action: update_suppression_table
+
+  - id: r-storm-member              # alerts arriving while a storm is already being correlated are folded into it
+    when: {type: alert.fired, in_storm: true}
+    action: suppress
+    reason: storm_member
+
+  - id: r-storm                     # burst detector: >= 8 alerts within 60 virtual seconds -> one correlator run
+    when: {type: alert.fired, window: {count_ge: 8, within_s: 60}}
+    route: {graph: storm_correlator, thread: by_event, input: storm, kind: storm}
+    priority: P0
+    continue: true
+
+  - id: r-signal                    # every signal goes through the router graph first
+    when: {type: [alert.fired, alert.resolved, customer.report, slo.burn_rate, healthcheck.failed]}
+    route: {graph: event_router, thread: by_event, input: router, kind: triage}
+
+  - id: r-change-ledger             # changes are facts, not work: ledger them (continue to the attach rule below)
+    when: {type: [deploy.started, deploy.finished, deploy.rolled_back, config.changed, flag.changed, migration.applied]}
+    action: ledger
+    continue: true
+
+  - id: r-change-attach             # ... and hand them to the router only when an incident is open on the component
+    when:
+      type: [deploy.started, deploy.finished, deploy.rolled_back, config.changed, flag.changed, migration.applied]
+      open_incident_on_component: true
+    route: {graph: event_router, thread: by_event, input: router, kind: triage}
+    priority: P1
+
+  - id: r-change-request
+    when: {type: change.requested}
+    route: {graph: change_gate, thread: by_event, input: change_gate, kind: change}
+
+  - id: r-postmortem
+    when: {type: incident.resolved, payload.severity: [SEV1, SEV2]}
+    route: {graph: postmortem_pipeline, thread: by_incident, input: postmortem, kind: incident}
+    priority: P2
+
+  - id: r-memory
+    when: {type: postmortem.published}
+    route: {graph: memory_keeper, thread: by_incident, input: memory_learn, kind: memory}
+    priority: P3
+
+  - id: r-handoff
+    when: {type: system.cron.tick, payload.job: shift_handoff}
+    route: {graph: shift_handoff, thread: by_event, input: shift_handoff, kind: handoff}
+    priority: P3
+
+  - id: r-eval
+    when: {type: eval.requested}
+    route: {graph: eval_runner, thread: by_eval_run, input: eval, kind: eval}
+    priority: P3
+
+  - id: r-deploy-gate               # stretch: gate every deploy through change_gate
+    when: {type: deploy.started}
+    route: {graph: change_gate, thread: by_event, input: change_gate, kind: change}
+    enabled: false
+
+  - id: r-record                    # lifecycle + system events are recorded and broadcast, nothing runs
+    when:
+      type:
+        - triage.completed
+        - incident.*
+        - run.*
+        - approval.*
+        - action.*
+        - memory.*
+        - postmortem.published
+        - eval.progress
+        - eval.finished
+        - handoff.published
+        - system.cron.tick
+        - event.*
+        - dlq.*
+        - replay.*
+    action: record
+
+  - id: r-fallback                  # `fallback: true` rules only run when nothing above produced a step
+    when: {}
+    fallback: true
+    action: dead_letter
+    reason: no_route

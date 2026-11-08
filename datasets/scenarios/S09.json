@@ -1,0 +1,130 @@
+{
+  "scenario_id": "S09",
+  "stats": {
+    "alerts": 9,
+    "changes": 7,
+    "events": 27,
+    "logs": 808,
+    "reports": 6
+  },
+  "summary": "Search is getting slower and slower; memory on the search service keeps growing.",
+  "tier": 2,
+  "title": "Search memory leak",
+  "trigger": {
+    "alert_event": "evt_S09_0014",
+    "as_of": "2026-11-01T16:48:30Z"
+  },
+  "truth": {
+    "affected": [
+      "search-service",
+      "edge-gateway"
+    ],
+    "budget": {
+      "max_supervisor_hops": 8,
+      "max_tool_calls": 14
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "search",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": false
+    },
+    "customer_impact": {
+      "edge_gateway_error_rate_peak": 0.019,
+      "edge_gateway_p95_ms_peak": 230.4
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "chg-searc-3802"
+      },
+      {
+        "kind": "metric",
+        "ref": "search-service/mem_pct"
+      },
+      {
+        "kind": "metric",
+        "ref": "edge-gateway/p95_ms"
+      },
+      {
+        "kind": "log",
+        "ref": "search-service:GC overhead"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "restart_service:search-service",
+        "rollback_deploy:search-service"
+      ],
+      "companions": [
+        "open_ticket"
+      ],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "restart_service:search-service",
+      "recovery": {
+        "restart_service:search-service": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "relapse_after_min": 28.0,
+          "tau_min": 2.0
+        },
+        "rollback_deploy:search-service": {
+          "delay_min": 4.0,
+          "fraction": 1.0,
+          "tau_min": 3.0
+        }
+      },
+      "requires_approval": [
+        "restart_service:search-service",
+        "rollback_deploy:search-service"
+      ]
+    },
+    "root_cause": {
+      "category": "memory_leak",
+      "change_id": "chg-searc-3802",
+      "component": "search-service",
+      "summary": "Deploy 2026.10.29.1, three days old, added an unbounded result cache; heap grows steadily until garbage collection thrashes."
+    },
+    "severity": "SEV3"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 3,
+      "noise_sigma": 0.05,
+      "red_herrings": 0,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-01T16:40:00Z",
+    "seed_key": "S09",
+    "step_s": 60,
+    "window": [
+      "2026-11-01T15:10:00Z",
+      "2026-11-01T17:25:00Z"
+    ]
+  }
+}

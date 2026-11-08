@@ -1,0 +1,130 @@
+{
+  "scenario_id": "S05",
+  "stats": {
+    "alerts": 14,
+    "changes": 5,
+    "events": 27,
+    "logs": 1081,
+    "reports": 3
+  },
+  "summary": "Checkout and order creation are slow and timing out; several services alert at once.",
+  "tier": 2,
+  "title": "Orders DB connection pool exhausted",
+  "trigger": {
+    "alert_event": "evt_S05_0010",
+    "as_of": "2026-11-03T19:25:30Z"
+  },
+  "truth": {
+    "affected": [
+      "orders-db",
+      "inventory-service",
+      "orders-service",
+      "payments-service",
+      "shipping-service",
+      "checkout-service",
+      "edge-gateway"
+    ],
+    "budget": {
+      "max_supervisor_hops": 8,
+      "max_tool_calls": 14
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "checkout",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach",
+        "product"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.047,
+      "checkout_p95_ms_peak": 271.8
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "metric",
+        "ref": "orders-db/saturation_pct"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/error_rate"
+      },
+      {
+        "kind": "log",
+        "ref": "orders-db:remaining connection slots"
+      }
+    ],
+    "red_herrings": [
+      {
+        "id": "chg-catal-3855",
+        "kind": "change",
+        "why": "catalog-service deploy 12 minutes before onset; catalog does not use orders-db; its own error and latency metrics are unchanged"
+      }
+    ],
+    "remediation": {
+      "acceptable": [
+        "kill_queries:orders-db"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary",
+        "failover_db_primary",
+        "rollback_deploy:catalog-service"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "kill_queries:orders-db",
+      "recovery": {
+        "kill_queries:orders-db": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 3.0
+        }
+      },
+      "requires_approval": [
+        "kill_queries:orders-db"
+      ]
+    },
+    "root_cause": {
+      "category": "db_pool_exhaustion",
+      "change_id": null,
+      "component": "orders-db",
+      "summary": "A long-running reporting session pinned connections; the orders-db pool saturated and four direct callers (payments, orders, inventory, shipping) timed out waiting for connections."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.05,
+      "red_herrings": 1,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-03T19:20:00Z",
+    "seed_key": "S05",
+    "step_s": 60,
+    "window": [
+      "2026-11-03T17:50:00Z",
+      "2026-11-03T20:05:00Z"
+    ]
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "scenario_id": "S13",
+  "stats": {
+    "alerts": 3,
+    "changes": 5,
+    "events": 23,
+    "logs": 612,
+    "reports": 9
+  },
+  "summary": "Customers report payment problems but the dashboards look calm and flat.",
+  "tier": 3,
+  "title": "Telemetry gap",
+  "trigger": {
+    "alert_event": "evt_S13_0013",
+    "as_of": "2026-11-04T16:59:35Z"
+  },
+  "truth": {
+    "affected": [
+      "payments-service",
+      "orders-service"
+    ],
+    "budget": {
+      "max_supervisor_hops": 9,
+      "max_tool_calls": 18
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "payment",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": false
+    },
+    "customer_impact": {
+      "orders_error_rate_peak": 0.002,
+      "orders_p95_ms_peak": 167.3
+    },
+    "expected_interrupts": [
+      {
+        "at": "answer_question",
+        "kind": "question",
+        "reason": "telemetry missing: ask the on-call for direct evidence"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "metric",
+        "ref": "payments-service/error_rate"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "escalate_human:payments-service"
+      ],
+      "companions": [],
+      "forbidden": [
+        "add_index:*",
+        "drain_zone:*",
+        "enable_fallback_provider:*",
+        "expand_volume:*",
+        "failover_db_primary:*",
+        "failover_dns:*",
+        "kill_queries:*",
+        "pause_consumer:*",
+        "quarantine_message:*",
+        "renew_cert:*",
+        "restart_db_primary:*",
+        "restart_service:*",
+        "revert_config:*",
+        "revert_flag:*",
+        "rollback_deploy:*",
+        "rotate_logs:*",
+        "scale_out:*",
+        "suppress_alert:*",
+        "warm_cache:*"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "escalate_human:payments-service",
+      "recovery": {},
+      "requires_approval": []
+    },
+    "root_cause": {
+      "category": "telemetry_gap",
+      "change_id": null,
+      "component": "payments-service",
+      "summary": "The metrics exporter for payments-service and orders-service stopped: every series is flat and logs stopped. Customer impact is unknown."
+    },
+    "severity": "SEV3"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.06,
+      "red_herrings": 0,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": [
+        "orders-service"
+      ]
+    },
+    "n_points": 135,
+    "onset": "2026-11-04T16:50:00Z",
+    "seed_key": "S13",
+    "step_s": 60,
+    "window": [
+      "2026-11-04T15:20:00Z",
+      "2026-11-04T17:35:00Z"
+    ]
+  }
+}

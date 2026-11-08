@@ -1,0 +1,133 @@
+{
+  "scenario_id": "S16",
+  "stats": {
+    "alerts": 24,
+    "changes": 6,
+    "events": 45,
+    "logs": 1043,
+    "reports": 4
+  },
+  "summary": "Sign-in and checkout are slow right after the Monday 09:00 jobs run; this feels familiar.",
+  "tier": 2,
+  "title": "Monday flush stampede (recurring)",
+  "trigger": {
+    "alert_event": "evt_S16_0007",
+    "as_of": "2026-11-02T09:04:30Z"
+  },
+  "truth": {
+    "affected": [
+      "sessions-cache",
+      "auth-service",
+      "cart-service",
+      "checkout-service",
+      "edge-gateway",
+      "orders-db"
+    ],
+    "budget": {
+      "max_supervisor_hops": 8,
+      "max_tool_calls": 14
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "sign-in",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.021,
+      "checkout_p95_ms_peak": 330.0
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "min_savings_pct": 30,
+      "recall": "INC-0087",
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "job-9695"
+      },
+      {
+        "kind": "metric",
+        "ref": "sessions-cache/hit_ratio"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/p95_ms"
+      },
+      {
+        "kind": "log",
+        "ref": "sessions-cache:below threshold 0.60"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "revert_config:session_flush_schedule",
+        "warm_cache:sessions-cache"
+      ],
+      "companions": [
+        "warm_cache:sessions-cache"
+      ],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "revert_config:session_flush_schedule",
+      "recovery": {
+        "revert_config:session_flush_schedule": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 3.5
+        },
+        "warm_cache:sessions-cache": {
+          "delay_min": 1.0,
+          "fraction": 0.7,
+          "tau_min": 2.5
+        }
+      },
+      "requires_approval": [
+        "revert_config:session_flush_schedule"
+      ]
+    },
+    "root_cause": {
+      "category": "cache_stampede",
+      "change_id": "job-9695",
+      "component": "sessions-cache",
+      "summary": "The weekly session flush job flushes every shard at once: hit ratio collapses, misses fall through to orders-db. Identical to INC-0087."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.05,
+      "red_herrings": 0,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-02T09:00:00Z",
+    "seed_key": "S16",
+    "step_s": 60,
+    "window": [
+      "2026-11-02T07:30:00Z",
+      "2026-11-02T09:45:00Z"
+    ]
+  }
+}

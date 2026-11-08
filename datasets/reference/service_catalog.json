@@ -1,0 +1,863 @@
+[
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [
+      "edge-gateway",
+      "recommendation-service"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "new_checkout_ui"
+    ],
+    "id": "web-frontend",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-platform",
+    "runbooks": [
+      "RB-003",
+      "RB-005",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022"
+    ],
+    "slo": {
+      "availability": 99.9,
+      "p95_ms": 500
+    },
+    "team": "platform",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [
+      "edge_timeout_ms"
+    ],
+    "criticality": "revenue",
+    "depends_on": [
+      "auth-service",
+      "catalog-service",
+      "search-service",
+      "cart-service",
+      "checkout-service",
+      "user-profile"
+    ],
+    "deploy_cadence": "weekly",
+    "flags": [
+      "edge_rate_limit_v2"
+    ],
+    "id": "edge-gateway",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-platform",
+    "runbooks": [
+      "RB-003",
+      "RB-005",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022"
+    ],
+    "slo": {
+      "availability": 99.99,
+      "p95_ms": 200
+    },
+    "team": "platform",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [
+      "sessions-cache"
+    ],
+    "deploy_cadence": "weekly",
+    "flags": [
+      "passwordless_login"
+    ],
+    "id": "auth-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-platform",
+    "runbooks": [
+      "RB-010",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024"
+    ],
+    "slo": {
+      "availability": 99.99,
+      "p95_ms": 200
+    },
+    "team": "platform",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "inventory-service"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "semantic_rerank"
+    ],
+    "id": "catalog-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-growth",
+    "runbooks": [
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024",
+      "RB-002",
+      "RB-006"
+    ],
+    "slo": {
+      "availability": 99.9,
+      "p95_ms": 300
+    },
+    "team": "growth",
+    "tier": 1,
+    "zones": [
+      "zone-a"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "catalog-service"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "query_rewrite_v2"
+    ],
+    "id": "search-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-growth",
+    "runbooks": [
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024",
+      "RB-002",
+      "RB-006"
+    ],
+    "slo": {
+      "availability": 99.9,
+      "p95_ms": 400
+    },
+    "team": "growth",
+    "tier": 1,
+    "zones": [
+      "zone-a"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [
+      "pricing-service",
+      "sessions-cache"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "cart_merge_v2"
+    ],
+    "id": "cart-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-commerce",
+    "runbooks": [
+      "RB-003",
+      "RB-010",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022"
+    ],
+    "slo": {
+      "availability": 99.95,
+      "p95_ms": 300
+    },
+    "team": "commerce",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [
+      "cart-service",
+      "payments-service",
+      "orders-service",
+      "inventory-service"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "express_checkout",
+      "one_click_pay"
+    ],
+    "id": "checkout-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-commerce",
+    "runbooks": [
+      "RB-004",
+      "RB-015",
+      "RB-003",
+      "RB-005",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019"
+    ],
+    "slo": {
+      "availability": 99.95,
+      "p95_ms": 400
+    },
+    "team": "commerce",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [
+      "payment_retry_budget"
+    ],
+    "criticality": "revenue",
+    "depends_on": [
+      "payment-provider",
+      "orders-db"
+    ],
+    "deploy_cadence": "weekly",
+    "flags": [
+      "3ds_challenge_v2"
+    ],
+    "id": "payments-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-payments",
+    "runbooks": [
+      "RB-004",
+      "RB-015",
+      "RB-013",
+      "RB-005",
+      "RB-007",
+      "RB-014",
+      "RB-001",
+      "RB-011"
+    ],
+    "slo": {
+      "availability": 99.99,
+      "p95_ms": 700
+    },
+    "team": "payments",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "orders-db"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "reserve_stock_async"
+    ],
+    "id": "inventory-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-fulfilment",
+    "runbooks": [
+      "RB-009",
+      "RB-007",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022"
+    ],
+    "slo": {
+      "availability": 99.9,
+      "p95_ms": 250
+    },
+    "team": "fulfilment",
+    "tier": 1,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [
+      "sessions-cache"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "new_pricing_engine",
+      "dynamic_discounts"
+    ],
+    "id": "pricing-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-commerce",
+    "runbooks": [
+      "RB-010",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024"
+    ],
+    "slo": {
+      "availability": 99.95,
+      "p95_ms": 600
+    },
+    "team": "commerce",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "sessions-cache",
+      "catalog-service"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "reco_model_v7"
+    ],
+    "id": "recommendation-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-growth",
+    "runbooks": [
+      "RB-010",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024",
+      "RB-002"
+    ],
+    "slo": {
+      "availability": 99.5,
+      "p95_ms": 500
+    },
+    "team": "growth",
+    "tier": 2,
+    "zones": [
+      "zone-a"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "event-bus",
+      "email-provider"
+    ],
+    "deploy_cadence": "weekly",
+    "flags": [
+      "batch_digest_emails"
+    ],
+    "id": "notification-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-messaging",
+    "runbooks": [
+      "RB-012",
+      "RB-021",
+      "RB-013",
+      "RB-005",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019"
+    ],
+    "slo": {
+      "availability": 99.5,
+      "p95_ms": 400
+    },
+    "team": "messaging",
+    "tier": 2,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [
+      "orders-db",
+      "notification-service"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "split_shipments"
+    ],
+    "id": "orders-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-fulfilment",
+    "runbooks": [
+      "RB-009",
+      "RB-015",
+      "RB-007",
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020"
+    ],
+    "slo": {
+      "availability": 99.95,
+      "p95_ms": 450
+    },
+    "team": "fulfilment",
+    "tier": 0,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "orders-db"
+    ],
+    "deploy_cadence": "weekly",
+    "flags": [
+      "carrier_rate_cache"
+    ],
+    "id": "shipping-service",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-fulfilment",
+    "runbooks": [
+      "RB-007",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024",
+      "RB-002"
+    ],
+    "slo": {
+      "availability": 99.9,
+      "p95_ms": 350
+    },
+    "team": "fulfilment",
+    "tier": 1,
+    "zones": [
+      "zone-a"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "customer",
+    "depends_on": [
+      "orders-db"
+    ],
+    "deploy_cadence": "daily",
+    "flags": [
+      "profile_prefetch"
+    ],
+    "id": "user-profile",
+    "kind": "service",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-platform",
+    "runbooks": [
+      "RB-014",
+      "RB-001",
+      "RB-011",
+      "RB-019",
+      "RB-020",
+      "RB-022",
+      "RB-024",
+      "RB-002"
+    ],
+    "slo": {
+      "availability": 99.9,
+      "p95_ms": 200
+    },
+    "team": "platform",
+    "tier": 1,
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [
+      "max_connections"
+    ],
+    "criticality": "revenue",
+    "depends_on": [],
+    "deploy_cadence": "maintenance-window",
+    "engine": "postgres-15",
+    "flags": [],
+    "id": "orders-db",
+    "kind": "datastore",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-dba",
+    "runbooks": [
+      "RB-008",
+      "RB-016",
+      "RB-017",
+      "RB-009",
+      "RB-007",
+      "RB-010",
+      "RB-018",
+      "RB-023"
+    ],
+    "slo": {
+      "availability": 99.99,
+      "p95_ms": 40
+    },
+    "team": "data-infra",
+    "tier": 0,
+    "topology": {
+      "primary": 1,
+      "replicas": 2
+    },
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [
+      "session_ttl_seconds",
+      "session_flush_schedule"
+    ],
+    "criticality": "revenue",
+    "depends_on": [],
+    "deploy_cadence": "maintenance-window",
+    "engine": "redis-7",
+    "flags": [],
+    "id": "sessions-cache",
+    "kind": "datastore",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct",
+      "hit_ratio"
+    ],
+    "oncall": "rota-dba",
+    "runbooks": [
+      "RB-010",
+      "RB-002",
+      "RB-018",
+      "RB-023"
+    ],
+    "slo": {
+      "availability": 99.99,
+      "p95_ms": 6
+    },
+    "team": "data-infra",
+    "tier": 0,
+    "topology": {
+      "replicas_per_shard": 1,
+      "shards": 6
+    },
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [
+      "consumer_max_retries"
+    ],
+    "criticality": "customer",
+    "depends_on": [],
+    "deploy_cadence": "maintenance-window",
+    "engine": "kafka-3.7",
+    "flags": [],
+    "id": "event-bus",
+    "kind": "queue",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct",
+      "consumer_lag"
+    ],
+    "oncall": "rota-dba",
+    "runbooks": [
+      "RB-012",
+      "RB-021",
+      "RB-006",
+      "RB-018",
+      "RB-023"
+    ],
+    "slo": {
+      "availability": 99.95,
+      "p95_ms": 25
+    },
+    "team": "data-infra",
+    "tier": 1,
+    "topology": {
+      "brokers": 5,
+      "partitions": 48
+    },
+    "zones": [
+      "zone-a",
+      "zone-b"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "revenue",
+    "depends_on": [],
+    "deploy_cadence": "n/a",
+    "flags": [],
+    "id": "payment-provider",
+    "kind": "external",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-payments",
+    "runbooks": [
+      "RB-004",
+      "RB-013"
+    ],
+    "slo": {
+      "availability": 99.95,
+      "p95_ms": 900
+    },
+    "team": "payments",
+    "tier": 0,
+    "vendor": "PayWave",
+    "zones": [
+      "external"
+    ]
+  },
+  {
+    "configs": [],
+    "criticality": "internal",
+    "depends_on": [],
+    "deploy_cadence": "n/a",
+    "flags": [],
+    "id": "email-provider",
+    "kind": "external",
+    "metrics": [
+      "rps",
+      "error_rate",
+      "p95_ms",
+      "cpu_pct",
+      "mem_pct",
+      "disk_pct",
+      "saturation_pct"
+    ],
+    "oncall": "rota-messaging",
+    "runbooks": [
+      "RB-021",
+      "RB-013"
+    ],
+    "slo": {
+      "availability": 99.0,
+      "p95_ms": 1200
+    },
+    "team": "messaging",
+    "tier": 2,
+    "vendor": "MailRelay",
+    "zones": [
+      "external"
+    ]
+  }
+]

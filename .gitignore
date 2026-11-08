@@ -44,3 +44,6 @@ htmlcov/
 .idea/
 .vscode/
 .DS_Store
+
+# Foghorn generated data and runtime state
+var/

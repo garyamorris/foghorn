@@ -1,0 +1,133 @@
+{
+  "scenario_id": "S06",
+  "stats": {
+    "alerts": 32,
+    "changes": 7,
+    "events": 57,
+    "logs": 1097,
+    "reports": 6
+  },
+  "summary": "The orders database is saturated and sign-in is slow; nothing was deployed.",
+  "tier": 2,
+  "title": "Session cache stampede after TTL change",
+  "trigger": {
+    "alert_event": "evt_S06_0018",
+    "as_of": "2026-11-04T11:24:30Z"
+  },
+  "truth": {
+    "affected": [
+      "sessions-cache",
+      "auth-service",
+      "cart-service",
+      "pricing-service",
+      "checkout-service",
+      "edge-gateway",
+      "orders-db"
+    ],
+    "budget": {
+      "max_supervisor_hops": 8,
+      "max_tool_calls": 14
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "sign-in",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.033,
+      "checkout_p95_ms_peak": 731.0
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "cfg-22fd"
+      },
+      {
+        "kind": "metric",
+        "ref": "sessions-cache/hit_ratio"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/p95_ms"
+      },
+      {
+        "kind": "log",
+        "ref": "sessions-cache:below threshold 0.60"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "revert_config:session_ttl_seconds",
+        "warm_cache:sessions-cache"
+      ],
+      "companions": [
+        "warm_cache:sessions-cache"
+      ],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "revert_config:session_ttl_seconds",
+      "recovery": {
+        "revert_config:session_ttl_seconds": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 3.5
+        },
+        "warm_cache:sessions-cache": {
+          "delay_min": 1.0,
+          "fraction": 0.7,
+          "tau_min": 2.5
+        }
+      },
+      "requires_approval": [
+        "revert_config:session_ttl_seconds"
+      ]
+    },
+    "root_cause": {
+      "category": "cache_stampede",
+      "change_id": "cfg-22fd",
+      "component": "sessions-cache",
+      "summary": "session_ttl_seconds was lowered from 3600 to 60; sessions expired in bulk, the hit ratio collapsed and misses fell through to orders-db."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.05,
+      "red_herrings": 0,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-04T11:20:00Z",
+    "seed_key": "S06",
+    "step_s": 60,
+    "window": [
+      "2026-11-04T09:50:00Z",
+      "2026-11-04T12:05:00Z"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "event_router": {"path": "./src/foghorn/graphs/event_router.py:graph", "description": "Event ingress: validate, dedupe, enrich (retry+cache), classify, route and dispatch"},
+    "incident_commander": {"path": "./src/foghorn/graphs/incident_commander.py:graph", "description": "Supervisor multi-agent incident response: specialists, RCA, policy, human approval, execute, verify"},
+    "rca_tournament": {"path": "./src/foghorn/graphs/rca_tournament.py:graph", "description": "Send map-reduce root-cause hypothesis tournament"},
+    "storm_correlator": {"path": "./src/foghorn/graphs/storm_correlator.py:graph", "description": "Alert-storm clustering: map-reduce with reducers, timeouts, cache and error handlers"},
+    "change_gate": {"path": "./src/foghorn/graphs/change_gate.py:graph", "description": "Human-in-the-loop gym: approve, edit, reject, question, four-eyes, parallel interrupts"},
+    "postmortem_pipeline": {"path": "./src/foghorn/graphs/postmortem_pipeline.py:graph", "description": "Functional API (@entrypoint/@task) postmortem pipeline"},
+    "ops_copilot": {"path": "./src/foghorn/graphs/ops_copilot.py:graph", "description": "create_agent ops copilot with middleware, tools, memory (Studio chat mode)"},
+    "shift_handoff": {"path": "./src/foghorn/graphs/shift_handoff.py:graph", "description": "Deterministic durable cron pipeline: crash recovery, fork, breakpoints"},
+    "memory_keeper": {"path": "./src/foghorn/graphs/memory_keeper.py:graph", "description": "Learns from closed incidents: semantic memory and lessons in the Store"},
+    "eval_runner": {"path": "./src/foghorn/graphs/eval_runner.py:graph", "description": "Runs scenarios through the commander and scores them against ground truth"}
+  },
+  "http": {"app": "./src/foghorn/server/app.py:app"},
+  "store": {"index": {"embed": "./src/foghorn/embeddings.py:aembed", "dims": 256, "fields": ["text"]}},
+  "python_version": "3.12",
+  "env": ".env"
+}

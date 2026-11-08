@@ -1,0 +1,138 @@
+{
+  "scenario_id": "S12",
+  "stats": {
+    "alerts": 60,
+    "changes": 4,
+    "events": 73,
+    "logs": 2073,
+    "reports": 6
+  },
+  "summary": "Dozens of alerts from many services within minutes.",
+  "tier": 3,
+  "title": "Alert storm from a zone network partition",
+  "trigger": {
+    "alert_event": "evt_S12_0005",
+    "as_of": "2026-11-06T11:43:30Z"
+  },
+  "truth": {
+    "affected": [
+      "edge-gateway",
+      "web-frontend",
+      "auth-service",
+      "cart-service",
+      "checkout-service",
+      "event-bus",
+      "inventory-service",
+      "notification-service",
+      "orders-db",
+      "orders-service",
+      "payments-service",
+      "pricing-service",
+      "sessions-cache",
+      "user-profile"
+    ],
+    "budget": {
+      "max_supervisor_hops": 9,
+      "max_tool_calls": 18
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "sign-in",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.225,
+      "checkout_p95_ms_peak": 1307.8
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 2,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "metric",
+        "ref": "edge-gateway/error_rate"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/error_rate"
+      },
+      {
+        "kind": "log",
+        "ref": "checkout-service:No route to host"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "drain_zone:zone-b",
+        "failover_dns:edge-gateway"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary",
+        "rollback_deploy:*",
+        "restart_service:*"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "drain_zone:zone-b",
+      "recovery": {
+        "drain_zone:zone-b": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 2.0
+        },
+        "failover_dns:edge-gateway": {
+          "delay_min": 4.0,
+          "fraction": 0.9,
+          "tau_min": 3.0
+        }
+      },
+      "requires_approval": [
+        "drain_zone:zone-b",
+        "failover_dns:edge-gateway"
+      ]
+    },
+    "root_cause": {
+      "category": "network_partition",
+      "change_id": null,
+      "component": "edge-gateway",
+      "summary": "A network partition separates zone-b from the shared services (orders-db, sessions-cache, event-bus); every zone-b replica fails its dependency calls.",
+      "zone": "zone-b"
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 1,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.06,
+      "red_herrings": 0,
+      "signal_strength": 0.9,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-06T11:40:00Z",
+    "seed_key": "S12",
+    "step_s": 60,
+    "window": [
+      "2026-11-06T10:10:00Z",
+      "2026-11-06T12:25:00Z"
+    ]
+  }
+}

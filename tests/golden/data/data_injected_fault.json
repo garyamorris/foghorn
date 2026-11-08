@@ -1,0 +1,70 @@
+{
+  "affected": [
+    "sessions-cache",
+    "auth-service",
+    "cart-service",
+    "pricing-service",
+    "recommendation-service",
+    "checkout-service",
+    "edge-gateway",
+    "web-frontend",
+    "orders-db"
+  ],
+  "event_types": [
+    "alert.fired",
+    "alert.resolved",
+    "config.changed",
+    "customer.report",
+    "deploy.finished",
+    "deploy.started",
+    "flag.changed",
+    "slo.burn_rate"
+  ],
+  "preferred": "revert_config:session_ttl_seconds",
+  "red_herrings": [
+    {
+      "id": "chg-catal-7653",
+      "kind": "change",
+      "why": "catalog-service deploy 7.3 min before onset; not on the call path of sessions-cache; its own error and latency metrics are unchanged"
+    }
+  ],
+  "root_cause": {
+    "category": "cache_stampede",
+    "change_id": "cfg-0379",
+    "component": "sessions-cache",
+    "summary": "cache stampede on sessions-cache"
+  },
+  "scenario": {
+    "generated": true,
+    "scenario_id": "X-3954",
+    "stats": {
+      "alerts": 32,
+      "changes": 8,
+      "events": 52,
+      "logs": 1182,
+      "reports": 5
+    },
+    "summary": "Injected fault: cache stampede. Alerts and customer reports are arriving; the cause is not known.",
+    "tier": 2,
+    "title": "Cache stampede on sessions-cache",
+    "trigger": {
+      "alert_event": "evt_X-3954_0013",
+      "as_of": "2026-11-04T19:44:30Z"
+    },
+    "world": {
+      "difficulty": {
+        "evidence_lag_min": 2,
+        "noise_sigma": 0.08,
+        "signal_strength": 0.8
+      },
+      "n_points": 135,
+      "onset": "2026-11-04T19:40:00Z",
+      "seed_key": "X-3954",
+      "step_s": 60,
+      "window": [
+        "2026-11-04T18:10:00Z",
+        "2026-11-04T20:25:00Z"
+      ]
+    }
+  }
+}

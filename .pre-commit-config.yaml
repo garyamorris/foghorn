@@ -1,0 +1,35 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.4          # keep == uv.lock ruff
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy --strict
+        entry: uv run --frozen mypy
+        language: system
+        pass_filenames: false
+        types: [python]
+      - id: langgraph-config
+        name: langgraph.json graphs load like the server
+        entry: uv run --frozen pytest tests/contract -q -x
+        language: system
+        pass_filenames: false
+        files: ^(langgraph\.json|src/.*\.py)$
+      - id: no-secrets-in-env-example
+        name: .env.example has no real-looking keys
+        entry: bash -c '! grep -nE "(sk-ant-|sk-proj-|lsv2_)[A-Za-z0-9_-]{12,}" .env.example'
+        language: system
+        files: ^\.env\.example$
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: detect-private-key
+      - id: check-added-large-files
+        args: [--maxkb=500]

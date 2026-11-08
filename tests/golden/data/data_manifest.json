@@ -1,0 +1,86 @@
+{
+  "combined_sha256": "2695e342dd496c80fae9ba8ab98f30e54bc94052911bcbd6dcb2492db6532364",
+  "datasets": {
+    "memory_lessons": {
+      "records": 30,
+      "sha256": "683982a0579a23de3c5278940047de4b1fe1444b707a7a078866205309972f0c"
+    },
+    "memory_prefs": {
+      "records": 14,
+      "sha256": "1ea220d185711b6f69228e3346d269a503f3581657d285536e05fd73f3aeb0cf"
+    },
+    "past_incidents": {
+      "records": 120,
+      "sha256": "97e2abf772e67e89993eb82cf05a9759ac98c5fd74cbdabf54b970967bdd5f8a"
+    },
+    "people": {
+      "records": 8,
+      "sha256": "03905b9bcd714a81c5d747801bf2c1d9d995dd14595e1e7cca7aca8584cc2ba9"
+    },
+    "policies": {
+      "records": 8,
+      "sha256": "baec337c223ccceb3c11e67b1a93c94a44d2b88308f1ed3bce102bf69579df52"
+    },
+    "rag_qa": {
+      "records": 48,
+      "sha256": "429cd8bb507acf9518d8ada89ed0d70940f6d95842f08fa6fc3ac4364493171d"
+    },
+    "rotas": {
+      "records": 8,
+      "sha256": "48463e36031d596bb2b4e0c19a41435ce297b37ffc2304855962b5e2b0ca6464"
+    },
+    "runbooks": {
+      "records": 24,
+      "sha256": "c1980454c66cc3331c03c4f0ef08f23c73c031a9f3302a4528c085b8287c64e6"
+    },
+    "safety_cases": {
+      "records": 16,
+      "sha256": "58dc8e47b745e8bcf9cbed069463b3468d6881afec7f244b400c1aa909e6c93b"
+    },
+    "scenarios": {
+      "records": 16,
+      "sha256": "ca93f3550350742ba27261fd593a72cd21e5f391b977dbc7251371763339e06c"
+    },
+    "service_catalog": {
+      "records": 20,
+      "sha256": "43c4ce5249eb28deb52faef190d8694e66deef2ed1b6ac23cff708abe03aae9f"
+    },
+    "stream_quiet_hour": {
+      "records": 240,
+      "sha256": "0a0a4b3270be8fdf14f7b7609b2a65eb3a77fbcc98816c85aabb01a2f18d94a5"
+    },
+    "stream_quiet_hour_labels": {
+      "records": 240,
+      "sha256": "565429fa87a228d5ad071b5672215f71796d6428406df7d6bb5af11b738809da"
+    },
+    "stream_storm": {
+      "records": 650,
+      "sha256": "64727214ea1eb91699be942111f76198b3e96ca77c2a59f7ccacbd19bffe07b7"
+    },
+    "stream_storm_labels": {
+      "records": 650,
+      "sha256": "869b46b8294b6a65928a76a9327341218c50d52e4d1564244f0bff7f69ef29e4"
+    },
+    "stream_workday": {
+      "records": 1800,
+      "sha256": "a78c8e23efe627fc5afda44402e36476f5ca0edb9510cb416b91b7df66204616"
+    },
+    "stream_workday_labels": {
+      "records": 1800,
+      "sha256": "90a0fdbf124b2a80f03614c99cd439366e2575956d1b4e639fb1f9bf353e622c"
+    },
+    "sweep_specs": {
+      "records": 60,
+      "sha256": "00d6dbf07905e54da080494117cddafafd851f7299b2d7971ea8042aabce30cd"
+    },
+    "telemetry": {
+      "records": 16,
+      "sha256": "97f71eab8916e64ad30e15533908dc0da7311a3ad719d88a2400e2c57489f5e0"
+    },
+    "triage_cases": {
+      "records": 400,
+      "sha256": "7feddf5a524f38a282ff6a5884ae4aceb74506b4234edeed0b29fe8238b96a43"
+    }
+  },
+  "seed": 20261108
+}

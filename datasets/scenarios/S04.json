@@ -1,0 +1,97 @@
+{
+  "scenario_id": "S04",
+  "stats": {
+    "alerts": 4,
+    "changes": 7,
+    "events": 19,
+    "logs": 794,
+    "reports": 0
+  },
+  "summary": "Latency alerts on the orders database during the night.",
+  "tier": 1,
+  "title": "Maintenance-window noise",
+  "trigger": {
+    "alert_event": "evt_S04_0014",
+    "as_of": "2026-11-02T03:10:30Z"
+  },
+  "truth": {
+    "affected": [
+      "orders-db",
+      "inventory-service"
+    ],
+    "budget": {
+      "max_supervisor_hops": 3,
+      "max_tool_calls": 0
+    },
+    "comms": {
+      "status_page": false
+    },
+    "customer_impact": {
+      "inventory_error_rate_peak": 0.001,
+      "inventory_p95_ms_peak": 88.3
+    },
+    "expected_interrupts": [],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": false
+    },
+    "expected_route": "suppress_maintenance",
+    "flags": [],
+    "is_noise": true,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "mnt-9001"
+      },
+      {
+        "kind": "metric",
+        "ref": "orders-db/p95_ms"
+      },
+      {
+        "kind": "metric",
+        "ref": "inventory-service/p95_ms"
+      },
+      {
+        "kind": "log",
+        "ref": "orders-db:maintenance mode"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "suppress_alert:orders-db"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary",
+        "rollback_deploy:*",
+        "restart_service:*",
+        "failover_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "suppress_alert:orders-db",
+      "recovery": {},
+      "requires_approval": []
+    },
+    "root_cause": null,
+    "severity": "none"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 1,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.04,
+      "red_herrings": 0,
+      "signal_strength": 1.0,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-02T03:05:00Z",
+    "seed_key": "S04",
+    "step_s": 60,
+    "window": [
+      "2026-11-02T01:35:00Z",
+      "2026-11-02T03:50:00Z"
+    ]
+  }
+}

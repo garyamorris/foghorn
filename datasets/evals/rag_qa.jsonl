@@ -1,0 +1,48 @@
+{"expected_runbooks":["RB-006"],"must_not_top1":[],"qid":"RQ-001","question":"disk_pct above 90 and no space left on device","scenario_hint":"S03"}
+{"expected_runbooks":["RB-018"],"must_not_top1":[],"qid":"RQ-002","question":"alerts firing during a scheduled maintenance window and planned upgrade or failover test in progress","scenario_hint":"S04"}
+{"expected_runbooks":["RB-014"],"must_not_top1":[],"qid":"RQ-003","question":"alerts from many components in one zone and zone-b cannot reach the shared services","scenario_hint":"S12"}
+{"expected_runbooks":["RB-013"],"must_not_top1":[],"qid":"RQ-004","question":"external provider error_rate high and provider timeouts","scenario_hint":"S08"}
+{"expected_runbooks":["RB-007","RB-008"],"must_not_top1":["RB-017"],"qid":"RQ-005","question":"orders-db outage? connection timeout, database slow, high latency on the primary","scenario_hint":"S05"}
+{"expected_runbooks":["RB-019"],"must_not_top1":[],"qid":"RQ-006","question":"cpu_pct above 90 and traffic increase","scenario_hint":null}
+{"expected_runbooks":["RB-014"],"must_not_top1":[],"qid":"RQ-007","question":"Dozens of alerts from one availability zone at the same minute, what is the runbook?","scenario_hint":"S12"}
+{"expected_runbooks":["RB-023"],"must_not_top1":[],"qid":"RQ-008","question":"many alerts within minutes and alert storm","scenario_hint":null}
+{"expected_runbooks":["RB-022"],"must_not_top1":[],"qid":"RQ-009","question":"How do I word the status page update for a customer-impacting incident?","scenario_hint":null}
+{"expected_runbooks":["RB-008"],"must_not_top1":["RB-017"],"qid":"RQ-010","question":"database cpu at 100 percent and the database is slow right now, what do we do?","scenario_hint":"S14"}
+{"expected_runbooks":["RB-024"],"must_not_top1":[],"qid":"RQ-011","question":"incident resolved and postmortem due","scenario_hint":null}
+{"expected_runbooks":["RB-008"],"must_not_top1":[],"qid":"RQ-012","question":"cpu_pct near 100 on orders-db driven by a few sessions and runaway query holding connections","scenario_hint":null}
+{"expected_runbooks":["RB-004"],"must_not_top1":[],"qid":"RQ-013","question":"Card authorisations keep failing at the payment provider, what should I do?","scenario_hint":null}
+{"expected_runbooks":["RB-001"],"must_not_top1":[],"qid":"RQ-014","question":"Errors started right after we shipped a release of one service, how do I handle it?","scenario_hint":"S01"}
+{"expected_runbooks":["RB-007"],"must_not_top1":[],"qid":"RQ-015","question":"saturation_pct > 90 on a datastore and connection timeout errors in callers","scenario_hint":null}
+{"expected_runbooks":["RB-009"],"must_not_top1":["RB-017"],"qid":"RQ-016","question":"database slow and connection timeout since the migration, queries timing out on order lines, missing index","scenario_hint":"S11"}
+{"expected_runbooks":["RB-008"],"must_not_top1":["RB-017"],"qid":"RQ-017","question":"database unresponsive during peak trading, connection timeout and cpu 100 percent while a change freeze is active","scenario_hint":"S14"}
+{"expected_runbooks":["RB-021"],"must_not_top1":[],"qid":"RQ-018","question":"Customers are not receiving their order confirmation emails.","scenario_hint":null}
+{"expected_runbooks":["RB-006"],"must_not_top1":[],"qid":"RQ-019","question":"A service stopped writing because there is no space left on the volume.","scenario_hint":"S03"}
+{"expected_runbooks":["RB-019"],"must_not_top1":[],"qid":"RQ-020","question":"CPU on a service stays above 90 percent with more traffic than usual.","scenario_hint":null}
+{"expected_runbooks":["RB-015"],"must_not_top1":[],"qid":"RQ-021","question":"Dashboards are flat while customers say orders fail, can we trust the metrics?","scenario_hint":"S13"}
+{"expected_runbooks":["RB-012"],"must_not_top1":[],"qid":"RQ-022","question":"One message keeps being redelivered and the consumer lag keeps growing.","scenario_hint":"S07"}
+{"expected_runbooks":["RB-011"],"must_not_top1":[],"qid":"RQ-023","question":"Memory usage on the search service keeps climbing and containers get OOMKilled.","scenario_hint":"S09"}
+{"expected_runbooks":["RB-023"],"must_not_top1":[],"qid":"RQ-024","question":"We got a storm of duplicate alerts, how should we handle it?","scenario_hint":null}
+{"expected_runbooks":["RB-005"],"must_not_top1":[],"qid":"RQ-025","question":"TLS handshake failures between services and x509 certificate has expired","scenario_hint":"S02"}
+{"expected_runbooks":["RB-001"],"must_not_top1":[],"qid":"RQ-026","question":"error_rate jumps within minutes of a deploy and 5xx responses after a release","scenario_hint":"S01"}
+{"expected_runbooks":["RB-003"],"must_not_top1":[],"qid":"RQ-027","question":"checkout error_rate above 2 percent and orders per minute dropped","scenario_hint":null}
+{"expected_runbooks":["RB-009"],"must_not_top1":[],"qid":"RQ-028","question":"p95_ms creeping up on orders-db with no error rate increase and latency drift after a migration was applied","scenario_hint":"S11"}
+{"expected_runbooks":["RB-013"],"must_not_top1":[],"qid":"RQ-029","question":"An external vendor is down and we have nothing to roll back.","scenario_hint":"S08"}
+{"expected_runbooks":["RB-010"],"must_not_top1":[],"qid":"RQ-030","question":"hit_ratio drops below 0.5 and cache stampede after a TTL change or a flush","scenario_hint":"S06"}
+{"expected_runbooks":["RB-021"],"must_not_top1":[],"qid":"RQ-031","question":"emails not delivered and email provider throttling","scenario_hint":null}
+{"expected_runbooks":["RB-012"],"must_not_top1":[],"qid":"RQ-032","question":"consumer_lag rising on the event bus and same message redelivered repeatedly","scenario_hint":"S07"}
+{"expected_runbooks":["RB-003"],"must_not_top1":[],"qid":"RQ-033","question":"Checkout is returning 500s and the error budget is burning fast, where do I start?","scenario_hint":null}
+{"expected_runbooks":["RB-020"],"must_not_top1":[],"qid":"RQ-034","question":"p95_ms regression and latency inherited from a downstream dependency","scenario_hint":null}
+{"expected_runbooks":["RB-015"],"must_not_top1":[],"qid":"RQ-035","question":"metrics flat for many minutes and no data from the exporter","scenario_hint":"S13"}
+{"expected_runbooks":["RB-022"],"must_not_top1":[],"qid":"RQ-036","question":"customer-impacting incident and need to publish a status update","scenario_hint":null}
+{"expected_runbooks":["RB-018"],"must_not_top1":[],"qid":"RQ-037","question":"Alerts are firing during the planned database upgrade window.","scenario_hint":"S04"}
+{"expected_runbooks":["RB-002"],"must_not_top1":[],"qid":"RQ-038","question":"Latency jumped after someone ramped a feature flag, what is the playbook?","scenario_hint":"S10"}
+{"expected_runbooks":["RB-016"],"must_not_top1":[],"qid":"RQ-039","question":"primary unreachable and replication lag high","scenario_hint":null}
+{"expected_runbooks":["RB-007"],"must_not_top1":["RB-017"],"qid":"RQ-040","question":"database connection timeout from payments and inventory, orders-db latency high","scenario_hint":"S05"}
+{"expected_runbooks":["RB-020"],"must_not_top1":[],"qid":"RQ-041","question":"Several services all got slower, how do I find the dependency that is the origin?","scenario_hint":null}
+{"expected_runbooks":["RB-007","RB-008"],"must_not_top1":["RB-017"],"qid":"RQ-042","question":"orders-db connections timing out and checkout p95 climbing, what do we do?","scenario_hint":"S05"}
+{"expected_runbooks":["RB-011"],"must_not_top1":[],"qid":"RQ-043","question":"mem_pct climbing steadily and sawtooth memory pattern","scenario_hint":"S09"}
+{"expected_runbooks":["RB-005"],"must_not_top1":[],"qid":"RQ-044","question":"Handshake errors with the payment provider began exactly at midnight, what is going on?","scenario_hint":"S02"}
+{"expected_runbooks":["RB-004"],"must_not_top1":[],"qid":"RQ-045","question":"payment authorisation failures and payment provider timeouts","scenario_hint":null}
+{"expected_runbooks":["RB-017"],"must_not_top1":[],"qid":"RQ-046","question":"database unresponsive and connection timeout","scenario_hint":null}
+{"expected_runbooks":["RB-002"],"must_not_top1":[],"qid":"RQ-047","question":"latency or errors start right after a flag ramp or config change and feature flag percentage raised shortly before onset","scenario_hint":"S10"}
+{"expected_runbooks":["RB-010"],"must_not_top1":[],"qid":"RQ-048","question":"Session cache hit rate collapsed after a TTL change and the database is overloaded.","scenario_hint":"S06"}

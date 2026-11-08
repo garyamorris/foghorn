@@ -1,0 +1,269 @@
+{
+  "blast_radius": {
+    "customer_facing_exposed": true,
+    "direct_callers": [
+      "cart-service"
+    ],
+    "downstream_dependencies": [
+      "sessions-cache"
+    ],
+    "revenue_path_exposed": true,
+    "service": "pricing-service",
+    "tier": 0,
+    "tier0_exposed": [
+      "cart-service",
+      "checkout-service",
+      "edge-gateway",
+      "web-frontend"
+    ],
+    "total_affected_if_down": 4,
+    "transitive_callers": [
+      {
+        "criticality": "revenue",
+        "hops": 1,
+        "id": "cart-service",
+        "tier": 0
+      },
+      {
+        "criticality": "revenue",
+        "hops": 2,
+        "id": "checkout-service",
+        "tier": 0
+      },
+      {
+        "criticality": "revenue",
+        "hops": 2,
+        "id": "edge-gateway",
+        "tier": 0
+      },
+      {
+        "criticality": "revenue",
+        "hops": 3,
+        "id": "web-frontend",
+        "tier": 0
+      }
+    ]
+  },
+  "compare_baseline": {
+    "as_of": "2026-11-05T10:48:30Z",
+    "baseline": {
+      "mean": 0.0029,
+      "median": 0.0029,
+      "n": 30,
+      "std": 0.0005
+    },
+    "current": {
+      "samples": 3,
+      "ts": "2026-11-05T10:48:00Z",
+      "value": 0.0034
+    },
+    "delta": 0.0005,
+    "delta_pct": 17.2044,
+    "metric": "error_rate",
+    "ratio": 1.172,
+    "service": "checkout-service",
+    "since": null,
+    "unit": "ratio",
+    "verdict": "normal",
+    "z_score": 1.0209
+  },
+  "execute_action": {
+    "action": "revert_flag",
+    "applied_at": "2026-11-05T10:48:30Z",
+    "id": "act_581d2eb441",
+    "next": "verify_recovery after a few virtual minutes (advance as_of)",
+    "ok": true,
+    "outcome": "executed",
+    "params": {},
+    "policy": {
+      "approvers_required": 1,
+      "break_glass_provided": false,
+      "break_glass_required": false,
+      "extra_roles": [],
+      "freeze_active": true,
+      "never_automatic": false
+    },
+    "reason": "revert_flag on new_pricing_engine simulated at 2026-11-05T10:48:30Z",
+    "reversible": true,
+    "risk": "medium",
+    "scenario_id": "S10",
+    "simulated": true,
+    "target": "new_pricing_engine"
+  },
+  "list_changes": [
+    [
+      "cfg-7f21",
+      "flag_change",
+      "pricing-service",
+      6.5
+    ],
+    [
+      "chg-reco-4412",
+      "deploy",
+      "recommendation-service",
+      7.5
+    ],
+    [
+      "chg-catal-8672",
+      "deploy",
+      "catalog-service",
+      54.3
+    ],
+    [
+      "chg-shipp-5768",
+      "deploy",
+      "shipping-service",
+      60.2
+    ],
+    [
+      "chg-notif-9264",
+      "deploy",
+      "notification-service",
+      61.4
+    ],
+    [
+      "cfg-1d47",
+      "flag_change",
+      "catalog-service",
+      76.4
+    ],
+    [
+      "chg-shipp-1485",
+      "deploy",
+      "shipping-service",
+      81.8
+    ]
+  ],
+  "pricing_p95_after": [
+    [
+      "2026-11-05T10:55:00Z",
+      330.42
+    ],
+    [
+      "2026-11-05T10:56:00Z",
+      252.98
+    ],
+    [
+      "2026-11-05T10:57:00Z",
+      227.59
+    ],
+    [
+      "2026-11-05T10:58:00Z",
+      226.89
+    ],
+    [
+      "2026-11-05T10:59:00Z",
+      201.67
+    ],
+    [
+      "2026-11-05T11:00:00Z",
+      198.65
+    ]
+  ],
+  "query_metric": {
+    "actions_considered": 0,
+    "as_of": "2026-11-05T10:48:30Z",
+    "baseline": {
+      "mean": 209.21,
+      "median": 205.13,
+      "n": 30,
+      "std": 14.6247,
+      "window": "first 30 minutes of the telemetry window"
+    },
+    "data_quality": "ok",
+    "flatline_minutes": 0,
+    "latest": {
+      "ts": "2026-11-05T10:48:00Z",
+      "value": 1376.07
+    },
+    "max_z": 82.806,
+    "metric": "p95_ms",
+    "n": 8,
+    "onset_estimate": "2026-11-05T10:46:00Z",
+    "peak": {
+      "ts": "2026-11-05T10:47:00Z",
+      "value": 1420.22
+    },
+    "points": [
+      [
+        "2026-11-05T10:41:00Z",
+        213.39
+      ],
+      [
+        "2026-11-05T10:42:00Z",
+        210.27
+      ],
+      [
+        "2026-11-05T10:43:00Z",
+        212.54
+      ],
+      [
+        "2026-11-05T10:44:00Z",
+        212.41
+      ],
+      [
+        "2026-11-05T10:45:00Z",
+        210.79
+      ],
+      [
+        "2026-11-05T10:46:00Z",
+        784.44
+      ],
+      [
+        "2026-11-05T10:47:00Z",
+        1420.22
+      ],
+      [
+        "2026-11-05T10:48:00Z",
+        1376.07
+      ]
+    ],
+    "service": "pricing-service",
+    "slo": {
+      "breached": true,
+      "p95_ms": 600
+    },
+    "trend": "rising",
+    "unit": "ms",
+    "window_minutes": 8,
+    "z_score": 79.7871
+  },
+  "runbooks_for_slow_db": [
+    "RB-017",
+    "RB-008",
+    "RB-007",
+    "RB-019"
+  ],
+  "search_logs": {
+    "as_of": "2026-11-05T10:48:30Z",
+    "counts_by_level": {
+      "ERROR": 1
+    },
+    "injection_suspected": false,
+    "level": "ERROR",
+    "pattern": "TaxClient",
+    "patterns": [
+      {
+        "count": 1,
+        "first_ts": "2026-11-05T10:48:28Z",
+        "id": "p_1c1e",
+        "last_ts": "2026-11-05T10:48:28Z",
+        "level": "ERROR"
+      }
+    ],
+    "returned": 1,
+    "service": "pricing-service",
+    "text": "<untrusted source=\"logs:pricing-service\">\n2026-11-05T10:48:28Z ERROR [p_1c1e] trace=tr_5038cf TaxClient timeout after 800ms calling tax-api.internal (attempt 2/2) cart=c_25c588\n-- patterns --\n[p_1c1e] x1 ERROR TaxClient timeout after <n>ms calling tax-api.internal (attempt <n>/<n>) cart=c_<id>\n</untrusted>",
+    "total_matches": 1,
+    "truncated": false,
+    "window_minutes": 10
+  },
+  "verify_after": {
+    "recovered": true,
+    "status": "recovered"
+  },
+  "verify_before": {
+    "recovered": false,
+    "status": "degraded"
+  }
+}

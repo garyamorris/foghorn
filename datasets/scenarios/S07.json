@@ -1,0 +1,130 @@
+{
+  "scenario_id": "S07",
+  "stats": {
+    "alerts": 4,
+    "changes": 7,
+    "events": 24,
+    "logs": 879,
+    "reports": 6
+  },
+  "summary": "Order confirmation emails are delayed; the email provider looked slow earlier.",
+  "tier": 2,
+  "title": "Poison message blocks notification consumer",
+  "trigger": {
+    "alert_event": "evt_S07_0015",
+    "as_of": "2026-11-06T13:15:30Z"
+  },
+  "truth": {
+    "affected": [
+      "event-bus",
+      "notification-service"
+    ],
+    "budget": {
+      "max_supervisor_hops": 8,
+      "max_tool_calls": 14
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "email notifications",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach",
+        "email"
+      ],
+      "status_page": false
+    },
+    "customer_impact": {
+      "notification_error_rate_peak": 0.016,
+      "notification_p95_ms_peak": 136.5
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "metric",
+        "ref": "event-bus/consumer_lag"
+      },
+      {
+        "kind": "metric",
+        "ref": "notification-service/rps"
+      },
+      {
+        "kind": "log",
+        "ref": "event-bus:deserialization failed"
+      }
+    ],
+    "red_herrings": [
+      {
+        "id": "email-provider/p95_ms",
+        "kind": "metric",
+        "why": "email-provider latency spike 10 minutes before onset; sends are asynchronous and notification-service throughput is unaffected by it"
+      }
+    ],
+    "remediation": {
+      "acceptable": [
+        "quarantine_message:event-bus",
+        "pause_consumer:notification-service"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "quarantine_message:event-bus",
+      "recovery": {
+        "pause_consumer:notification-service": {
+          "delay_min": 1.0,
+          "fraction": 0.4,
+          "tau_min": 2.0
+        },
+        "quarantine_message:event-bus": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 4.0
+        }
+      },
+      "requires_approval": [
+        "quarantine_message:event-bus",
+        "pause_consumer:notification-service"
+      ]
+    },
+    "root_cause": {
+      "category": "queue_poison_message",
+      "change_id": null,
+      "component": "event-bus",
+      "summary": "One malformed message at a single offset blocks the notification consumer: it retries forever, consumer lag climbs and throughput drops to near zero."
+    },
+    "severity": "SEV3"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 3,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.05,
+      "red_herrings": 1,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-06T13:10:00Z",
+    "seed_key": "S07",
+    "step_s": 60,
+    "window": [
+      "2026-11-06T11:40:00Z",
+      "2026-11-06T13:55:00Z"
+    ]
+  }
+}

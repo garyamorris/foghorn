@@ -1,0 +1,93 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+
+env:
+  # CI is offline by construction: no provider keys are ever exposed to these jobs.
+  FOGHORN_PROVIDER: offline
+  FOGHORN_ENVIRONMENT: test
+  LANGSMITH_TRACING: "false"
+  UV_FROZEN: "1"            # fail if uv.lock is stale instead of silently re-locking
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with: { enable-cache: true }
+      - run: uv sync
+      - run: uv run ruff check src tests
+      - run: uv run ruff format --check src tests
+      - run: uv run mypy
+      - name: uv.lock is up to date with pyproject (UV_FROZEN=1 would downgrade --check to a validity check)
+        run: uv lock --check
+        env: { UV_FROZEN: "0" }
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12"]                # langgraph.json python_version; add 3.11/3.13 once proven (UNVERIFIED here)
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with: { enable-cache: true, python-version: "${{ matrix.python }}" }
+      - run: uv sync
+      - name: unit + graph + contract + eval (offline) with coverage gate
+        run: uv run pytest -m "not e2e and not live" --cov --cov-report=term-missing
+      - name: datasets are exactly what the generator produces
+        run: uv run python -m foghorn.data build --check
+      - name: offline evaluation gate (baselines, quality floors, hard safety gates)
+        run: uv run python -m foghorn.evals run --suite all --profile competent --check-baseline --assert-thresholds
+      - name: dashboard logic tests
+        run: node --test tests/ui/
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with: { enable-cache: true }
+      - run: uv sync
+      - name: spawn real `langgraph dev` and drive it with langgraph_sdk (loopback only)
+        run: uv run pytest -m e2e -q
+
+  config:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with: { enable-cache: true }
+      - run: uv sync
+      - run: uv run langgraph validate -c langgraph.json
+      - run: uv run langgraph dockerfile -c langgraph.json /tmp/Dockerfile.ci && grep -q LANGSERVE_GRAPHS /tmp/Dockerfile.ci
+      - name: .dockerignore must keep secrets out of the build context
+        run: |
+          for p in '^\.env$' '^\.langgraph_api$'; do grep -Eq "$p" .dockerignore || { echo "missing $p in .dockerignore"; exit 1; }; done
+
+  docker:
+    needs: [static, test, e2e, config]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with: { enable-cache: true }
+      - run: uv sync
+      - name: build the production image exactly like `langgraph up` would (needs Docker; not runnable in the dev sandbox)
+        run: uv run langgraph build -c langgraph.json -t foghorn:ci

@@ -1,0 +1,21 @@
+name: live-evals
+on:
+  workflow_dispatch:
+  schedule: [{ cron: "0 5 * * 1" }]   # weekly; NEVER on pull_request (forks must not reach secrets)
+permissions: { contents: read }
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: live-evals            # protected environment => manual approval + scoped secrets
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+      LANGSMITH_TRACING: "true"
+      FOGHORN_PROVIDER: anthropic
+      FOGHORN_LLM_MAX_TOKENS: "2048"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+      - run: uv sync --frozen
+      - run: uv run pytest -m live -q    # capped dataset, hard $ budget enforced in the test (see report)

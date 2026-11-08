@@ -1,0 +1,142 @@
+{
+  "scenario_id": "S10",
+  "stats": {
+    "alerts": 18,
+    "changes": 8,
+    "events": 38,
+    "logs": 946,
+    "reports": 6
+  },
+  "summary": "Cart and checkout are slow with a growing error rate; two changes landed minutes before.",
+  "tier": 3,
+  "title": "Two changes, one culprit",
+  "trigger": {
+    "alert_event": "evt_S10_0015",
+    "as_of": "2026-11-05T10:48:30Z"
+  },
+  "truth": {
+    "affected": [
+      "pricing-service",
+      "cart-service",
+      "checkout-service",
+      "edge-gateway"
+    ],
+    "budget": {
+      "max_supervisor_hops": 9,
+      "max_tool_calls": 18
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "checkout",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "recommendation"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.08,
+      "checkout_p95_ms_peak": 1131.8
+    },
+    "expected_interrupts": [
+      {
+        "at": "clarify_change_intent",
+        "kind": "question",
+        "reason": "flag ramp authorship ambiguous"
+      },
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": "INC-0061",
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "cfg-7f21"
+      },
+      {
+        "kind": "metric",
+        "ref": "pricing-service/p95_ms"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/error_rate"
+      },
+      {
+        "kind": "log",
+        "ref": "pricing-service:TaxClient timeout"
+      }
+    ],
+    "red_herrings": [
+      {
+        "id": "chg-reco-4412",
+        "kind": "change",
+        "why": "recommendation-service deploy 4 minutes before onset (1 minute before the flag change); not on the checkout call path; its own metrics are unchanged"
+      }
+    ],
+    "remediation": {
+      "acceptable": [
+        "revert_flag:new_pricing_engine",
+        "scale_out:pricing-service"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary",
+        "rollback_deploy:recommendation-service",
+        "restart_service:*"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "revert_flag:new_pricing_engine",
+      "recovery": {
+        "revert_flag:new_pricing_engine": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 2.5
+        },
+        "scale_out:pricing-service": {
+          "delay_min": 3.0,
+          "fraction": 0.6,
+          "tau_min": 4.0
+        }
+      },
+      "requires_approval": [
+        "revert_flag:new_pricing_engine",
+        "scale_out:pricing-service"
+      ]
+    },
+    "root_cause": {
+      "category": "config_change",
+      "change_id": "cfg-7f21",
+      "component": "pricing-service",
+      "summary": "Flag new_pricing_engine was ramped 0->50% by the pricing team; the new engine calls an uncached tax API (800ms p50), pricing-service times out, cart and checkout inherit the latency and errors."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.06,
+      "red_herrings": 1,
+      "signal_strength": 0.7,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-05T10:45:00Z",
+    "seed_key": "S10",
+    "step_s": 60,
+    "window": [
+      "2026-11-05T09:15:00Z",
+      "2026-11-05T11:30:00Z"
+    ]
+  }
+}

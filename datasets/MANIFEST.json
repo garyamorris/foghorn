@@ -1,0 +1,278 @@
+{
+  "combined_sha256": "2695e342dd496c80fae9ba8ab98f30e54bc94052911bcbd6dcb2492db6532364",
+  "datasets": {
+    "memory_lessons": {
+      "bytes": 6759,
+      "files": {
+        "seed/memory_lessons.jsonl": "c2b7f5604e286cb48dadbace4aa7044c7b2537461b75c8fd32bcfb9195ce230b"
+      },
+      "format": "jsonl",
+      "id": "d11",
+      "records": 30,
+      "role": "M",
+      "sha256": "683982a0579a23de3c5278940047de4b1fe1444b707a7a078866205309972f0c"
+    },
+    "memory_prefs": {
+      "bytes": 3649,
+      "files": {
+        "seed/memory_prefs.jsonl": "e4beb442a1db401674b6f0b81e8ccc95d0db0b28e2707ffaa3ab24eeafaacbe6"
+      },
+      "format": "jsonl",
+      "id": "d11",
+      "records": 14,
+      "role": "M",
+      "sha256": "1ea220d185711b6f69228e3346d269a503f3581657d285536e05fd73f3aeb0cf"
+    },
+    "past_incidents": {
+      "bytes": 84791,
+      "files": {
+        "reference/past_incidents.jsonl": "b0fc2eb4637c0528ea60899d6c06e5785315a53deb77b206b8ed1d885966c943"
+      },
+      "format": "jsonl",
+      "id": "d4",
+      "records": 120,
+      "role": "R",
+      "sha256": "97e2abf772e67e89993eb82cf05a9759ac98c5fd74cbdabf54b970967bdd5f8a"
+    },
+    "people": {
+      "bytes": 2890,
+      "files": {
+        "seed/people.jsonl": "538e71013005db735cbd0db3c34bd467df9c692d03f0b8e84206991bd21435db"
+      },
+      "format": "jsonl",
+      "id": "d11",
+      "records": 8,
+      "role": "M",
+      "sha256": "03905b9bcd714a81c5d747801bf2c1d9d995dd14595e1e7cca7aca8584cc2ba9"
+    },
+    "policies": {
+      "bytes": 4606,
+      "files": {
+        "reference/policies/POL-001-severity-matrix.md": "b0dd5413ca0d6da2e70eb6d583b31a9945f115a7e0c9e8b3a7d25e42fef46110",
+        "reference/policies/POL-002-communications.md": "fe1f7dab2436a530c6daca8c0994f9b66b9bf2b3e2f37daacd5be2ac5390204e",
+        "reference/policies/POL-003-change-freeze.md": "aa5bded24b047eca3df5acd10bbff3c54ca23f3c5b472e60d601302f4142b75e",
+        "reference/policies/POL-004-data-handling.md": "f1b77ee16f390fbc641664c68865ec1fc046d948069e7a1245e404448cfb0646",
+        "reference/policies/POL-005-approval-matrix.md": "c78be315fe03f62a1f3fb94b4b32401813d3470189c92f40cde9618f7e2fd2e0",
+        "reference/policies/POL-006-oncall-escalation.md": "92ba337362c653e519613507f58d4110c4fb1639bb14a729eb1d1aa9fb8314f2",
+        "reference/policies/POL-007-postmortem.md": "49883d05dff6d937d7ae976e8005f8bd9939b30658f15936abc68071e8a52ce9",
+        "reference/policies/POL-008-maintenance-windows.md": "7d46c17048193ddb8ec2c3be020f08b1adefd24223dc5ccafaa76624ca8f8619"
+      },
+      "format": "markdown",
+      "id": "d3",
+      "records": 8,
+      "role": "R",
+      "sha256": "baec337c223ccceb3c11e67b1a93c94a44d2b88308f1ed3bce102bf69579df52"
+    },
+    "rag_qa": {
+      "bytes": 8446,
+      "files": {
+        "evals/rag_qa.jsonl": "d0d8781a22b9709cba9211a4624c764ef3e6e364eb04ef628d4385f07b2cae2c"
+      },
+      "format": "jsonl",
+      "id": "d9",
+      "records": 48,
+      "role": "E",
+      "sha256": "429cd8bb507acf9518d8ada89ed0d70940f6d95842f08fa6fc3ac4364493171d"
+    },
+    "rotas": {
+      "bytes": 1431,
+      "files": {
+        "reference/rotas.json": "e52eae294b2e316e96203410f9248b0a8e416e0e443ca7f2f62ad33a83474c5d"
+      },
+      "format": "json",
+      "id": "x1",
+      "records": 8,
+      "role": "R",
+      "sha256": "48463e36031d596bb2b4e0c19a41435ce297b37ffc2304855962b5e2b0ca6464"
+    },
+    "runbooks": {
+      "bytes": 28490,
+      "files": {
+        "reference/runbooks/RB-001.md": "ef3cb61ecf748c93b3619a13cc783043297dd54b86778f7b670aabf4db88a186",
+        "reference/runbooks/RB-002.md": "805ebb27c04ec0ebe5bbac595708f7f4e6b966c261d3e86741d03e76c61bf4a9",
+        "reference/runbooks/RB-003.md": "1219961beb883c1b516e2cf56794f47d8cc00fd5f8d44cc09d4327fe97ea7299",
+        "reference/runbooks/RB-004.md": "036728ce3325a60532db6975ecf32eb63fe267637be7e29022d1e305794cbac5",
+        "reference/runbooks/RB-005.md": "004d9468c645927139d76d7600fc8674e71fe87789a36897b369e8ed6d6c6e1d",
+        "reference/runbooks/RB-006.md": "6c5346f9935bb8720f8c97aae962bea54f0e8471b8757b595b364b427f9f472a",
+        "reference/runbooks/RB-007.md": "e7348ed1fe22d4f8408100fc8100a14d433f2874235e6c8ef459416c36c5578f",
+        "reference/runbooks/RB-008.md": "6a77fdb8f300a6d0e14248bbeace7d5c2f960ce43525dadac479e05d65b49fe9",
+        "reference/runbooks/RB-009.md": "941ff1a54d21039f16b4ee71a46ed79c8d7906a4bd6b074417cac206aa0715d8",
+        "reference/runbooks/RB-010.md": "916404c7aa7db433ed0ca276fc3200440b1689ea7d5be5ee9f61e587c63345e0",
+        "reference/runbooks/RB-011.md": "03f7a44f4395cec61b8dc4e1704dc9ffa5cebfb55fc9fb0a4788a85cddee9010",
+        "reference/runbooks/RB-012.md": "ebd4702d2f96385fb7f0b66ba07271189ab5d611e748336c4815b91afa50dc8a",
+        "reference/runbooks/RB-013.md": "532bd0440f4f2d2c14a992182faf9625e3313a571609af8a434d0a58f7bd6e46",
+        "reference/runbooks/RB-014.md": "9eedb142b340ef691cbb3d7cebfd23dfbc7dc2124afe4453743eb5b0dd5d3ecc",
+        "reference/runbooks/RB-015.md": "cc0f52ac3398d8d13a44c94da9c696ab1fe723d3e7455d336d9cf371f641a948",
+        "reference/runbooks/RB-016.md": "ad12eb520bc010d359d21782111923ddda985e3d1b4b1955d53f2ae51a1dd457",
+        "reference/runbooks/RB-017.md": "bd6741c2cf0eea01eb8e8200603ddb57c43b6f2e9d072839295372d4d0d0d78f",
+        "reference/runbooks/RB-018.md": "0ce1e58a2f910f8325b47df132d1dc9116ad04bba3ffe67018ddbd3d55fc1132",
+        "reference/runbooks/RB-019.md": "179b9c43ea9c10bc5d92375761a1a421e9790bb4f08496e7e3c35b2a389e7c4d",
+        "reference/runbooks/RB-020.md": "5f61bc0be21fd7792c230946cf1092b272c988401a6fa1174e274740038a5f6d",
+        "reference/runbooks/RB-021.md": "0fa2779dc419ef2b8b55f0715c7ecf9d26fc10b36be5ccfc34dbd175fa51c30b",
+        "reference/runbooks/RB-022.md": "96161a4fdc65aeb9fe7d6523d52efc51f5cefa666e7ab75f16a5347807a7c975",
+        "reference/runbooks/RB-023.md": "106d88de3e09aacb452ae03f011dbfd2abde660aa5809364b50334fb66ae43a2",
+        "reference/runbooks/RB-024.md": "39f3621308f5dd14f9d4355409b3019fb6bc690492b6aa124330817f45e276ea"
+      },
+      "format": "markdown",
+      "id": "d2",
+      "records": 24,
+      "role": "R",
+      "sha256": "c1980454c66cc3331c03c4f0ef08f23c73c031a9f3302a4528c085b8287c64e6"
+    },
+    "safety_cases": {
+      "bytes": 4070,
+      "files": {
+        "evals/safety_cases.jsonl": "f42fe003b56961d75471897b39fdfd8ffa8f4485a8fba1d97ecfa67c5aa51089"
+      },
+      "format": "jsonl",
+      "id": "d10",
+      "records": 16,
+      "role": "E",
+      "sha256": "58dc8e47b745e8bcf9cbed069463b3468d6881afec7f244b400c1aa909e6c93b"
+    },
+    "scenarios": {
+      "bytes": 47044,
+      "files": {
+        "scenarios/S01.json": "461f1950dbba9992f45d94467b73aaea6779ed5d94f5819c73dc0c2d76e82930",
+        "scenarios/S02.json": "ed405843c63d21c11602a2f8d52c2d6562b2afe2d368cc488f035caeb5cd1237",
+        "scenarios/S03.json": "ba5c5e6645404a7e5eb919830f062a02c5410ae68b5dae0596a57a6abb5664c9",
+        "scenarios/S04.json": "a9e22cbd0b69b2351841dbf95cfec0681116e109db28f41d9bedb6baaa41ddcb",
+        "scenarios/S05.json": "80a2ee2c5cc08dd77402b56d3ac6ce1acee06b90288007d493a087d71bff49da",
+        "scenarios/S06.json": "38204a00bec91bc4cb82954660c92f9ab812f1ff12283e093bc2a521d8bf5a29",
+        "scenarios/S07.json": "c66e0a4989ae63e1390a2d97e41b4b0106890f8b2eb3fe9b3d44096268619ba5",
+        "scenarios/S08.json": "6d5dc9e6ff4a2ed00fb1830863532c708624d63dd532e48593900c03f41f3004",
+        "scenarios/S09.json": "9e445db387830494c65119f3c2e06daed4d2df78f2e5f19b128a464279695632",
+        "scenarios/S10.json": "b4babbbadfc6cb84ba0595a7319de3d8154185e46f7c35303707240f3923263b",
+        "scenarios/S11.json": "07b85dbdaf82c771a46781c9bf8914aec5e101b29183a14aae3c4163ac7258cf",
+        "scenarios/S12.json": "193c6849e9033a2997139c507438d9aaa27862e6408037793eb05a64c1d6bb8f",
+        "scenarios/S13.json": "90deb8f964f568e8bfa125746287b2640bebd05401756984ca40fd03c3f8b482",
+        "scenarios/S14.json": "460f6db3f40c1acf08b93741e035f5fddda4f76e36603a6225a2eb32f3eb8dae",
+        "scenarios/S15.json": "afae27088c658804106cb9114a2e8117b73aa44850858a1936bdddb26d1b04d6",
+        "scenarios/S16.json": "0599a4c7329761d4ed5f1a4e9eda93dde066f830487a60684bfff04566ec4073"
+      },
+      "format": "json",
+      "id": "d5",
+      "records": 16,
+      "role": "GT",
+      "sha256": "ca93f3550350742ba27261fd593a72cd21e5f391b977dbc7251371763339e06c"
+    },
+    "service_catalog": {
+      "bytes": 14873,
+      "files": {
+        "reference/service_catalog.json": "068fdf3c614e4a27a7dbc6f9d34b05fc5502e27f886be7119542e306aa510903"
+      },
+      "format": "json",
+      "id": "d1",
+      "records": 20,
+      "role": "R",
+      "sha256": "43c4ce5249eb28deb52faef190d8694e66deef2ed1b6ac23cff708abe03aae9f"
+    },
+    "stream_quiet_hour": {
+      "bytes": 142142,
+      "files": {
+        "streams/stream_quiet_hour.jsonl": "6229d243742e01d8767fd3eccdcd2fcd38b03c5c3eb216ad1208bf051857164e"
+      },
+      "format": "jsonl",
+      "id": "d7",
+      "records": 240,
+      "role": "S",
+      "sha256": "0a0a4b3270be8fdf14f7b7609b2a65eb3a77fbcc98816c85aabb01a2f18d94a5"
+    },
+    "stream_quiet_hour_labels": {
+      "bytes": 35152,
+      "files": {
+        "streams/stream_quiet_hour.labels.jsonl": "ec12f23507552f29af65d683f8123a69fc75db6d00636c0ae9c34631ee097b32"
+      },
+      "format": "jsonl",
+      "id": "d7",
+      "records": 240,
+      "role": "E",
+      "sha256": "565429fa87a228d5ad071b5672215f71796d6428406df7d6bb5af11b738809da"
+    },
+    "stream_storm": {
+      "bytes": 402670,
+      "files": {
+        "streams/stream_storm.jsonl": "ab06c337cc51798e3f2aa81369625cceeb5b5f0094f97752feb703bace88c3c2"
+      },
+      "format": "jsonl",
+      "id": "d7",
+      "records": 650,
+      "role": "S",
+      "sha256": "64727214ea1eb91699be942111f76198b3e96ca77c2a59f7ccacbd19bffe07b7"
+    },
+    "stream_storm_labels": {
+      "bytes": 97981,
+      "files": {
+        "streams/stream_storm.labels.jsonl": "9d842fd41a71d4c8fd0e6cc1ee6fdc679287e4f5b0adc772f3b1b6ebfb489d1a"
+      },
+      "format": "jsonl",
+      "id": "d7",
+      "records": 650,
+      "role": "E",
+      "sha256": "869b46b8294b6a65928a76a9327341218c50d52e4d1564244f0bff7f69ef29e4"
+    },
+    "stream_workday": {
+      "bytes": 1072275,
+      "files": {
+        "streams/stream_workday.jsonl": "f727b1ffd9fd570c3c8225394884cf9305166c6d40bd4233949d304219da28ce"
+      },
+      "format": "jsonl",
+      "id": "d7",
+      "records": 1800,
+      "role": "S",
+      "sha256": "a78c8e23efe627fc5afda44402e36476f5ca0edb9510cb416b91b7df66204616"
+    },
+    "stream_workday_labels": {
+      "bytes": 263871,
+      "files": {
+        "streams/stream_workday.labels.jsonl": "e9ba9112a011ccdaf0af0765bc509984bc05cc1b57081751c402aa7718d989b3"
+      },
+      "format": "jsonl",
+      "id": "d7",
+      "records": 1800,
+      "role": "E",
+      "sha256": "90a0fdbf124b2a80f03614c99cd439366e2575956d1b4e639fb1f9bf353e622c"
+    },
+    "sweep_specs": {
+      "bytes": 20330,
+      "files": {
+        "evals/sweep_specs.jsonl": "45db17612f1f96a7313fb026fbc8fe1d2a589d79c6a2465b4455b2653b767ff0"
+      },
+      "format": "jsonl",
+      "id": "d12",
+      "records": 60,
+      "role": "GT",
+      "sha256": "00d6dbf07905e54da080494117cddafafd851f7299b2d7971ea8042aabce30cd"
+    },
+    "telemetry": {
+      "built": true,
+      "format": "sqlite",
+      "id": "d6",
+      "records": 16,
+      "role": "GT",
+      "sha256": "97f71eab8916e64ad30e15533908dc0da7311a3ad719d88a2400e2c57489f5e0",
+      "tables": {
+        "alerts": "33d16c8dbfc22a82d57b79c8045831172f65621485a85323cbe54701b96842b0",
+        "changes": "f961caaf2f3e9e45e2a69c76dd02589cb26f3a60a14a62325795bdbfaff1e5b6",
+        "events": "9f5c12e469acd9cacb23b643488cd6db72558e0c43a9d03f5250332f8c3b09ba",
+        "logs": "4835a6d51a4720c1dce38907724a801accdc9f76667a69674ba907bffdaf4f7b",
+        "reports": "f92645dd095c93ec647c644e6ff8fb89bab71ed45da48efc4b45d42a38f1a02e",
+        "series": "dcd5e7f6c53af030f31ec27f7b44bdd6f5b9ce13388e51eb3e7d9fcdbbc78bb4"
+      }
+    },
+    "triage_cases": {
+      "bytes": 208377,
+      "files": {
+        "evals/triage_cases.jsonl": "deb694d720fe8b401b1cc7da4134d807e6c881ad818b503929cc8067586580dd"
+      },
+      "format": "jsonl",
+      "id": "d8",
+      "records": 400,
+      "role": "E",
+      "sha256": "7feddf5a524f38a282ff6a5884ae4aceb74506b4234edeed0b29fe8238b96a43"
+    }
+  },
+  "generator_version": "1.0.0",
+  "schema": "foghorn.manifest/1",
+  "seed": 20261108
+}

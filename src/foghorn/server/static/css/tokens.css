@@ -1,0 +1,190 @@
+/* Foghorn design tokens. Light is the default; dark follows the OS unless the user picked a theme manually
+   (html[data-theme="light"|"dark"]). Every colour used by the UI comes from here. */
+:root {
+  color-scheme: light;
+
+  /* spacing scale (4px base) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+
+  /* radii, elevation, motion */
+  --r-1: 4px;
+  --r-2: 6px;
+  --r-3: 10px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(16 24 40 / 6%), 0 1px 1px rgb(16 24 40 / 4%);
+  --shadow-2: 0 4px 12px rgb(16 24 40 / 10%), 0 2px 4px rgb(16 24 40 / 6%);
+  --shadow-3: 0 16px 40px rgb(16 24 40 / 18%), 0 4px 12px rgb(16 24 40 / 10%);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-1: 120ms;
+  --dur-2: 220ms;
+
+  /* type */
+  --font: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --fs-0: 11.5px;
+  --fs-1: 12.5px;
+  --fs-2: 13.5px;
+  --fs-3: 15px;
+  --fs-4: 18px;
+  --fs-5: 22px;
+
+  /* surfaces */
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f0f2f5;
+  --surface-3: #e6e9ef;
+  --overlay: rgb(15 20 30 / 45%);
+  --border: #dde1e8;
+  --border-strong: #c3cad6;
+
+  /* text (all >= 4.5:1 on --surface and --bg) */
+  --text: #131824;
+  --text-2: #404a5f;
+  --text-3: #5b6578;
+  --text-inv: #ffffff;
+
+  /* accent */
+  --accent: #3552d4;
+  --accent-hover: #2a43b4;
+  --accent-soft: #e6ebff;
+  --accent-text: #2a43b4;
+  --focus: #3552d4;
+
+  /* severity + status: <name> is the readable foreground / solid, <name>-soft its tinted background */
+  --critical: #c0262d;
+  --critical-soft: #fdeceb;
+  --high: #c2410c;
+  --high-soft: #ffeedd;
+  --medium: #8a5a00;
+  --medium-soft: #fff4d1;
+  --low: #1860a8;
+  --low-soft: #e5f0fb;
+  --info: #536078;
+  --info-soft: #ebeef3;
+  --ok: #1f7a37;
+  --ok-soft: #e4f4e8;
+  --warn: var(--medium);
+  --warn-soft: var(--medium-soft);
+  --danger: var(--critical);
+  --danger-soft: var(--critical-soft);
+
+  /* lane / series palette (categorical, colour-blind safe-ish, used with text labels too) */
+  --c1: #3552d4;
+  --c2: #0b7a75;
+  --c3: #b4530a;
+  --c4: #8a2fa8;
+  --c5: #2f7d32;
+  --c6: #b0275c;
+  --c7: #5f6b7a;
+  --c8: #946200;
+
+  --code-bg: #f3f4f7;
+  --grid-line: #e7eaf0;
+  --skeleton-a: #e9ecf1;
+  --skeleton-b: #f4f6f9;
+  --nav-w: 216px;
+  --topbar-h: 52px;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0c0f15;
+  --surface: #131823;
+  --surface-2: #1a2030;
+  --surface-3: #232b3f;
+  --overlay: rgb(0 0 0 / 60%);
+  --border: #262e42;
+  --border-strong: #38435e;
+  --text: #e8ebf3;
+  --text-2: #b0b8cb;
+  --text-3: #8d97ad;
+  --text-inv: #0c0f15;
+  --accent: #8aa0ff;
+  --accent-hover: #a3b4ff;
+  --accent-soft: #1d2650;
+  --accent-text: #a9b9ff;
+  --focus: #9db0ff;
+  --critical: #ff8b8f;
+  --critical-soft: #3b1b21;
+  --high: #ffaa72;
+  --high-soft: #3a2518;
+  --medium: #f2c14e;
+  --medium-soft: #372c12;
+  --low: #7ab8ff;
+  --low-soft: #16283f;
+  --info: #a1abc0;
+  --info-soft: #232a3a;
+  --ok: #6fd884;
+  --ok-soft: #14301d;
+  --c1: #8aa0ff;
+  --c2: #4fd1c5;
+  --c3: #f6a560;
+  --c4: #cf8ae8;
+  --c5: #7bd88a;
+  --c6: #f48fb1;
+  --c7: #a7b3c4;
+  --c8: #f2c14e;
+  --code-bg: #0f131c;
+  --grid-line: #1e2536;
+  --skeleton-a: #1a2030;
+  --skeleton-b: #232b3f;
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-2: 0 4px 12px rgb(0 0 0 / 45%);
+  --shadow-3: 0 16px 40px rgb(0 0 0 / 55%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0c0f15;
+    --surface: #131823;
+    --surface-2: #1a2030;
+    --surface-3: #232b3f;
+    --overlay: rgb(0 0 0 / 60%);
+    --border: #262e42;
+    --border-strong: #38435e;
+    --text: #e8ebf3;
+    --text-2: #b0b8cb;
+    --text-3: #8d97ad;
+    --text-inv: #0c0f15;
+    --accent: #8aa0ff;
+    --accent-hover: #a3b4ff;
+    --accent-soft: #1d2650;
+    --accent-text: #a9b9ff;
+    --focus: #9db0ff;
+    --critical: #ff8b8f;
+    --critical-soft: #3b1b21;
+    --high: #ffaa72;
+    --high-soft: #3a2518;
+    --medium: #f2c14e;
+    --medium-soft: #372c12;
+    --low: #7ab8ff;
+    --low-soft: #16283f;
+    --info: #a1abc0;
+    --info-soft: #232a3a;
+    --ok: #6fd884;
+    --ok-soft: #14301d;
+    --c1: #8aa0ff;
+    --c2: #4fd1c5;
+    --c3: #f6a560;
+    --c4: #cf8ae8;
+    --c5: #7bd88a;
+    --c6: #f48fb1;
+    --c7: #a7b3c4;
+    --c8: #f2c14e;
+    --code-bg: #0f131c;
+    --grid-line: #1e2536;
+    --skeleton-a: #1a2030;
+    --skeleton-b: #232b3f;
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 40%);
+    --shadow-2: 0 4px 12px rgb(0 0 0 / 45%);
+    --shadow-3: 0 16px 40px rgb(0 0 0 / 55%);
+  }
+}

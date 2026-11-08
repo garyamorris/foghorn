@@ -1,0 +1,22 @@
+# secrets & local state - NEVER bake into an image (langgraph CLI does not read .gitignore for the build context)
+.env
+.env.*
+!.env.example
+.langgraph_api
+.git
+.venv
+.venv*
+# tooling / caches
+__pycache__
+.mypy_cache
+.ruff_cache
+.pytest_cache
+.coverage*
+htmlcov
+# not needed at runtime
+tests
+docs
+*.log
+probes
+dockergen
+var

@@ -1,0 +1,132 @@
+{
+  "scenario_id": "S11",
+  "stats": {
+    "alerts": 4,
+    "changes": 6,
+    "events": 19,
+    "logs": 894,
+    "reports": 4
+  },
+  "summary": "Order-related requests are slowly getting slower; there are no errors.",
+  "tier": 3,
+  "title": "Latency creep after a schema migration",
+  "trigger": {
+    "alert_event": "evt_S11_0012",
+    "as_of": "2026-11-04T20:20:30Z"
+  },
+  "truth": {
+    "affected": [
+      "orders-db",
+      "orders-service",
+      "checkout-service",
+      "edge-gateway"
+    ],
+    "budget": {
+      "max_supervisor_hops": 9,
+      "max_tool_calls": 18
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "checkout",
+        "degraded"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": false
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.004,
+      "checkout_p95_ms_peak": 239.3
+    },
+    "expected_interrupts": [
+      {
+        "at": "approval_gate",
+        "kind": "edit",
+        "reason": "the index SQL must use CREATE INDEX CONCURRENTLY"
+      },
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval",
+        "roles": [
+          "dba"
+        ]
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "mig-4813"
+      },
+      {
+        "kind": "metric",
+        "ref": "orders-db/p95_ms"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/p95_ms"
+      },
+      {
+        "kind": "log",
+        "ref": "orders-db:seq scan on order_lines"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "add_index:orders-db"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [
+        "(?i)create\\s+(unique\\s+)?index(?!\\s+concurrently)"
+      ],
+      "preferred": "add_index:orders-db",
+      "recovery": {
+        "add_index:orders-db": {
+          "delay_min": 4.0,
+          "fraction": 1.0,
+          "tau_min": 3.0
+        }
+      },
+      "requires_approval": [
+        "add_index:orders-db"
+      ]
+    },
+    "root_cause": {
+      "category": "slow_query_migration",
+      "change_id": "mig-4813",
+      "component": "orders-db",
+      "summary": "Migration 0147 added a foreign key without an index; queries on order_lines fall back to sequential scans and orders-db latency creeps up."
+    },
+    "severity": "SEV3"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.06,
+      "red_herrings": 0,
+      "signal_strength": 0.8,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-04T20:10:00Z",
+    "seed_key": "S11",
+    "step_s": 60,
+    "window": [
+      "2026-11-04T18:40:00Z",
+      "2026-11-04T20:55:00Z"
+    ]
+  }
+}

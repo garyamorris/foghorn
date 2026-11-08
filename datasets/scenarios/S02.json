@@ -1,0 +1,122 @@
+{
+  "scenario_id": "S02",
+  "stats": {
+    "alerts": 15,
+    "changes": 8,
+    "events": 34,
+    "logs": 994,
+    "reports": 3
+  },
+  "summary": "Card payments started failing right after midnight; no deploy went out today.",
+  "tier": 1,
+  "title": "TLS handshake failures after midnight",
+  "trigger": {
+    "alert_event": "evt_S02_0016",
+    "as_of": "2026-11-04T00:03:30Z"
+  },
+  "truth": {
+    "affected": [
+      "payments-service",
+      "checkout-service",
+      "edge-gateway",
+      "web-frontend"
+    ],
+    "budget": {
+      "max_supervisor_hops": 7,
+      "max_tool_calls": 10
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "payment",
+        "checkout"
+      ],
+      "must_not_mention": [
+        "breach"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.344,
+      "checkout_p95_ms_peak": 190.3
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 1,
+        "at": "approval_gate",
+        "kind": "approval"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "change",
+        "ref": "crt-025a"
+      },
+      {
+        "kind": "metric",
+        "ref": "payments-service/error_rate"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/error_rate"
+      },
+      {
+        "kind": "log",
+        "ref": "payments-service:x509: certificate has expired"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "renew_cert:payments-service"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "renew_cert:payments-service",
+      "recovery": {
+        "renew_cert:payments-service": {
+          "delay_min": 2.0,
+          "fraction": 1.0,
+          "tau_min": 1.5
+        }
+      },
+      "requires_approval": [
+        "renew_cert:payments-service"
+      ]
+    },
+    "root_cause": {
+      "category": "cert_expiry",
+      "change_id": "crt-025a",
+      "component": "payments-service",
+      "summary": "The client certificate used by payments-service to talk to the payment provider expired at 00:00 UTC; the rotation job had failed 75 minutes earlier."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 1,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.04,
+      "red_herrings": 0,
+      "signal_strength": 1.0,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-04T00:00:00Z",
+    "seed_key": "S02",
+    "step_s": 60,
+    "window": [
+      "2026-11-03T22:30:00Z",
+      "2026-11-04T00:45:00Z"
+    ]
+  }
+}

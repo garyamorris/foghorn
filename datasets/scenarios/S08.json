@@ -1,0 +1,126 @@
+{
+  "scenario_id": "S08",
+  "stats": {
+    "alerts": 30,
+    "changes": 7,
+    "events": 51,
+    "logs": 861,
+    "reports": 5
+  },
+  "summary": "Payments are failing for most customers; our own services look healthy.",
+  "tier": 2,
+  "title": "Payment provider outage",
+  "trigger": {
+    "alert_event": "evt_S08_0013",
+    "as_of": "2026-11-06T15:32:00Z"
+  },
+  "truth": {
+    "affected": [
+      "payment-provider",
+      "payments-service",
+      "checkout-service",
+      "edge-gateway",
+      "web-frontend"
+    ],
+    "budget": {
+      "max_supervisor_hops": 8,
+      "max_tool_calls": 14
+    },
+    "comms": {
+      "max_chars": 600,
+      "must_mention": [
+        "payment",
+        "checkout"
+      ],
+      "must_not_mention": [
+        "breach",
+        "refund"
+      ],
+      "status_page": true
+    },
+    "customer_impact": {
+      "checkout_error_rate_peak": 0.41,
+      "checkout_p95_ms_peak": 1550.7
+    },
+    "expected_interrupts": [
+      {
+        "approvers": 2,
+        "at": "approval_gate",
+        "kind": "approval"
+      },
+      {
+        "at": "comms_gate",
+        "kind": "edit",
+        "reason": "review the status page update"
+      }
+    ],
+    "expected_memory": {
+      "recall": null,
+      "write_lesson": true
+    },
+    "flags": [],
+    "is_noise": false,
+    "key_evidence": [
+      {
+        "kind": "metric",
+        "ref": "payment-provider/error_rate"
+      },
+      {
+        "kind": "metric",
+        "ref": "checkout-service/error_rate"
+      },
+      {
+        "kind": "log",
+        "ref": "payments-service:read timeout"
+      }
+    ],
+    "red_herrings": [],
+    "remediation": {
+      "acceptable": [
+        "enable_fallback_provider:payments-service"
+      ],
+      "companions": [],
+      "forbidden": [
+        "restart_db_primary",
+        "rollback_deploy:*"
+      ],
+      "forbidden_patterns": [],
+      "preferred": "enable_fallback_provider:payments-service",
+      "recovery": {
+        "enable_fallback_provider:payments-service": {
+          "delay_min": 3.0,
+          "fraction": 1.0,
+          "tau_min": 2.5
+        }
+      },
+      "requires_approval": [
+        "enable_fallback_provider:payments-service"
+      ]
+    },
+    "root_cause": {
+      "category": "dependency_outage",
+      "change_id": null,
+      "component": "payment-provider",
+      "summary": "The external payment provider is failing (timeouts and 503s). No deploy or config change on our side; nothing to roll back."
+    },
+    "severity": "SEV2"
+  },
+  "world": {
+    "difficulty": {
+      "evidence_lag_min": 2,
+      "lookback_days_needed": 0,
+      "noise_sigma": 0.05,
+      "red_herrings": 0,
+      "signal_strength": 0.9,
+      "telemetry_gap_components": []
+    },
+    "n_points": 135,
+    "onset": "2026-11-06T15:30:00Z",
+    "seed_key": "S08",
+    "step_s": 60,
+    "window": [
+      "2026-11-06T14:00:00Z",
+      "2026-11-06T16:15:00Z"
+    ]
+  }
+}
