@@ -1,7 +1,7 @@
 # How the Foghorn walkthrough video was made
 
 `foghorn-walkthrough.mp4` (1080p) and `foghorn-walkthrough_720p.mp4` (messaging copy) are attached to the
-[`walkthrough-v1` GitHub Release](https://github.com/garyamorris/langgraph-app/releases/tag/walkthrough-v1) (not committed; the build writes them to
+[`walkthrough-v1` GitHub Release](https://github.com/garyamorris/foghorn/releases/tag/walkthrough-v1) (not committed; the build writes them to
 `../`, which git ignores). `../foghorn-walkthrough.srt/.vtt` are the captions (also burned into the video).
 Everything on screen comes from **recorded runs of the real app on a real model** (OpenAI, `FOGHORN_PROVIDER=openai`); nothing is mocked.
 

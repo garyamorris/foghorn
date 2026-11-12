@@ -1,6 +1,6 @@
 # 01 - LangGraph Studio & Server (Platform) Expert Report
 
-Scope: what the finished `langgraph-app` must contain so LangGraph Studio and the Agent Server surface light up, plus the traps found by running a toy multi-graph project against the **installed** versions. Date of research: 2026-11-08.
+Scope: what the finished `foghorn` app must contain so LangGraph Studio and the Agent Server surface light up, plus the traps found by running a toy multi-graph project against the **installed** versions. Date of research: 2026-11-08.
 
 Installed (verified in `.venv`): langgraph 1.2.20, langgraph-api 0.17.1, langgraph-cli 0.4.42, langgraph-runtime-inmem 0.37.1, langgraph-sdk 0.4.14, langchain 1.4.9, langchain-core 1.7.6, langsmith 0.14.17, starlette 1.10.0, fastapi 0.162.2, blockbuster 1.5.29. Docker not used.
 

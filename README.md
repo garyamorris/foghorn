@@ -114,7 +114,7 @@ tests/           unit, graphs, contract, golden, evals, e2e, ui
 
 ## Documentation
 
-* [Walkthrough video](https://github.com/garyamorris/langgraph-app/releases/tag/walkthrough-v1) - a narrated, captioned video (about 6.5 min, 1080p) that explains how
+* [Walkthrough video](https://github.com/garyamorris/foghorn/releases/tag/walkthrough-v1) - a narrated, captioned video (about 6.5 min, 1080p) that explains how
   the graphs execute, using recorded runs on a real model: the event pipeline, supervisor and subgraphs, `Send` fan-out, interrupt and resume,
   the five stream modes, the Functional API, durable crash recovery, Studio, LangSmith traces and the eval gate. The 1080p and 720p mp4 files are
   attached to that release (they are not in the git history); the `.srt`/`.vtt` captions are in [docs/demo/](docs/demo/). The narration is
