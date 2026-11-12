@@ -47,3 +47,22 @@ htmlcov/
 
 # Foghorn generated data and runtime state
 var/
+
+# Video build intermediates (re-creatable; see docs/demo/video-source/README.md)
+docs/demo/video-source/raw/
+docs/demo/video-source/viz_out/
+docs/demo/video-source/work/
+docs/demo/video-source/fcdata/
+docs/demo/video-source/fc.out
+docs/demo/video-source/rec/tls/
+docs/demo/video-source/rec/rec
+docs/demo/video-source/rec/vtool
+docs/demo/video-source/narration/cache/
+docs/demo/video-source/narration/samples/
+docs/demo/video-source/__pycache__/
+docs/demo/video-source/narration/__pycache__/
+docs/demo/video-source/narration/audio/
+docs/demo/frames_*/
+docs/demo/*.fcproj
+# The rendered videos (82 MB + 37 MB) are published as GitHub Release assets, not committed
+docs/demo/*.mp4

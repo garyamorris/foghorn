@@ -1,0 +1,33 @@
+{
+ "graph_id": "postmortem_pipeline",
+ "assistant_id": "cf25e7df-a66c-5a75-8e33-c80e24c50869",
+ "description": "Functional API (@entrypoint/@task) postmortem pipeline",
+ "graph": {
+  "nodes": [
+   {
+    "id": "postmortem_pipeline",
+    "type": "runnable",
+    "data": {
+     "name": "postmortem_pipeline"
+    }
+   },
+   {
+    "id": "__start__"
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "postmortem_pipeline"
+   },
+   {
+    "source": "postmortem_pipeline",
+    "target": "__end__",
+    "conditional": true
+   }
+  ]
+ }
+}

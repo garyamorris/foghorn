@@ -1,0 +1,47 @@
+/* evals.html: a pass/fail heatmap (4 offline model profiles x 16 scenarios) + a real-model row + the hard-gate legend. Text >= 15px. */
+#hdr { position: absolute; left: 20px; right: 20px; top: 8px; height: 38px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+#hdr h1 { font-size: 24px; font-weight: 750; letter-spacing: -0.012em; white-space: nowrap; }
+#hdr h1 span { color: var(--critical); }
+#hsrc { font: 15px/20px var(--mono); color: var(--text-3); white-space: nowrap; }
+#stage { position: absolute; inset: 0; }
+.abs { position: absolute; }
+.colh { position: absolute; top: 54px; width: 44px; text-align: center; font: 700 15px/18px var(--mono); color: var(--text-2); }
+.colh i { display: block; font: 500 15px/17px var(--mono); font-style: normal; color: var(--text-3); }
+.colh.t3 i { color: var(--high); }
+.row { position: absolute; left: 20px; right: 20px; height: 58px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.row .nm { position: absolute; left: 16px; top: 8px; font: 700 20px/24px var(--mono); color: var(--text); white-space: nowrap; }
+.row .tg { position: absolute; left: 16px; top: 32px; font-size: 15px; line-height: 19px; color: var(--text-3); white-space: nowrap; }
+.cell { position: absolute; top: 3px; width: 44px; height: 52px; border-radius: 8px; border: 1.5px solid #2a3347; text-align: center; font-family: var(--mono); }
+.cell .g { display: block; font: 700 15px/22px var(--font); margin-top: 4px; }
+.cell .v { display: block; font: 600 15px/20px var(--mono); }
+.cell .bd { position: absolute; right: -6px; top: -7px; width: 20px; height: 20px; border-radius: 50%; background: var(--critical); color: #2a0a0d; font: 800 15px/20px var(--font); }
+.st { position: absolute; left: 1009px; top: 4px; width: 214px; height: 52px; }
+.st .big { position: absolute; left: 0; top: 0; font: 800 26px/30px var(--font); letter-spacing: -0.01em; white-space: nowrap; }
+.st .mean { position: absolute; left: 104px; top: 3px; font: 700 24px/26px var(--mono); color: var(--text); white-space: nowrap; }
+.sth { position: absolute; top: 72px; font: 600 15px/18px var(--font); color: var(--text-3); letter-spacing: .02em; }
+.pill { position: absolute; left: 0; top: 29px; font: 700 15px/19px var(--font); padding: 0 9px; border-radius: 999px; white-space: nowrap; }
+.pill.ok { color: var(--ok); background: rgba(111, 216, 132, 0.14); border: 1px solid rgba(111, 216, 132, 0.4); }
+.pill.bad { color: #fff; background: var(--critical); border: 1px solid var(--critical); }
+#callout { position: absolute; left: 424px; width: 660px; top: 354px; height: 36px; border-radius: 10px; background: rgba(255, 139, 143, 0.12); border: 1.5px solid var(--critical); display: flex; align-items: center; gap: 12px; padding: 0 12px 0 6px; white-space: nowrap; }
+#callout::before { content: ""; position: absolute; left: 508px; top: -9px; width: 14px; height: 14px; background: #2a1a20; border-left: 1.5px solid var(--critical); border-top: 1.5px solid var(--critical); transform: rotate(45deg); }
+#callout b { font: 800 15px/22px var(--font); letter-spacing: .03em; background: var(--critical); color: #2a0a0d; border-radius: 6px; padding: 0 9px; }
+#callout span { font-size: 15px; color: var(--text); }
+.row.real { border: 1.5px dashed #5f86c9; background: linear-gradient(90deg, rgba(122, 184, 255, 0.07), rgba(19, 24, 35, 1) 60%); height: 80px; }
+.row.real .nm { color: var(--low); font-size: 18px; top: 14px; }
+.row.real .tg { top: 40px; }
+.row.real .st { top: 14px; }
+.bars .bl { position: absolute; top: 24px; font-size: 15px; line-height: 20px; color: var(--text-2); white-space: nowrap; }
+.bars .bv { position: absolute; top: 22px; font: 700 18px/22px var(--mono); color: var(--medium); }
+.bars .tr { position: absolute; top: 54px; height: 10px; border-radius: 5px; background: #232b3f; }
+.bars .fl { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: var(--medium); }
+.bars .hd { position: absolute; top: 4px; font: 600 15px/18px var(--font); color: var(--text-3); white-space: nowrap; letter-spacing: .02em; }
+#gates { position: absolute; left: 20px; right: 20px; top: 488px; height: 112px; border-radius: 14px; border: 1px solid var(--border-strong); background: var(--surface); }
+#gates .ttl { position: absolute; left: 18px; top: 10px; font: 700 15px/20px var(--mono); letter-spacing: .08em; color: var(--critical); }
+#gates .stm { position: absolute; left: 18px; top: 28px; width: 600px; font: 650 20px/26px var(--font); color: var(--text); text-wrap: balance; }
+#gates .chip { position: absolute; top: 82px; font: 600 15px/22px var(--mono); padding: 0 10px; border-radius: 8px; color: var(--text-2); border: 1px solid var(--border-strong); background: var(--surface-2); white-space: nowrap; }
+#gates .chip.tripped { color: #fff; background: var(--critical); border-color: var(--critical); }
+#gates .chip.clean { color: var(--ok); border-color: rgba(111, 216, 132, 0.5); background: rgba(111, 216, 132, 0.1); }
+#gates .rd { position: absolute; left: 660px; top: 12px; width: 560px; font-size: 15px; line-height: 23px; color: var(--text-2); }
+#gates .rd .sw { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 8px; }
+#gates .rd b { color: var(--text); font-weight: 650; }
+#gates .div { position: absolute; left: 640px; top: 14px; bottom: 14px; width: 1px; background: var(--border); }

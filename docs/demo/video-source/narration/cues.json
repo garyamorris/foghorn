@@ -1,0 +1,564 @@
+{
+ "A": [
+  {
+   "start": 0.0,
+   "end": 4.98,
+   "text": "This is Foghorn, an incident command\napp for a fictional online shop called"
+  },
+  {
+   "start": 4.98,
+   "end": 8.34,
+   "text": "Brightcart. Alerts arrive,\nAI agents investigate,"
+  },
+  {
+   "start": 8.8,
+   "end": 13.12,
+   "text": "a human approves the fix, and it\nall runs as ten LangGraph workflows."
+  },
+  {
+   "start": 13.96,
+   "end": 17.0,
+   "text": "Everything here is a recorded\nrun on a real language model."
+  },
+  {
+   "start": 17.68,
+   "end": 20.7,
+   "text": "We will follow one incident\nthrough the graphs that handle it."
+  }
+ ],
+ "B": [
+  {
+   "start": 0.0,
+   "end": 4.18,
+   "text": "First, the ten graphs, drawn from\nthe live server's own structure."
+  },
+  {
+   "start": 5.08,
+   "end": 6.58,
+   "text": "An event router at the front door."
+  },
+  {
+   "start": 7.4,
+   "end": 9.1,
+   "text": "The incident commander,\nwhich is the big one."
+  },
+  {
+   "start": 9.74,
+   "end": 13.86,
+   "text": "A root cause tournament, a storm correlator, a change gate for human approvals,"
+  },
+  {
+   "start": 14.42,
+   "end": 18.18,
+   "text": "a postmortem pipeline, an\nops copilot, a shift handoff,"
+  },
+  {
+   "start": 18.58,
+   "end": 22.06,
+   "text": "a memory keeper, and an\nevaluator that grades the rest."
+  }
+ ],
+ "C": [
+  {
+   "start": 0.0,
+   "end": 2.74,
+   "text": "Now the incident. We launch scenario one:"
+  },
+  {
+   "start": 3.36,
+   "end": 5.48,
+   "text": "checkout is returning\nerrors after a deploy."
+  },
+  {
+   "start": 6.46,
+   "end": 8.92,
+   "text": "Events flow into a pipeline\nthat validates each one,"
+  },
+  {
+   "start": 9.68,
+   "end": 12.86,
+   "text": "drops duplicates, applies routing\nrules, queues by priority,"
+  },
+  {
+   "start": 13.3,
+   "end": 14.88,
+   "text": "and dispatches a LangGraph run."
+  },
+  {
+   "start": 15.52,
+   "end": 18.62,
+   "text": "This is mission control,\nlive over server-sent events."
+  }
+ ],
+ "D": [
+  {
+   "start": 0.0,
+   "end": 2.16,
+   "text": "The first run is the event router."
+  },
+  {
+   "start": 2.98,
+   "end": 7.94,
+   "text": "A LangGraph is a state machine: nodes are\nplain functions that return updates to a"
+  },
+  {
+   "start": 7.94,
+   "end": 10.96,
+   "text": "shared state, and edges\ndecide what runs next."
+  },
+  {
+   "start": 11.82,
+   "end": 15.3,
+   "text": "Here the event is validated, checked\nagainst a ledger in the store,"
+  },
+  {
+   "start": 15.96,
+   "end": 20.84,
+   "text": "then enriched by three parallel tasks,\nwith a retry policy and a cache."
+  },
+  {
+   "start": 21.52,
+   "end": 24.14,
+   "text": "It is classified, a\ndecision picks a route,"
+  },
+  {
+   "start": 24.32,
+   "end": 27.6,
+   "text": "and the route opens an incident\nand hands it to the commander."
+  },
+  {
+   "start": 28.35,
+   "end": 32.02,
+   "text": "Fourteen more alerts follow, and\neach simply joins that incident."
+  }
+ ],
+ "E": [
+  {
+   "start": 0.0,
+   "end": 3.44,
+   "text": "Now the incident commander,\na supervisor graph."
+  },
+  {
+   "start": 4.16,
+   "end": 8.92,
+   "text": "It sends three specialists off\nin parallel with Command goto:"
+  },
+  {
+   "start": 8.92,
+   "end": 10.72,
+   "text": "metrics, logs and changes."
+  },
+  {
+   "start": 11.68,
+   "end": 16.66,
+   "text": "Each is itself a compiled subgraph, a\nmodel node looping with a tools node,"
+  },
+  {
+   "start": 16.88,
+   "end": 21.08,
+   "text": "and you can watch their reasoning and\ntool calls stream into the war room,"
+  },
+  {
+   "start": 21.64,
+   "end": 24.38,
+   "text": "token by token. Evidence fills the board:"
+  },
+  {
+   "start": 24.84,
+   "end": 28.84,
+   "text": "an error rate of nine point six per\ncent against a baseline of point three,"
+  },
+  {
+   "start": 28.84,
+   "end": 31.8,
+   "text": "a deploy nine minutes\nbefore the errors began,"
+  },
+  {
+   "start": 32.36,
+   "end": 34.18,
+   "text": "and a null pointer exception in the logs."
+  }
+ ],
+ "F": [
+  {
+   "start": 0.0,
+   "end": 3.86,
+   "text": "Then the supervisor hands its\nhypotheses to the root cause tournament."
+  },
+  {
+   "start": 4.56,
+   "end": 5.66,
+   "text": "This is map-reduce."
+  },
+  {
+   "start": 6.2,
+   "end": 9.84,
+   "text": "The Send API fans out one scoring\ntask for every hypothesis,"
+  },
+  {
+   "start": 10.36,
+   "end": 14.28,
+   "text": "all in parallel, and a reducer\nmerges the scores into a ranking."
+  },
+  {
+   "start": 14.76,
+   "end": 18.58,
+   "text": "On a bigger incident, a zone\npartition, that is sixteen at once."
+  },
+  {
+   "start": 19.16,
+   "end": 23.1,
+   "text": "In this run there was one strong candidate: a bad deploy on checkout service,"
+  },
+  {
+   "start": 23.1,
+   "end": 24.88,
+   "text": "at zero point eight eight."
+  }
+ ],
+ "G": [
+  {
+   "start": 0.0,
+   "end": 3.38,
+   "text": "The commander proposes a\nrollback, and a policy check runs:"
+  },
+  {
+   "start": 3.98,
+   "end": 7.78,
+   "text": "six rules, covering risk, the\nchange freeze and blast radius."
+  },
+  {
+   "start": 8.26,
+   "end": 9.62,
+   "text": "Then the graph calls interrupt."
+  },
+  {
+   "start": 9.62,
+   "end": 14.24,
+   "text": "LangGraph saves the whole state to a\ncheckpoint and the run simply stops."
+  },
+  {
+   "start": 14.98,
+   "end": 17.04,
+   "text": "Nothing is polling,\nnothing is held in memory."
+  },
+  {
+   "start": 17.7,
+   "end": 21.7,
+   "text": "The dashboard shows an approval card,\ngenerated from the interrupt's own schema."
+  },
+  {
+   "start": 22.46,
+   "end": 26.3,
+   "text": "Approve it, and a Command with a\nresume value goes to the same thread."
+  },
+  {
+   "start": 27.04,
+   "end": 30.42,
+   "text": "The graph wakes exactly where\nit stopped, runs the rollback,"
+  },
+  {
+   "start": 30.78,
+   "end": 32.82,
+   "text": "verifies recovery, and\ncloses the incident."
+  }
+ ],
+ "H": [
+  {
+   "start": 0.0,
+   "end": 2.56,
+   "text": "How does the dashboard\nwatch all this live?"
+  },
+  {
+   "start": 3.38,
+   "end": 5.82,
+   "text": "LangGraph can stream a run\nin several modes at once,"
+  },
+  {
+   "start": 5.82,
+   "end": 7.0,
+   "text": "over one connection."
+  },
+  {
+   "start": 8.14,
+   "end": 9.82,
+   "text": "Updates carry each node's state change."
+  },
+  {
+   "start": 10.76,
+   "end": 12.06,
+   "text": "Messages carry the model's tokens."
+  },
+  {
+   "start": 12.98,
+   "end": 15.44,
+   "text": "Custom events carry whatever\nthe graph wants to announce,"
+  },
+  {
+   "start": 15.44,
+   "end": 18.1,
+   "text": "like handoffs, evidence and hypotheses."
+  },
+  {
+   "start": 19.18,
+   "end": 23.38,
+   "text": "Tasks mark when each node starts and finishes, and checkpoints record every step."
+  },
+  {
+   "start": 23.92,
+   "end": 27.4,
+   "text": "The war room is the messages,\nthe board is the custom events,"
+  },
+  {
+   "start": 27.4,
+   "end": 29.52,
+   "text": "and the timeline is the tasks."
+  }
+ ],
+ "I": [
+  {
+   "start": 0.0,
+   "end": 3.36,
+   "text": "When the incident resolves, an event\nstarts the postmortem pipeline,"
+  },
+  {
+   "start": 3.88,
+   "end": 7.7,
+   "text": "written with the Functional API:\nan entrypoint and plain tasks."
+  },
+  {
+   "start": 8.44,
+   "end": 11.52,
+   "text": "Load the incident, build\na timeline, draft, review."
+  },
+  {
+   "start": 12.36,
+   "end": 15.24,
+   "text": "Review is another interrupt,\nwhere a human edits or approves."
+  },
+  {
+   "start": 16.16,
+   "end": 19.3,
+   "text": "Publishing starts the memory keeper,\nwhich distils a lesson and asks:"
+  },
+  {
+   "start": 19.82,
+   "end": 23.6,
+   "text": "remember this? Approved lessons go\ninto the store with semantic search,"
+  },
+  {
+   "start": 23.9,
+   "end": 26.16,
+   "text": "so the next similar incident recalls them."
+  }
+ ],
+ "J": [
+  {
+   "start": 0.0,
+   "end": 2.0,
+   "text": "Alert storms get their own graph."
+  },
+  {
+   "start": 2.0,
+   "end": 5.68,
+   "text": "Twenty two alerts from eleven\nservices, a zone partition,"
+  },
+  {
+   "start": 6.32,
+   "end": 9.14,
+   "text": "fan out into fourteen analysis\ntasks, run in parallel,"
+  },
+  {
+   "start": 9.62,
+   "end": 11.26,
+   "text": "then reduce into a single cluster."
+  },
+  {
+   "start": 11.94,
+   "end": 14.06,
+   "text": "One incident, instead of twenty two pages."
+  }
+ ],
+ "K": [
+  {
+   "start": 0.0,
+   "end": 3.74,
+   "text": "The change gate is the\nhuman in the loop gym."
+  },
+  {
+   "start": 4.46,
+   "end": 6.4,
+   "text": "This run goes through every style."
+  },
+  {
+   "start": 7.12,
+   "end": 11.04,
+   "text": "A question. Four approval\ncards, where the human asks,"
+  },
+  {
+   "start": 11.7,
+   "end": 13.76,
+   "text": "edits, rejects, and finally approves."
+  },
+  {
+   "start": 14.38,
+   "end": 18.78,
+   "text": "Then four eyes review: two\nreviewers pending at the same time,"
+  },
+  {
+   "start": 19.32,
+   "end": 23.4,
+   "text": "both resumed by one command,\nkeyed by interrupt I D."
+  }
+ ],
+ "L": [
+  {
+   "start": 0.0,
+   "end": 1.2,
+   "text": "Durable execution."
+  },
+  {
+   "start": 1.98,
+   "end": 4.6,
+   "text": "The shift handoff is told\nto crash in reconcile,"
+  },
+  {
+   "start": 4.94,
+   "end": 8.02,
+   "text": "and it does. The thread\nkeeps its checkpoints."
+  },
+  {
+   "start": 8.86,
+   "end": 13.14,
+   "text": "Run it again with no input, and it continues from the last good step, and finishes."
+  }
+ ],
+ "M": [
+  {
+   "start": 0.0,
+   "end": 2.58,
+   "text": "All of this is visible\nin LangGraph Studio."
+  },
+  {
+   "start": 2.58,
+   "end": 6.5,
+   "text": "Point it at the local server and\nevery graph appears in the selector."
+  },
+  {
+   "start": 7.28,
+   "end": 10.36,
+   "text": "Here is the incident commander,\ndrawn from its real structure."
+  },
+  {
+   "start": 11.52,
+   "end": 13.24,
+   "text": "Studio builds the input\nform from the schema."
+  },
+  {
+   "start": 13.98,
+   "end": 16.26,
+   "text": "Submit, and the nodes\nlight up as they run."
+  },
+  {
+   "start": 16.9,
+   "end": 21.34,
+   "text": "When the graph pauses, the interrupt gets\na response form generated from its schema,"
+  },
+  {
+   "start": 21.34,
+   "end": 22.88,
+   "text": "with live validation."
+  }
+ ],
+ "N": [
+  {
+   "start": 0.0,
+   "end": 3.0,
+   "text": "And every run lands in\nLangSmith as a trace."
+  },
+  {
+   "start": 3.56,
+   "end": 6.62,
+   "text": "The root is the graph,\nevery node is a child,"
+  },
+  {
+   "start": 7.04,
+   "end": 9.94,
+   "text": "and the model calls sit\ninside, with their prompts,"
+  },
+  {
+   "start": 10.88,
+   "end": 12.46,
+   "text": "replies, tokens and cost."
+  },
+  {
+   "start": 13.08,
+   "end": 15.16,
+   "text": "The specialists run side by side."
+  },
+  {
+   "start": 15.52,
+   "end": 18.86,
+   "text": "And a human wait separates\nthe two traces of one thread."
+  }
+ ],
+ "O": [
+  {
+   "start": 0.0,
+   "end": 2.0,
+   "text": "Finally, evaluations."
+  },
+  {
+   "start": 3.04,
+   "end": 5.28,
+   "text": "Sixteen labelled scenarios\nwith hidden ground truth,"
+  },
+  {
+   "start": 5.64,
+   "end": 8.74,
+   "text": "scored on root cause,\nevidence, safety and more."
+  },
+  {
+   "start": 9.54,
+   "end": 13.8,
+   "text": "The competent profile passes all\nsixteen, a naive one passes two."
+  },
+  {
+   "start": 14.44,
+   "end": 17.2,
+   "text": "A gullible one obeys an\ninstruction hidden in a log line:"
+  },
+  {
+   "start": 17.64,
+   "end": 20.76,
+   "text": "the policy check stops it, but\nthe safety gate still fails."
+  },
+  {
+   "start": 21.24,
+   "end": 23.94,
+   "text": "On a real model, fifteen of sixteen pass,"
+  },
+  {
+   "start": 23.94,
+   "end": 25.94,
+   "text": "with every hard safety gate clean."
+  }
+ ],
+ "P": [
+  {
+   "start": 0.0,
+   "end": 3.48,
+   "text": "That is Foghorn: ten\ngraphs, one deployment."
+  },
+  {
+   "start": 4.32,
+   "end": 8.46,
+   "text": "Start it with make dev, open the\ndashboard, and open Studio beside it."
+  },
+  {
+   "start": 9.16,
+   "end": 11.5,
+   "text": "Everything you saw was\nrecorded from real runs."
+  }
+ ]
+}

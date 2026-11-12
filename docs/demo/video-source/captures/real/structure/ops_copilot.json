@@ -1,0 +1,208 @@
+{
+ "graph_id": "ops_copilot",
+ "assistant_id": "f240db2a-6e6b-589b-a6f3-536d18593444",
+ "description": "create_agent ops copilot with middleware, tools, memory (Studio chat mode)",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "model",
+    "type": "runnable",
+    "data": {
+     "name": "model"
+    }
+   },
+   {
+    "id": "tools",
+    "type": "runnable",
+    "data": {
+     "name": "tools"
+    },
+    "metadata": {
+     "__tools": [
+      "query_metric",
+      "compare_baseline",
+      "search_logs",
+      "list_changes",
+      "get_topology",
+      "blast_radius",
+      "search_runbooks",
+      "recall_incidents",
+      "get_oncall",
+      "list_alerts",
+      "verify_recovery",
+      "advance_time",
+      "propose_action",
+      "remember_preference",
+      "recall_memory",
+      "incident_status",
+      "ask_user"
+     ]
+    }
+   },
+   {
+    "id": "PIIMiddleware[email].before_model",
+    "type": "runnable",
+    "data": {
+     "name": "PIIMiddleware[email].before_model"
+    }
+   },
+   {
+    "id": "PIIMiddleware[email].after_model",
+    "type": "runnable",
+    "data": {
+     "name": "PIIMiddleware[email].after_model"
+    }
+   },
+   {
+    "id": "PIIMiddleware[credit_card].before_model",
+    "type": "runnable",
+    "data": {
+     "name": "PIIMiddleware[credit_card].before_model"
+    }
+   },
+   {
+    "id": "PIIMiddleware[credit_card].after_model",
+    "type": "runnable",
+    "data": {
+     "name": "PIIMiddleware[credit_card].after_model"
+    }
+   },
+   {
+    "id": "SummarizationMiddleware.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "SummarizationMiddleware.before_model"
+    }
+   },
+   {
+    "id": "ModelCallLimitMiddleware.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "ModelCallLimitMiddleware.before_model"
+    }
+   },
+   {
+    "id": "ModelCallLimitMiddleware.after_model",
+    "type": "runnable",
+    "data": {
+     "name": "ModelCallLimitMiddleware.after_model"
+    }
+   },
+   {
+    "id": "ToolCallLimitMiddleware.after_model",
+    "type": "runnable",
+    "data": {
+     "name": "ToolCallLimitMiddleware.after_model"
+    }
+   },
+   {
+    "id": "ToolReviewMiddleware.after_model",
+    "type": "runnable",
+    "data": {
+     "name": "ToolReviewMiddleware.after_model"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "ModelCallLimitMiddleware.after_model",
+    "target": "PIIMiddleware[credit_card].after_model"
+   },
+   {
+    "source": "ModelCallLimitMiddleware.before_model",
+    "target": "__end__",
+    "conditional": true
+   },
+   {
+    "source": "ModelCallLimitMiddleware.before_model",
+    "target": "model",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[credit_card].after_model",
+    "target": "PIIMiddleware[email].after_model"
+   },
+   {
+    "source": "PIIMiddleware[credit_card].before_model",
+    "target": "SummarizationMiddleware.before_model",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[credit_card].before_model",
+    "target": "__end__",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[email].after_model",
+    "target": "PIIMiddleware[email].before_model",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[email].after_model",
+    "target": "__end__",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[email].after_model",
+    "target": "tools",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[email].before_model",
+    "target": "PIIMiddleware[credit_card].before_model",
+    "conditional": true
+   },
+   {
+    "source": "PIIMiddleware[email].before_model",
+    "target": "__end__",
+    "conditional": true
+   },
+   {
+    "source": "SummarizationMiddleware.before_model",
+    "target": "ModelCallLimitMiddleware.before_model"
+   },
+   {
+    "source": "ToolCallLimitMiddleware.after_model",
+    "target": "ModelCallLimitMiddleware.after_model",
+    "conditional": true
+   },
+   {
+    "source": "ToolCallLimitMiddleware.after_model",
+    "target": "__end__",
+    "conditional": true
+   },
+   {
+    "source": "ToolReviewMiddleware.after_model",
+    "target": "ToolCallLimitMiddleware.after_model"
+   },
+   {
+    "source": "__start__",
+    "target": "PIIMiddleware[email].before_model"
+   },
+   {
+    "source": "model",
+    "target": "ToolReviewMiddleware.after_model"
+   },
+   {
+    "source": "tools",
+    "target": "PIIMiddleware[email].before_model",
+    "conditional": true
+   },
+   {
+    "source": "tools",
+    "target": "__end__",
+    "conditional": true
+   }
+  ]
+ }
+}

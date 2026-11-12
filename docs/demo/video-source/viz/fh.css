@@ -1,0 +1,42 @@
+/* Foghorn explainer pages (overview / streams / evals): the dashboard's DARK theme tokens (src/foghorn/server/static/css/tokens.css).
+   1280x720 CSS px viewport (rec renders it at 1920x1080), offline, no external assets. Text is never smaller than 15 CSS px. */
+:root {
+  --bg: #0c0f15;
+  --surface: #131823;
+  --surface-2: #1a2030;
+  --surface-3: #232b3f;
+  --border: #262e42;
+  --border-strong: #38435e;
+  --text: #e8ebf3;
+  --text-2: #b0b8cb;
+  --text-3: #8d97ad;
+  --accent: #8aa0ff;
+  --accent-soft: #1d2650;
+  --critical: #ff8b8f;
+  --critical-soft: #3b1b21;
+  --high: #ffaa72;
+  --high-soft: #3a2518;
+  --medium: #f2c14e;
+  --medium-soft: #372c12;
+  --low: #7ab8ff;
+  --ok: #6fd884;
+  --ok-soft: #14301d;
+  --c1: #8aa0ff;
+  --c2: #4fd1c5;
+  --c3: #f6a560;
+  --c4: #cf8ae8;
+  --c5: #7bd88a;
+  --c6: #f48fb1;
+  --c7: #a7b3c4;
+  --c8: #f2c14e;
+  --font: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; -webkit-font-smoothing: antialiased; }
+body { position: relative; background:
+  radial-gradient(900px 380px at 12% -6%, rgba(138,160,255,0.08), transparent 70%),
+  radial-gradient(800px 380px at 96% 104%, rgba(79,209,197,0.05), transparent 70%),
+  var(--bg); }
+.mono { font-family: var(--mono); }
+svg text { font-family: var(--font); }

@@ -1,0 +1,734 @@
+{
+ "graph_id": "incident_commander",
+ "assistant_id": "3f623600-7312-5dcd-a64b-1ca876e89362",
+ "description": "Supervisor multi-agent incident response: specialists, RCA, policy, human approval, execute, verify",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "bootstrap",
+    "type": "runnable",
+    "data": {
+     "name": "bootstrap"
+    },
+    "metadata": {
+     "kind": "context",
+     "llm": false
+    }
+   },
+   {
+    "id": "supervisor",
+    "type": "runnable",
+    "data": {
+     "name": "supervisor"
+    },
+    "metadata": {
+     "kind": "supervisor",
+     "prompt": "supervisor_prompt"
+    }
+   },
+   {
+    "id": "clarify_change_intent",
+    "type": "runnable",
+    "data": {
+     "name": "clarify_change_intent"
+    },
+    "metadata": {
+     "kind": "human",
+     "interrupt": "question"
+    }
+   },
+   {
+    "id": "remediation_planner",
+    "type": "runnable",
+    "data": {
+     "name": "remediation_planner"
+    },
+    "metadata": {
+     "kind": "planner",
+     "prompt": "planner_prompt"
+    }
+   },
+   {
+    "id": "policy_check",
+    "type": "runnable",
+    "data": {
+     "name": "policy_check"
+    },
+    "metadata": {
+     "kind": "guardrail",
+     "llm": false
+    }
+   },
+   {
+    "id": "approval_gate",
+    "type": "runnable",
+    "data": {
+     "name": "approval_gate"
+    },
+    "metadata": {
+     "kind": "human",
+     "interrupt": "approval|edit|break_glass"
+    }
+   },
+   {
+    "id": "answer_question",
+    "type": "runnable",
+    "data": {
+     "name": "answer_question"
+    },
+    "metadata": {
+     "kind": "agent"
+    }
+   },
+   {
+    "id": "execute_action",
+    "type": "runnable",
+    "data": {
+     "name": "execute_action"
+    },
+    "metadata": {
+     "kind": "effect",
+     "idempotent": true
+    }
+   },
+   {
+    "id": "verify_recovery",
+    "type": "runnable",
+    "data": {
+     "name": "verify_recovery"
+    },
+    "metadata": {
+     "kind": "tools"
+    }
+   },
+   {
+    "id": "comms_drafter",
+    "type": "runnable",
+    "data": {
+     "name": "comms_drafter"
+    },
+    "metadata": {
+     "kind": "agent"
+    }
+   },
+   {
+    "id": "comms_gate",
+    "type": "runnable",
+    "data": {
+     "name": "comms_gate"
+    },
+    "metadata": {
+     "kind": "human",
+     "interrupt": "edit"
+    }
+   },
+   {
+    "id": "close_incident",
+    "type": "runnable",
+    "data": {
+     "name": "close_incident"
+    },
+    "metadata": {
+     "kind": "report",
+     "defer": true
+    }
+   },
+   {
+    "id": "__end__"
+   },
+   {
+    "id": "metrics_analyst:__start__",
+    "type": "runnable",
+    "data": {
+     "name": "metrics_analyst:__start__"
+    }
+   },
+   {
+    "id": "metrics_analyst:model",
+    "type": "runnable",
+    "data": {
+     "name": "metrics_analyst:model"
+    }
+   },
+   {
+    "id": "metrics_analyst:tools",
+    "type": "runnable",
+    "data": {
+     "name": "metrics_analyst:tools"
+    },
+    "metadata": {
+     "__tools": [
+      "query_metric",
+      "compare_baseline",
+      "list_alerts"
+     ]
+    }
+   },
+   {
+    "id": "metrics_analyst:Analyst.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "metrics_analyst:Analyst.before_model"
+    }
+   },
+   {
+    "id": "metrics_analyst:Analyst.after_agent",
+    "type": "runnable",
+    "data": {
+     "name": "metrics_analyst:Analyst.after_agent"
+    }
+   },
+   {
+    "id": "logs_analyst:__start__",
+    "type": "runnable",
+    "data": {
+     "name": "logs_analyst:__start__"
+    }
+   },
+   {
+    "id": "logs_analyst:model",
+    "type": "runnable",
+    "data": {
+     "name": "logs_analyst:model"
+    }
+   },
+   {
+    "id": "logs_analyst:tools",
+    "type": "runnable",
+    "data": {
+     "name": "logs_analyst:tools"
+    },
+    "metadata": {
+     "__tools": [
+      "search_logs"
+     ]
+    }
+   },
+   {
+    "id": "logs_analyst:Analyst.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "logs_analyst:Analyst.before_model"
+    }
+   },
+   {
+    "id": "logs_analyst:Analyst.after_agent",
+    "type": "runnable",
+    "data": {
+     "name": "logs_analyst:Analyst.after_agent"
+    }
+   },
+   {
+    "id": "change_analyst:__start__",
+    "type": "runnable",
+    "data": {
+     "name": "change_analyst:__start__"
+    }
+   },
+   {
+    "id": "change_analyst:model",
+    "type": "runnable",
+    "data": {
+     "name": "change_analyst:model"
+    }
+   },
+   {
+    "id": "change_analyst:tools",
+    "type": "runnable",
+    "data": {
+     "name": "change_analyst:tools"
+    },
+    "metadata": {
+     "__tools": [
+      "list_changes"
+     ]
+    }
+   },
+   {
+    "id": "change_analyst:Analyst.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "change_analyst:Analyst.before_model"
+    }
+   },
+   {
+    "id": "change_analyst:Analyst.after_agent",
+    "type": "runnable",
+    "data": {
+     "name": "change_analyst:Analyst.after_agent"
+    }
+   },
+   {
+    "id": "topology_analyst:__start__",
+    "type": "runnable",
+    "data": {
+     "name": "topology_analyst:__start__"
+    }
+   },
+   {
+    "id": "topology_analyst:model",
+    "type": "runnable",
+    "data": {
+     "name": "topology_analyst:model"
+    }
+   },
+   {
+    "id": "topology_analyst:tools",
+    "type": "runnable",
+    "data": {
+     "name": "topology_analyst:tools"
+    },
+    "metadata": {
+     "__tools": [
+      "get_topology",
+      "blast_radius",
+      "get_oncall"
+     ]
+    }
+   },
+   {
+    "id": "topology_analyst:Analyst.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "topology_analyst:Analyst.before_model"
+    }
+   },
+   {
+    "id": "topology_analyst:Analyst.after_agent",
+    "type": "runnable",
+    "data": {
+     "name": "topology_analyst:Analyst.after_agent"
+    }
+   },
+   {
+    "id": "knowledge_agent:__start__",
+    "type": "runnable",
+    "data": {
+     "name": "knowledge_agent:__start__"
+    }
+   },
+   {
+    "id": "knowledge_agent:model",
+    "type": "runnable",
+    "data": {
+     "name": "knowledge_agent:model"
+    }
+   },
+   {
+    "id": "knowledge_agent:tools",
+    "type": "runnable",
+    "data": {
+     "name": "knowledge_agent:tools"
+    },
+    "metadata": {
+     "__tools": [
+      "search_runbooks",
+      "recall_incidents"
+     ]
+    }
+   },
+   {
+    "id": "knowledge_agent:Analyst.before_model",
+    "type": "runnable",
+    "data": {
+     "name": "knowledge_agent:Analyst.before_model"
+    }
+   },
+   {
+    "id": "knowledge_agent:Analyst.after_agent",
+    "type": "runnable",
+    "data": {
+     "name": "knowledge_agent:Analyst.after_agent"
+    }
+   },
+   {
+    "id": "rca_tournament:gather",
+    "type": "runnable",
+    "data": {
+     "name": "rca_tournament:gather"
+    },
+    "metadata": {
+     "kind": "tools",
+     "llm": false
+    }
+   },
+   {
+    "id": "rca_tournament:plan",
+    "type": "runnable",
+    "data": {
+     "name": "rca_tournament:plan"
+    },
+    "metadata": {
+     "kind": "map"
+    }
+   },
+   {
+    "id": "rca_tournament:score_hypothesis",
+    "type": "runnable",
+    "data": {
+     "name": "rca_tournament:score_hypothesis"
+    },
+    "metadata": {
+     "kind": "worker",
+     "fan_out": "per hypothesis"
+    }
+   },
+   {
+    "id": "rca_tournament:rank",
+    "type": "runnable",
+    "data": {
+     "name": "rca_tournament:rank"
+    },
+    "metadata": {
+     "kind": "reduce",
+     "defer": true
+    }
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "bootstrap"
+   },
+   {
+    "source": "answer_question",
+    "target": "approval_gate"
+   },
+   {
+    "source": "approval_gate",
+    "target": "answer_question",
+    "conditional": true
+   },
+   {
+    "source": "approval_gate",
+    "target": "close_incident",
+    "conditional": true
+   },
+   {
+    "source": "approval_gate",
+    "target": "execute_action",
+    "conditional": true
+   },
+   {
+    "source": "approval_gate",
+    "target": "policy_check",
+    "conditional": true
+   },
+   {
+    "source": "approval_gate",
+    "target": "remediation_planner",
+    "conditional": true
+   },
+   {
+    "source": "bootstrap",
+    "target": "supervisor"
+   },
+   {
+    "source": "change_analyst:Analyst.after_agent",
+    "target": "supervisor"
+   },
+   {
+    "source": "clarify_change_intent",
+    "target": "supervisor"
+   },
+   {
+    "source": "comms_drafter",
+    "target": "close_incident",
+    "conditional": true
+   },
+   {
+    "source": "comms_gate",
+    "target": "close_incident",
+    "conditional": true
+   },
+   {
+    "source": "execute_action",
+    "target": "close_incident",
+    "conditional": true
+   },
+   {
+    "source": "execute_action",
+    "target": "policy_check",
+    "conditional": true
+   },
+   {
+    "source": "execute_action",
+    "target": "remediation_planner",
+    "conditional": true
+   },
+   {
+    "source": "execute_action",
+    "target": "verify_recovery",
+    "conditional": true
+   },
+   {
+    "source": "knowledge_agent:Analyst.after_agent",
+    "target": "supervisor"
+   },
+   {
+    "source": "logs_analyst:Analyst.after_agent",
+    "target": "supervisor"
+   },
+   {
+    "source": "metrics_analyst:Analyst.after_agent",
+    "target": "supervisor"
+   },
+   {
+    "source": "policy_check",
+    "target": "approval_gate",
+    "conditional": true
+   },
+   {
+    "source": "policy_check",
+    "target": "close_incident",
+    "conditional": true
+   },
+   {
+    "source": "policy_check",
+    "target": "comms_gate",
+    "conditional": true
+   },
+   {
+    "source": "policy_check",
+    "target": "remediation_planner",
+    "conditional": true
+   },
+   {
+    "source": "rca_tournament:rank",
+    "target": "supervisor"
+   },
+   {
+    "source": "remediation_planner",
+    "target": "policy_check"
+   },
+   {
+    "source": "supervisor",
+    "target": "change_analyst:__start__",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "clarify_change_intent",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "comms_drafter",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "knowledge_agent:__start__",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "logs_analyst:__start__",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "metrics_analyst:__start__",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "rca_tournament:gather",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "remediation_planner",
+    "conditional": true
+   },
+   {
+    "source": "supervisor",
+    "target": "topology_analyst:__start__",
+    "conditional": true
+   },
+   {
+    "source": "topology_analyst:Analyst.after_agent",
+    "target": "supervisor"
+   },
+   {
+    "source": "verify_recovery",
+    "target": "close_incident",
+    "conditional": true
+   },
+   {
+    "source": "verify_recovery",
+    "target": "remediation_planner",
+    "conditional": true
+   },
+   {
+    "source": "close_incident",
+    "target": "__end__"
+   },
+   {
+    "source": "metrics_analyst:Analyst.before_model",
+    "target": "metrics_analyst:model"
+   },
+   {
+    "source": "metrics_analyst:__start__",
+    "target": "metrics_analyst:Analyst.before_model"
+   },
+   {
+    "source": "metrics_analyst:model",
+    "target": "metrics_analyst:Analyst.after_agent",
+    "conditional": true
+   },
+   {
+    "source": "metrics_analyst:model",
+    "target": "metrics_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "metrics_analyst:model",
+    "target": "metrics_analyst:tools",
+    "conditional": true
+   },
+   {
+    "source": "metrics_analyst:tools",
+    "target": "metrics_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "logs_analyst:Analyst.before_model",
+    "target": "logs_analyst:model"
+   },
+   {
+    "source": "logs_analyst:__start__",
+    "target": "logs_analyst:Analyst.before_model"
+   },
+   {
+    "source": "logs_analyst:model",
+    "target": "logs_analyst:Analyst.after_agent",
+    "conditional": true
+   },
+   {
+    "source": "logs_analyst:model",
+    "target": "logs_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "logs_analyst:model",
+    "target": "logs_analyst:tools",
+    "conditional": true
+   },
+   {
+    "source": "logs_analyst:tools",
+    "target": "logs_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "change_analyst:Analyst.before_model",
+    "target": "change_analyst:model"
+   },
+   {
+    "source": "change_analyst:__start__",
+    "target": "change_analyst:Analyst.before_model"
+   },
+   {
+    "source": "change_analyst:model",
+    "target": "change_analyst:Analyst.after_agent",
+    "conditional": true
+   },
+   {
+    "source": "change_analyst:model",
+    "target": "change_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "change_analyst:model",
+    "target": "change_analyst:tools",
+    "conditional": true
+   },
+   {
+    "source": "change_analyst:tools",
+    "target": "change_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "topology_analyst:Analyst.before_model",
+    "target": "topology_analyst:model"
+   },
+   {
+    "source": "topology_analyst:__start__",
+    "target": "topology_analyst:Analyst.before_model"
+   },
+   {
+    "source": "topology_analyst:model",
+    "target": "topology_analyst:Analyst.after_agent",
+    "conditional": true
+   },
+   {
+    "source": "topology_analyst:model",
+    "target": "topology_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "topology_analyst:model",
+    "target": "topology_analyst:tools",
+    "conditional": true
+   },
+   {
+    "source": "topology_analyst:tools",
+    "target": "topology_analyst:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "knowledge_agent:Analyst.before_model",
+    "target": "knowledge_agent:model"
+   },
+   {
+    "source": "knowledge_agent:__start__",
+    "target": "knowledge_agent:Analyst.before_model"
+   },
+   {
+    "source": "knowledge_agent:model",
+    "target": "knowledge_agent:Analyst.after_agent",
+    "conditional": true
+   },
+   {
+    "source": "knowledge_agent:model",
+    "target": "knowledge_agent:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "knowledge_agent:model",
+    "target": "knowledge_agent:tools",
+    "conditional": true
+   },
+   {
+    "source": "knowledge_agent:tools",
+    "target": "knowledge_agent:Analyst.before_model",
+    "conditional": true
+   },
+   {
+    "source": "rca_tournament:gather",
+    "target": "rca_tournament:plan"
+   },
+   {
+    "source": "rca_tournament:plan",
+    "target": "rca_tournament:rank",
+    "conditional": true
+   },
+   {
+    "source": "rca_tournament:plan",
+    "target": "rca_tournament:score_hypothesis",
+    "conditional": true
+   },
+   {
+    "source": "rca_tournament:score_hypothesis",
+    "target": "rca_tournament:rank"
+   }
+  ]
+ }
+}

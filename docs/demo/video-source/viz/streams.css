@@ -1,0 +1,41 @@
+/* streams.html: five stream-mode lanes + one slim "single connection" timeline. All text >= 15px. */
+#hdr { position: absolute; left: 20px; right: 20px; top: 8px; height: 36px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+#hdr h1 { font-size: 24px; font-weight: 750; letter-spacing: -0.012em; white-space: nowrap; }
+#hdr h1 span { color: var(--accent); }
+#hsrc { font: 15px/20px var(--mono); color: var(--text-3); white-space: nowrap; }
+#hsrc b { color: var(--text-2); font-weight: 600; }
+
+#strip { position: absolute; left: 20px; right: 20px; top: 50px; height: 90px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+#sHead { position: absolute; left: 14px; right: 14px; top: 6px; height: 24px; display: flex; align-items: center; gap: 14px; white-space: nowrap; }
+#sLab { font: 700 15px/24px var(--mono); letter-spacing: .04em; color: var(--text-3); flex: none; }
+#sScene { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 15px; line-height: 24px; color: var(--text-2); }
+#sNow { flex: none; font-size: 15px; line-height: 22px; color: var(--text-2); max-width: 330px; overflow: hidden; text-overflow: ellipsis; }
+#sNow b { font-weight: 700; padding: 1px 8px; border-radius: 6px; margin-right: 7px; }
+#sCnt { flex: none; font: 15px/24px var(--mono); color: var(--text-3); min-width: 74px; text-align: right; }
+#sTicks { position: absolute; left: 14px; right: 14px; top: 35px; height: 28px; }
+#sTicks .tk { position: absolute; top: 2px; height: 24px; border-radius: 1.5px; background: #2a3347; }
+#sTicks .tk.cur { top: -2px; height: 32px; box-shadow: 0 0 10px 1px var(--tc); z-index: 3; }
+#sHeadMark { position: absolute; top: -8px; width: 0; height: 0; margin-left: -6px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--text); z-index: 4; }
+#sScenes { position: absolute; left: 14px; right: 14px; top: 66px; height: 20px; }
+#sScenes .sl { position: absolute; top: 0; font-size: 15px; line-height: 20px; color: var(--text-3); white-space: nowrap; }
+#sScenes .sl b { font-family: var(--mono); color: var(--text-2); margin-right: 6px; }
+#sScenes .sl.pause { color: var(--high); }
+
+.lane { position: absolute; left: 20px; right: 20px; height: 82px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.lane .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--lc); }
+.lane .lab { position: absolute; left: 18px; top: 7px; width: 262px; }
+.lane .nm { font: 700 21px/25px var(--mono); color: var(--lc); }
+.lane .cap { font-size: 15px; line-height: 19px; color: var(--text-2); margin-top: 3px; }
+.lane .feed { position: absolute; left: 296px; right: 14px; top: 4px; height: 75px; overflow: hidden; font: 15px/25px var(--mono); }
+.lane .ln { position: absolute; left: 0; right: 0; top: 0; height: 25px; display: flex; align-items: center; gap: 9px; white-space: nowrap; overflow: hidden; }
+.lane .wait { color: var(--text-3); font-style: italic; }
+.pl { flex: none; font: 600 15px/19px var(--font); padding: 0 7px; border-radius: 6px; color: var(--pc); background: color-mix(in srgb, var(--pc) 16%, transparent); border: 1px solid color-mix(in srgb, var(--pc) 40%, transparent); }
+.ns { flex: none; color: var(--text-3); }
+.tx { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-2); }
+.tx .k { color: #8f9bb8; }
+.tx .s { color: #e8ebf3; }
+.tx .n { color: #f2c14e; }
+.tx .nl { color: #c79cf0; }
+.tx .p { color: #6c7794; }
+.tx .hot { color: #ffffff; background: rgba(79, 209, 197, 0.28); border-radius: 3px; }
+.tx .dim { color: #7a86a3; }

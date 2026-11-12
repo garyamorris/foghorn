@@ -1,0 +1,27 @@
+/* Shared theme for the LangGraph visual pages (1280x720 CSS px viewport). Offline, no external assets. */
+:root {
+  --bg: #0a0e16;
+  --bg2: #0f1522;
+  --panel: #131a2a;
+  --panel2: #19223a;
+  --line: #2b364f;
+  --text: #eef2fa;
+  --muted: #9aa7c0;
+  --dim: #66748f;
+  --blue: #4aa8ff;
+  --green: #3fe0a0;
+  --amber: #ffb938;
+  --gold: #f4c95d;
+  --red: #ff6b7a;
+  --grey: #5c6a86;
+  --sans: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body { position: relative; background:
+  radial-gradient(900px 420px at 18% 0%, rgba(74,168,255,0.07), transparent 70%),
+  radial-gradient(800px 420px at 90% 100%, rgba(244,201,93,0.05), transparent 70%),
+  var(--bg); }
+svg text { font-family: var(--sans); }
+.mono { font-family: var(--mono); }

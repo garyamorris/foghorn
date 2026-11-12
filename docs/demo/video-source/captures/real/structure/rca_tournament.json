@@ -1,0 +1,101 @@
+{
+ "graph_id": "rca_tournament",
+ "assistant_id": "d9629640-86d4-5448-b9bb-25634fa18be6",
+ "description": "Send map-reduce root-cause hypothesis tournament",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "gather",
+    "type": "runnable",
+    "data": {
+     "name": "gather"
+    },
+    "metadata": {
+     "kind": "tools",
+     "llm": false
+    }
+   },
+   {
+    "id": "plan",
+    "type": "runnable",
+    "data": {
+     "name": "plan"
+    },
+    "metadata": {
+     "kind": "map"
+    }
+   },
+   {
+    "id": "score_hypothesis",
+    "type": "runnable",
+    "data": {
+     "name": "score_hypothesis"
+    },
+    "metadata": {
+     "kind": "worker",
+     "fan_out": "per hypothesis"
+    }
+   },
+   {
+    "id": "rank",
+    "type": "runnable",
+    "data": {
+     "name": "rank"
+    },
+    "metadata": {
+     "kind": "reduce",
+     "defer": true
+    }
+   },
+   {
+    "id": "report",
+    "type": "runnable",
+    "data": {
+     "name": "report"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "gather"
+   },
+   {
+    "source": "gather",
+    "target": "plan"
+   },
+   {
+    "source": "plan",
+    "target": "rank",
+    "conditional": true
+   },
+   {
+    "source": "plan",
+    "target": "score_hypothesis",
+    "conditional": true
+   },
+   {
+    "source": "rank",
+    "target": "report"
+   },
+   {
+    "source": "score_hypothesis",
+    "target": "rank"
+   },
+   {
+    "source": "report",
+    "target": "__end__"
+   }
+  ]
+ }
+}

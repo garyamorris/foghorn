@@ -1,0 +1,561 @@
+[
+ {
+  "thread_id": "4e8af2e0-daa4-547c-a619-e1e278e6fc5d",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0011",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:16.214597+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-38f9-7440-a96b-903d10388b08",
+    "t_seen": 31.15,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "03cb63f7-2155-52a8-8a45-1886ca5fea8b",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0015",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:17.219271+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-3ce7-725b-b8a7-66d71811b6f2",
+    "t_seen": 31.88,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "3bd23c20-c454-5e50-95df-335b53aca8e5",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0014",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:17.218333+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-3ce6-7093-b7cd-e5d927f4651c",
+    "t_seen": 31.88,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "3c3e24a7-8ead-5dd6-9c16-6f8470e9be14",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0013",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:17.217354+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-3ce5-7407-a1a3-92b029e0bbc0",
+    "t_seen": 31.88,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "59f13c9b-43d4-5305-9bb8-d663bb4b1cbe",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0012",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:17.097137+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-3c6b-7435-ac6e-0388aecee7b2",
+    "t_seen": 31.88,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "22b4ce55-d28a-5cfd-a521-daa1c1761802",
+  "graph_id": "incident_commander",
+  "metadata": {
+   "foghorn_kind": "incident",
+   "foghorn_graph": "incident_commander",
+   "foghorn_incident_id": "INC-33721",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_event_id": "evt_S01_0011",
+   "foghorn_trigger": "delegate",
+   "foghorn_parent_thread_id": "4e8af2e0-daa4-547c-a619-e1e278e6fc5d",
+   "graph_id": "incident_commander",
+   "assistant_id": "3f623600-7312-5dcd-a64b-1ca876e89362"
+  },
+  "created_at": "2026-11-08T22:23:16.905259+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-3bac-716c-8254-54959b63d981",
+    "t_seen": 31.88,
+    "assistant_id": "3f623600-7312-5dcd-a64b-1ca876e89362"
+   },
+   {
+    "run_id": "01a1bd43-223c-727b-a744-5b6845449865",
+    "t_seen": 90.76,
+    "assistant_id": "3f623600-7312-5dcd-a64b-1ca876e89362"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "6e743c46-32ee-50fc-b6ab-9f4c3c8fee7b",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0018",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:18.251192+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-40ee-713c-838a-aeaee5c7c547",
+    "t_seen": 32.96,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "19ca5ef2-cc87-5bb4-be53-b0b7b749b483",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0017",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:18.250437+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-40ed-7142-88b5-da1e6d323096",
+    "t_seen": 32.96,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "3ac00b78-57e7-5c10-aeb2-95964b703684",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0016",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:18.214653+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-40c9-72bb-9066-30f57800082e",
+    "t_seen": 32.97,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "e77d0aad-dfa9-5310-b77e-96781b8b6ae7",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0019",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:19.215951+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-44b3-71ce-9fa0-65ab8ff8b500",
+    "t_seen": 34.05,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "b7d86fd1-7580-573d-b227-596928ce5564",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0021",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:20.219184+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-48a0-726d-823c-0b6fa86980ea",
+    "t_seen": 35.13,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "04ec18b3-c941-59bd-bdc2-2ca54be627e6",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0020",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:20.218482+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-489f-74f0-948f-ae03a2dff1ec",
+    "t_seen": 35.14,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "5b8db92a-ad13-59ce-80a1-5a9a97ee7474",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0022",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:20.966023+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-4b8a-75ce-8cf8-e028b11f8a7f",
+    "t_seen": 35.85,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "641c1d25-014a-54f0-82de-ff0f02d6c341",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0023",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:22.966644+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-5358-7602-a78c-6e50dce45159",
+    "t_seen": 37.65,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "40f44dc4-0428-5afd-aedd-d2f24186c7ab",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0024",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:23.149879+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-540f-761e-8b0f-bc77eae5d13a",
+    "t_seen": 38.0,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "c11cd75b-8e25-5ec0-a527-83461d91a9c9",
+  "graph_id": "event_router",
+  "metadata": {
+   "foghorn_kind": "triage",
+   "foghorn_graph": "event_router",
+   "foghorn_event_id": "evt_S01_0026",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "event_router",
+   "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+  },
+  "created_at": "2026-11-08T22:23:25.518746+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd42-5d50-773f-82d3-7e67dec63fda",
+    "t_seen": 40.52,
+    "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "e8a10dad-f6d7-55fc-89ba-d9e1beee8c0f",
+  "graph_id": "postmortem_pipeline",
+  "metadata": {
+   "foghorn_kind": "incident",
+   "foghorn_graph": "postmortem_pipeline",
+   "foghorn_event_id": "evt_0000099",
+   "foghorn_correlation_id": "corr_S01_lau_0001",
+   "foghorn_incident_id": "INC-33721",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "postmortem_pipeline",
+   "assistant_id": "cf25e7df-a66c-5a75-8e33-c80e24c50869"
+  },
+  "created_at": "2026-11-08T22:24:18.284267+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd43-2b6f-7245-ae4d-fa7f8d1370cd",
+    "t_seen": 93.28,
+    "assistant_id": "cf25e7df-a66c-5a75-8e33-c80e24c50869"
+   },
+   {
+    "run_id": "01a1bd43-8f78-7765-8a0a-c2abedc2907d",
+    "t_seen": 118.77,
+    "assistant_id": "cf25e7df-a66c-5a75-8e33-c80e24c50869"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "99e7d7b7-5b68-503b-808d-71cc55ffa5f8",
+  "graph_id": "memory_keeper",
+  "metadata": {
+   "foghorn_kind": "memory",
+   "foghorn_graph": "memory_keeper",
+   "foghorn_event_id": "evt_0000106",
+   "foghorn_incident_id": "INC-33721",
+   "foghorn_scenario_id": "S01",
+   "foghorn_trigger": "event",
+   "graph_id": "memory_keeper",
+   "assistant_id": "637b2654-a50a-5780-b6c5-b7b6cd86b3b2"
+  },
+  "created_at": "2026-11-08T22:24:44.629320+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd43-9257-70ac-99c9-aa097ca1851e",
+    "t_seen": 119.5,
+    "assistant_id": "637b2654-a50a-5780-b6c5-b7b6cd86b3b2"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "01a1bd46-4199-75c3-8cf3-063dd2939e84",
+  "graph_id": "change_gate",
+  "metadata": {
+   "video": "change_gate",
+   "graph_id": "change_gate",
+   "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+  },
+  "created_at": "2026-11-08T22:27:40.569453+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd46-419a-707a-bd79-6447af4a6a9e",
+    "t_seen": 295.24,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   },
+   {
+    "run_id": "01a1bd46-4e31-77a7-acb2-10bf013a0365",
+    "t_seen": 298.48,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   },
+   {
+    "run_id": "01a1bd46-5acf-76c1-a209-8760e2c34de5",
+    "t_seen": 301.71,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   },
+   {
+    "run_id": "01a1bd46-6d5d-765f-98b8-ff3dc60de1fd",
+    "t_seen": 306.73,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   },
+   {
+    "run_id": "01a1bd46-79fa-72bb-8abe-9a593a3065d5",
+    "t_seen": 309.98,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   },
+   {
+    "run_id": "01a1bd46-868a-701e-9bb6-00fe0bab227a",
+    "t_seen": 313.23,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   },
+   {
+    "run_id": "01a1bd46-931c-74dc-b313-1af068146f59",
+    "t_seen": 316.09,
+    "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "01a1bd46-9718-76b6-887f-1a19df296816",
+  "graph_id": "shift_handoff",
+  "metadata": {
+   "video": "shift_handoff",
+   "graph_id": "shift_handoff",
+   "assistant_id": "1bee58e1-d1ad-59d3-8d1d-0fb148fa06ac"
+  },
+  "created_at": "2026-11-08T22:28:02.456266+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd46-9719-756f-b798-082ac291bfb6",
+    "t_seen": 317.17,
+    "assistant_id": "1bee58e1-d1ad-59d3-8d1d-0fb148fa06ac"
+   },
+   {
+    "run_id": "01a1bd46-a6d6-763e-947d-5c69bd63a3dd",
+    "t_seen": 321.47,
+    "assistant_id": "1bee58e1-d1ad-59d3-8d1d-0fb148fa06ac"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "01a1bd46-aae3-7140-ad3d-03c1b3662712",
+  "graph_id": "storm_correlator",
+  "metadata": {
+   "video": "storm_correlator",
+   "graph_id": "storm_correlator",
+   "assistant_id": "88d64e8c-8f6a-5db8-a6e5-edb65b45c7d0"
+  },
+  "created_at": "2026-11-08T22:28:07.523983+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd46-aae4-7512-98f2-abb229f0805f",
+    "t_seen": 322.19,
+    "assistant_id": "88d64e8c-8f6a-5db8-a6e5-edb65b45c7d0"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "01a1bd46-aed8-772b-b758-8bb09c831d21",
+  "graph_id": "ops_copilot",
+  "metadata": {
+   "video": "ops_copilot",
+   "graph_id": "ops_copilot",
+   "assistant_id": "f240db2a-6e6b-589b-a6f3-536d18593444"
+  },
+  "created_at": "2026-11-08T22:28:08.536816+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd46-aed9-711e-b100-a1a05a44b0d3",
+    "t_seen": 323.27,
+    "assistant_id": "f240db2a-6e6b-589b-a6f3-536d18593444"
+   }
+  ],
+  "src": "real_cap"
+ },
+ {
+  "thread_id": "ad7d4546-9db6-5dd8-9daf-6b12d3405900",
+  "graph_id": "incident_commander",
+  "metadata": {
+   "foghorn_kind": "incident",
+   "foghorn_graph": "incident_commander",
+   "foghorn_incident_id": "INC-54679",
+   "foghorn_correlation_id": "storm_S12_zone-b_2989942",
+   "foghorn_scenario_id": "S12",
+   "foghorn_event_id": "evt_S12_0005",
+   "foghorn_trigger": "delegate",
+   "foghorn_parent_thread_id": "01a1bd46-aae3-7140-ad3d-03c1b3662712",
+   "graph_id": "incident_commander",
+   "assistant_id": "3f623600-7312-5dcd-a64b-1ca876e89362"
+  },
+  "created_at": "2026-11-08T22:28:08.337700+00:00",
+  "runs": [
+   {
+    "run_id": "01a1bd46-ae13-73cf-8563-24e966ece9bb",
+    "t_seen": 323.27,
+    "assistant_id": "3f623600-7312-5dcd-a64b-1ca876e89362"
+   }
+  ],
+  "src": "real_cap"
+ }
+]

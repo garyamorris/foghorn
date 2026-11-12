@@ -114,6 +114,12 @@ tests/           unit, graphs, contract, golden, evals, e2e, ui
 
 ## Documentation
 
+* [Walkthrough video](https://github.com/garyamorris/langgraph-app/releases/tag/walkthrough-v1) - a narrated, captioned video (about 6.5 min, 1080p) that explains how
+  the graphs execute, using recorded runs on a real model: the event pipeline, supervisor and subgraphs, `Send` fan-out, interrupt and resume,
+  the five stream modes, the Functional API, durable crash recovery, Studio, LangSmith traces and the eval gate. The 1080p and 720p mp4 files are
+  attached to that release (they are not in the git history); the `.srt`/`.vtt` captions are in [docs/demo/](docs/demo/). The narration is
+  synthesised speech (OpenAI `gpt-4o-mini-tts`); how everything was made, and how to rebuild it, is in
+  [docs/demo/video-source/README.md](docs/demo/video-source/README.md).
 * [docs/DEMO.md](docs/DEMO.md) - eight guided walkthroughs, each proving a LangGraph / Studio feature.
 * [docs/STUDIO_GUIDE.md](docs/STUDIO_GUIDE.md) - per-graph "what to click in Studio" with copy-paste sample inputs.
 * [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - how it fits together and the rules every module follows.

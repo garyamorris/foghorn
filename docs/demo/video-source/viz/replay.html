@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Foghorn run replay</title>
+<meta name="viewport" content="width=1280">
+<link rel="stylesheet" href="replay.css">
+</head>
+<body>
+  <div id="hdr"><span id="gname"></span><span id="gmeta"></span><span id="status" class="run"><i></i><span id="stxt">RUNNING</span></span></div>
+  <svg id="mini" width="190" height="34"></svg>
+
+  <div id="stage">
+    <svg id="gv" width="912" height="472">
+      <defs></defs>
+      <g id="world">
+        <g id="gEdge"></g>
+        <g id="gCont"></g>
+        <g id="gEdgeIn"></g>
+        <g id="gNode"></g>
+        <g id="gTrail"></g>
+        <g id="gOver"></g>
+      </g>
+    </svg>
+    <div id="vig"></div>
+    <div id="bub"><div class="l0">handoff</div><div class="l1"></div><div class="l2"></div></div>
+    <div id="card"><div class="ct"></div><div class="cm"></div><div class="cs"></div><div class="ck"></div></div>
+  </div>
+
+  <div id="wfl">task timeline</div>
+  <svg id="wf" width="914" height="50"></svg>
+  <div id="cap"></div>
+
+  <div id="side">
+    <div class="panel" id="facts"></div>
+    <div class="panel" id="tickerp"><div class="ph">custom events</div><div id="ticker"></div></div>
+    <div class="panel" id="tokp"><div class="ph">llm token stream</div><div id="toks"></div></div>
+  </div>
+  <script type="module" src="replay.js"></script>
+</body>
+</html>

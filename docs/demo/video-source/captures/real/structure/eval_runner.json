@@ -1,0 +1,67 @@
+{
+ "graph_id": "eval_runner",
+ "assistant_id": "50d46ad1-c563-5847-adb0-592714a1c561",
+ "description": "Runs scenarios through the commander and scores them against ground truth",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "plan",
+    "type": "runnable",
+    "data": {
+     "name": "plan"
+    }
+   },
+   {
+    "id": "run_scenario",
+    "type": "runnable",
+    "data": {
+     "name": "run_scenario"
+    }
+   },
+   {
+    "id": "aggregate",
+    "type": "runnable",
+    "data": {
+     "name": "aggregate"
+    },
+    "metadata": {
+     "defer": true
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "plan"
+   },
+   {
+    "source": "plan",
+    "target": "aggregate",
+    "conditional": true
+   },
+   {
+    "source": "plan",
+    "target": "run_scenario",
+    "conditional": true
+   },
+   {
+    "source": "run_scenario",
+    "target": "aggregate"
+   },
+   {
+    "source": "aggregate",
+    "target": "__end__"
+   }
+  ]
+ }
+}

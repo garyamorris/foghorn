@@ -1,0 +1,205 @@
+{
+ "graph_id": "event_router",
+ "assistant_id": "dcd18bec-a1e6-5928-a62b-120cf69278a5",
+ "description": "Event ingress: validate, dedupe, enrich (retry+cache), classify, route and dispatch",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "validate",
+    "type": "runnable",
+    "data": {
+     "name": "validate"
+    },
+    "metadata": {
+     "stage": "ingress"
+    }
+   },
+   {
+    "id": "ledger",
+    "type": "runnable",
+    "data": {
+     "name": "ledger"
+    },
+    "metadata": {
+     "stage": "dedupe"
+    }
+   },
+   {
+    "id": "__error_handler__enrich",
+    "type": "runnable",
+    "data": {
+     "name": "__error_handler__enrich"
+    }
+   },
+   {
+    "id": "enrich",
+    "type": "runnable",
+    "data": {
+     "name": "enrich"
+    },
+    "metadata": {
+     "stage": "enrich",
+     "fan_out": "topology | oncall | changes"
+    }
+   },
+   {
+    "id": "classify",
+    "type": "runnable",
+    "data": {
+     "name": "classify"
+    },
+    "metadata": {
+     "stage": "classify",
+     "llm": "fallback only (ambiguous signals)"
+    }
+   },
+   {
+    "id": "decide",
+    "type": "runnable",
+    "data": {
+     "name": "decide"
+    },
+    "metadata": {
+     "stage": "route"
+    }
+   },
+   {
+    "id": "open_incident",
+    "type": "runnable",
+    "data": {
+     "name": "open_incident"
+    },
+    "metadata": {
+     "delegates_to": "incident_commander"
+    }
+   },
+   {
+    "id": "join_incident",
+    "type": "runnable",
+    "data": {
+     "name": "join_incident"
+    }
+   },
+   {
+    "id": "ignore",
+    "type": "runnable",
+    "data": {
+     "name": "ignore"
+    }
+   },
+   {
+    "id": "escalate_storm",
+    "type": "runnable",
+    "data": {
+     "name": "escalate_storm"
+    },
+    "metadata": {
+     "delegates_to": "storm_correlator"
+    }
+   },
+   {
+    "id": "finish",
+    "type": "runnable",
+    "data": {
+     "name": "finish"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "validate"
+   },
+   {
+    "source": "classify",
+    "target": "decide"
+   },
+   {
+    "source": "decide",
+    "target": "escalate_storm",
+    "data": "alert storm",
+    "conditional": true
+   },
+   {
+    "source": "decide",
+    "target": "ignore",
+    "data": "noise / benign",
+    "conditional": true
+   },
+   {
+    "source": "decide",
+    "target": "join_incident",
+    "data": "join existing",
+    "conditional": true
+   },
+   {
+    "source": "decide",
+    "target": "open_incident",
+    "data": "new incident",
+    "conditional": true
+   },
+   {
+    "source": "enrich",
+    "target": "classify"
+   },
+   {
+    "source": "escalate_storm",
+    "target": "finish"
+   },
+   {
+    "source": "ignore",
+    "target": "finish"
+   },
+   {
+    "source": "join_incident",
+    "target": "finish"
+   },
+   {
+    "source": "ledger",
+    "target": "classify",
+    "data": "skip_enrichment",
+    "conditional": true
+   },
+   {
+    "source": "ledger",
+    "target": "enrich",
+    "conditional": true
+   },
+   {
+    "source": "open_incident",
+    "target": "finish",
+    "conditional": true
+   },
+   {
+    "source": "open_incident",
+    "target": "join_incident",
+    "conditional": true
+   },
+   {
+    "source": "validate",
+    "target": "finish",
+    "data": "reject",
+    "conditional": true
+   },
+   {
+    "source": "validate",
+    "target": "ledger",
+    "conditional": true
+   },
+   {
+    "source": "finish",
+    "target": "__end__"
+   }
+  ]
+ }
+}

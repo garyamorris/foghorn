@@ -1,0 +1,608 @@
+{
+ "width": 1920,
+ "height": 1080,
+ "fps": 30,
+ "narration_dir": "narration/audio",
+ "preset": "Match Source – Adaptive Low Bitrate",
+ "max_mb": 90,
+ "audio_kbps": 128,
+ "small": {
+  "width": 1280,
+  "height": 720,
+  "max_mb": 40,
+  "audio_kbps": 96
+ },
+ "xfade": 0.3,
+ "narration_db": -3.0,
+ "captions": true,
+ "caption_style": {
+  "font": "Inter",
+  "size": 34,
+  "background": "#000000b0",
+  "margin": 0.05
+ },
+ "title": {
+  "text": "Foghorn",
+  "sub": "how ten LangGraph graphs run an incident",
+  "seconds": 3.5,
+  "bg": {
+   "type": "video",
+   "path": "raw/hero_real.mp4",
+   "in": 1.0,
+   "freeze": true
+  },
+  "dim": -90
+ },
+ "outro": {
+  "text": "Run it yourself",
+  "sub": "make dev  ·  localhost:2026/app  ·  LangGraph Studio",
+  "seconds": 3.5,
+  "bg": {
+   "type": "video",
+   "path": "raw/hero_real.mp4",
+   "in": 131.0,
+   "freeze": true
+  },
+  "dim": -90
+ },
+ "scenes": [
+  {
+   "id": "A",
+   "segments": [
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": 1.0,
+     "in": 1.0,
+     "out": 8.7
+    },
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "in": 8.4,
+     "freeze": true,
+     "move": "zoom-in",
+     "speed": "fit",
+     "weight": 1.0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 1.08,
+     "dur": 4.5,
+     "text": "Foghorn · AI incident command",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 12.8,
+     "dur": 4.5,
+     "text": "10 LangGraph graphs · 1 deployment",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "B",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/overview.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 5.4,
+     "dur": 3.5,
+     "text": "event_router · the front door",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 7.84,
+     "dur": 3.5,
+     "text": "incident_commander · the big one",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "C",
+   "segments": [
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": "fit",
+     "in": 8.7,
+     "out": 26.4
+    }
+   ],
+   "callouts": [
+    {
+     "at": 8.08,
+     "dur": 4.5,
+     "text": "validate · dedupe · route · queue",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 13.8,
+     "dur": 4.5,
+     "text": "dispatcher → LangGraph run",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "D",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_router.mp4",
+     "in": 0.15,
+     "freeze": true,
+     "move": "none",
+     "speed": "fit",
+     "weight": 10.0
+    },
+    {
+     "type": "video",
+     "path": "viz_out/replay_router.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 4.1,
+     "dur": 4.5,
+     "text": "StateGraph · nodes + edges",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 17.26,
+     "dur": 4.5,
+     "text": "Send fan-out · enrich ×3",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 19.46,
+     "dur": 4.5,
+     "text": "RetryPolicy · CachePolicy",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 26.88,
+     "dur": 4.5,
+     "text": "Command → incident_commander",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "E",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_commander_a.mp4",
+     "speed": "fit",
+     "in": 0
+    },
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": "fit",
+     "in": 36.0,
+     "out": 52.0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 7.12,
+     "dur": 4.5,
+     "text": "Command(goto) · parallel routing",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 13.24,
+     "dur": 4.5,
+     "text": "specialists = compiled subgraphs",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 21.84,
+     "dur": 4.5,
+     "text": "stream mode: messages",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "F",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_rca16.mp4",
+     "speed": "fit",
+     "in": 0
+    },
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": "fit",
+     "in": 45.7,
+     "out": 52.5
+    }
+   ],
+   "callouts": [
+    {
+     "at": 5.26,
+     "dur": 4.0,
+     "text": "Send map-reduce",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 12.3,
+     "dur": 4.0,
+     "text": "reducer merges the scores",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 18.3,
+     "dur": 4.0,
+     "text": "× 16 in parallel",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "G",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_commander_b1.mp4",
+     "speed": "fit",
+     "in": 0,
+     "weight": 11.5
+    },
+    {
+     "type": "video",
+     "path": "viz_out/replay_commander_b1.mp4",
+     "in": 10.767000000000001,
+     "freeze": true,
+     "move": "none",
+     "speed": "fit",
+     "weight": 6.5
+    },
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": "fit",
+     "in": 79.0,
+     "out": 86.0,
+     "weight": 7.0
+    },
+    {
+     "type": "video",
+     "path": "viz_out/replay_commander_b2.mp4",
+     "speed": "fit",
+     "in": 0,
+     "weight": 9.0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 2.62,
+     "dur": 4.0,
+     "text": "policy_check · 6 rules",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 9.08,
+     "dur": 5.5,
+     "text": "interrupt() · state saved to a checkpoint",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 23.78,
+     "dur": 5.0,
+     "text": "Command(resume=…) · same thread",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "H",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/streams.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "I",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_postmortem.mp4",
+     "in": 0.1,
+     "freeze": true,
+     "move": "none",
+     "speed": "fit",
+     "weight": 7.0
+    },
+    {
+     "type": "video",
+     "path": "viz_out/replay_postmortem.mp4",
+     "speed": "fit",
+     "in": 0
+    },
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": "fit",
+     "in": 106.1,
+     "out": 113.2
+    },
+    {
+     "type": "video",
+     "path": "raw/hero_real.mp4",
+     "speed": "fit",
+     "in": 120.1,
+     "out": 126.0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 4.74,
+     "dur": 5.0,
+     "text": "Functional API · @entrypoint / @task",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 12.86,
+     "dur": 4.0,
+     "text": "interrupt() · human review",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 23.1,
+     "dur": 4.0,
+     "text": "Store · semantic search",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "J",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_storm.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 6.52,
+     "dur": 5.0,
+     "text": "Send ×14 → reduce → one cluster",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "K",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_gate.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 14.92,
+     "dur": 5.0,
+     "text": "parallel interrupts · resume by id",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "L",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/replay_crash.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 3.7,
+     "dur": 3.5,
+     "text": "durable execution",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 9.62,
+     "dur": 4.0,
+     "text": "resume from the checkpoint",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "M",
+   "segments": [
+    {
+     "type": "video",
+     "path": "raw/studio_graphs.mp4",
+     "speed": "fit",
+     "in": 2.5,
+     "out": 10.2,
+     "weight": 5.5
+    },
+    {
+     "type": "video",
+     "path": "raw/studio_live_real.mp4",
+     "speed": "fit",
+     "in": 6.3,
+     "out": 14.4,
+     "weight": 5.5
+    },
+    {
+     "type": "video",
+     "path": "raw/studio_live_real.mp4",
+     "speed": "fit",
+     "in": 22.3,
+     "out": 55.6,
+     "weight": 5.5
+    },
+    {
+     "type": "video",
+     "path": "raw/studio_live_real.mp4",
+     "speed": "fit",
+     "in": 60.4,
+     "out": 71.5,
+     "weight": 7.0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 2.28,
+     "dur": 4.5,
+     "text": "LangGraph Studio · local server",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 15.38,
+     "dur": 4.0,
+     "text": "live node execution",
+     "style": "tech",
+     "anchor": "tr"
+    },
+    {
+     "at": 19.72,
+     "dur": 5.0,
+     "text": "form generated from the response schema",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "N",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/trace.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [
+    {
+     "at": 2.24,
+     "dur": 4.5,
+     "text": "LangSmith · every run is a trace",
+     "style": "tech",
+     "anchor": "tr"
+    }
+   ],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "O",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/evals.mp4",
+     "speed": "fit",
+     "in": 0
+    }
+   ],
+   "callouts": [],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  },
+  {
+   "id": "P",
+   "segments": [
+    {
+     "type": "video",
+     "path": "viz_out/overview.mp4",
+     "in": 22.767,
+     "freeze": true,
+     "move": "zoom-out",
+     "speed": "fit",
+     "weight": 1.0
+    }
+   ],
+   "callouts": [],
+   "pad_before": 0.35,
+   "pad_after": 0.45
+  }
+ ]
+}

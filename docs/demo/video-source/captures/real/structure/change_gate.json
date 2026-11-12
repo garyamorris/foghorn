@@ -1,0 +1,272 @@
+{
+ "graph_id": "change_gate",
+ "assistant_id": "0bba1cef-e324-59be-8962-7a3cc7a1d0ef",
+ "description": "Human-in-the-loop gym: approve, edit, reject, question, four-eyes, parallel interrupts",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "assess_risk",
+    "type": "runnable",
+    "data": {
+     "name": "assess_risk"
+    },
+    "metadata": {
+     "stage": "assess"
+    }
+   },
+   {
+    "id": "policy_gate",
+    "type": "runnable",
+    "data": {
+     "name": "policy_gate"
+    },
+    "metadata": {
+     "stage": "policy"
+    }
+   },
+   {
+    "id": "clarify",
+    "type": "runnable",
+    "data": {
+     "name": "clarify"
+    },
+    "metadata": {
+     "interrupt": "question"
+    }
+   },
+   {
+    "id": "break_glass",
+    "type": "runnable",
+    "data": {
+     "name": "break_glass"
+    },
+    "metadata": {
+     "interrupt": "break_glass"
+    }
+   },
+   {
+    "id": "request_approval",
+    "type": "runnable",
+    "data": {
+     "name": "request_approval"
+    },
+    "metadata": {
+     "interrupt": "approval"
+    }
+   },
+   {
+    "id": "edit_change",
+    "type": "runnable",
+    "data": {
+     "name": "edit_change"
+    },
+    "metadata": {
+     "interrupt": "edit"
+    }
+   },
+   {
+    "id": "revise_change",
+    "type": "runnable",
+    "data": {
+     "name": "revise_change"
+    },
+    "metadata": {
+     "loop": "bounded by context.max_revisions"
+    }
+   },
+   {
+    "id": "answer_question",
+    "type": "runnable",
+    "data": {
+     "name": "answer_question"
+    },
+    "metadata": {
+     "llm": "smart, grounded in tools"
+    }
+   },
+   {
+    "id": "four_eyes",
+    "type": "runnable",
+    "data": {
+     "name": "four_eyes"
+    },
+    "metadata": {
+     "fan_out": "one reviewer per role"
+    }
+   },
+   {
+    "id": "reviewer",
+    "type": "runnable",
+    "data": {
+     "name": "reviewer"
+    },
+    "metadata": {
+     "interrupt": "four_eyes (parallel)"
+    }
+   },
+   {
+    "id": "collect_reviews",
+    "type": "runnable",
+    "data": {
+     "name": "collect_reviews"
+    },
+    "metadata": {
+     "fan_in": "both reviewers"
+    }
+   },
+   {
+    "id": "apply_change",
+    "type": "runnable",
+    "data": {
+     "name": "apply_change"
+    },
+    "metadata": {
+     "side_effect": "after every interrupt, claim_effect-idempotent"
+    }
+   },
+   {
+    "id": "finish",
+    "type": "runnable",
+    "data": {
+     "name": "finish"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "assess_risk"
+   },
+   {
+    "source": "answer_question",
+    "target": "request_approval"
+   },
+   {
+    "source": "apply_change",
+    "target": "finish"
+   },
+   {
+    "source": "assess_risk",
+    "target": "policy_gate"
+   },
+   {
+    "source": "break_glass",
+    "target": "finish",
+    "conditional": true
+   },
+   {
+    "source": "break_glass",
+    "target": "request_approval",
+    "conditional": true
+   },
+   {
+    "source": "clarify",
+    "target": "assess_risk",
+    "conditional": true
+   },
+   {
+    "source": "collect_reviews",
+    "target": "apply_change",
+    "conditional": true
+   },
+   {
+    "source": "collect_reviews",
+    "target": "revise_change",
+    "conditional": true
+   },
+   {
+    "source": "edit_change",
+    "target": "assess_risk",
+    "conditional": true
+   },
+   {
+    "source": "four_eyes",
+    "target": "reviewer",
+    "conditional": true
+   },
+   {
+    "source": "policy_gate",
+    "target": "apply_change",
+    "conditional": true
+   },
+   {
+    "source": "policy_gate",
+    "target": "break_glass",
+    "conditional": true
+   },
+   {
+    "source": "policy_gate",
+    "target": "clarify",
+    "conditional": true
+   },
+   {
+    "source": "policy_gate",
+    "target": "finish",
+    "conditional": true
+   },
+   {
+    "source": "policy_gate",
+    "target": "request_approval",
+    "conditional": true
+   },
+   {
+    "source": "request_approval",
+    "target": "answer_question",
+    "conditional": true
+   },
+   {
+    "source": "request_approval",
+    "target": "apply_change",
+    "conditional": true
+   },
+   {
+    "source": "request_approval",
+    "target": "edit_change",
+    "conditional": true
+   },
+   {
+    "source": "request_approval",
+    "target": "four_eyes",
+    "conditional": true
+   },
+   {
+    "source": "request_approval",
+    "target": "request_approval",
+    "conditional": true
+   },
+   {
+    "source": "request_approval",
+    "target": "revise_change",
+    "conditional": true
+   },
+   {
+    "source": "reviewer",
+    "target": "collect_reviews"
+   },
+   {
+    "source": "revise_change",
+    "target": "assess_risk",
+    "conditional": true
+   },
+   {
+    "source": "revise_change",
+    "target": "finish",
+    "conditional": true
+   },
+   {
+    "source": "finish",
+    "target": "__end__"
+   }
+  ]
+ }
+}

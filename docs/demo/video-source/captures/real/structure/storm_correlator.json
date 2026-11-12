@@ -1,0 +1,161 @@
+{
+ "graph_id": "storm_correlator",
+ "assistant_id": "88d64e8c-8f6a-5db8-a6e5-edb65b45c7d0",
+ "description": "Alert-storm clustering: map-reduce with reducers, timeouts, cache and error handlers",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "partition",
+    "type": "runnable",
+    "data": {
+     "name": "partition"
+    },
+    "metadata": {
+     "stage": "partition"
+    }
+   },
+   {
+    "id": "__error_handler__analyze_candidate",
+    "type": "runnable",
+    "data": {
+     "name": "__error_handler__analyze_candidate"
+    }
+   },
+   {
+    "id": "analyze_candidate",
+    "type": "runnable",
+    "data": {
+     "name": "analyze_candidate"
+    },
+    "metadata": {
+     "stage": "map",
+     "fan_out": "one Send per candidate root"
+    }
+   },
+   {
+    "id": "reduce_level",
+    "type": "runnable",
+    "data": {
+     "name": "reduce_level"
+    },
+    "metadata": {
+     "stage": "reduce",
+     "loop": "bounded by state.level / context.max_merge_levels"
+    }
+   },
+   {
+    "id": "__error_handler__merge_group",
+    "type": "runnable",
+    "data": {
+     "name": "__error_handler__merge_group"
+    }
+   },
+   {
+    "id": "merge_group",
+    "type": "runnable",
+    "data": {
+     "name": "merge_group"
+    },
+    "metadata": {
+     "stage": "reduce"
+    }
+   },
+   {
+    "id": "finalize",
+    "type": "runnable",
+    "data": {
+     "name": "finalize"
+    },
+    "metadata": {
+     "defer": true
+    }
+   },
+   {
+    "id": "__error_handler__open_cluster_incident",
+    "type": "runnable",
+    "data": {
+     "name": "__error_handler__open_cluster_incident"
+    }
+   },
+   {
+    "id": "open_cluster_incident",
+    "type": "runnable",
+    "data": {
+     "name": "open_cluster_incident"
+    },
+    "metadata": {
+     "delegates_to": "incident_commander"
+    }
+   },
+   {
+    "id": "report",
+    "type": "runnable",
+    "data": {
+     "name": "report"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "partition"
+   },
+   {
+    "source": "analyze_candidate",
+    "target": "reduce_level"
+   },
+   {
+    "source": "finalize",
+    "target": "open_cluster_incident",
+    "conditional": true
+   },
+   {
+    "source": "finalize",
+    "target": "report",
+    "conditional": true
+   },
+   {
+    "source": "merge_group",
+    "target": "reduce_level"
+   },
+   {
+    "source": "open_cluster_incident",
+    "target": "report"
+   },
+   {
+    "source": "partition",
+    "target": "analyze_candidate",
+    "conditional": true
+   },
+   {
+    "source": "partition",
+    "target": "report",
+    "conditional": true
+   },
+   {
+    "source": "reduce_level",
+    "target": "finalize",
+    "conditional": true
+   },
+   {
+    "source": "reduce_level",
+    "target": "merge_group",
+    "conditional": true
+   },
+   {
+    "source": "report",
+    "target": "__end__"
+   }
+  ]
+ }
+}

@@ -1,0 +1,91 @@
+{
+ "graph_id": "shift_handoff",
+ "assistant_id": "1bee58e1-d1ad-59d3-8d1d-0fb148fa06ac",
+ "description": "Deterministic durable cron pipeline: crash recovery, fork, breakpoints",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "collect_incidents",
+    "type": "runnable",
+    "data": {
+     "name": "collect_incidents"
+    }
+   },
+   {
+    "id": "collect_approvals",
+    "type": "runnable",
+    "data": {
+     "name": "collect_approvals"
+    }
+   },
+   {
+    "id": "compute_metrics",
+    "type": "runnable",
+    "data": {
+     "name": "compute_metrics"
+    }
+   },
+   {
+    "id": "reconcile",
+    "type": "runnable",
+    "data": {
+     "name": "reconcile"
+    }
+   },
+   {
+    "id": "render_report",
+    "type": "runnable",
+    "data": {
+     "name": "render_report"
+    }
+   },
+   {
+    "id": "publish",
+    "type": "runnable",
+    "data": {
+     "name": "publish"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "collect_incidents"
+   },
+   {
+    "source": "collect_approvals",
+    "target": "compute_metrics"
+   },
+   {
+    "source": "collect_incidents",
+    "target": "collect_approvals"
+   },
+   {
+    "source": "compute_metrics",
+    "target": "reconcile"
+   },
+   {
+    "source": "reconcile",
+    "target": "render_report"
+   },
+   {
+    "source": "render_report",
+    "target": "publish"
+   },
+   {
+    "source": "publish",
+    "target": "__end__"
+   }
+  ]
+ }
+}

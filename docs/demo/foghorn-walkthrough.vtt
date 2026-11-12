@@ -1,0 +1,394 @@
+WEBVTT
+
+00:00:03.833 --> 00:00:08.813
+This is Foghorn, an incident command
+app for a fictional online shop called
+
+00:00:08.813 --> 00:00:12.173
+Brightcart. Alerts arrive,
+AI agents investigate,
+
+00:00:12.633 --> 00:00:16.953
+a human approves the fix, and it
+all runs as ten LangGraph workflows.
+
+00:00:17.793 --> 00:00:20.833
+Everything here is a recorded
+run on a real language model.
+
+00:00:21.513 --> 00:00:24.533
+We will follow one incident
+through the graphs that handle it.
+
+00:00:25.533 --> 00:00:29.713
+First, the ten graphs, drawn from
+the live server's own structure.
+
+00:00:30.613 --> 00:00:32.113
+An event router at the front door.
+
+00:00:32.933 --> 00:00:34.633
+The incident commander,
+which is the big one.
+
+00:00:35.273 --> 00:00:39.393
+A root cause tournament, a storm correlator, a change gate for human approvals,
+
+00:00:39.953 --> 00:00:43.713
+a postmortem pipeline, an
+ops copilot, a shift handoff,
+
+00:00:44.113 --> 00:00:47.593
+a memory keeper, and an
+evaluator that grades the rest.
+
+00:00:48.667 --> 00:00:51.407
+Now the incident. We launch scenario one:
+
+00:00:52.027 --> 00:00:54.147
+checkout is returning
+errors after a deploy.
+
+00:00:55.127 --> 00:00:57.587
+Events flow into a pipeline
+that validates each one,
+
+00:00:58.347 --> 00:01:01.527
+drops duplicates, applies routing
+rules, queues by priority,
+
+00:01:01.967 --> 00:01:03.547
+and dispatches a LangGraph run.
+
+00:01:04.187 --> 00:01:07.287
+This is mission control,
+live over server-sent events.
+
+00:01:08.400 --> 00:01:10.560
+The first run is the event router.
+
+00:01:11.380 --> 00:01:16.340
+A LangGraph is a state machine: nodes are
+plain functions that return updates to a
+
+00:01:16.340 --> 00:01:19.360
+shared state, and edges
+decide what runs next.
+
+00:01:20.220 --> 00:01:23.700
+Here the event is validated, checked
+against a ledger in the store,
+
+00:01:24.360 --> 00:01:29.240
+then enriched by three parallel tasks,
+with a retry policy and a cache.
+
+00:01:29.920 --> 00:01:32.540
+It is classified, a
+decision picks a route,
+
+00:01:32.720 --> 00:01:36.000
+and the route opens an incident
+and hands it to the commander.
+
+00:01:36.750 --> 00:01:40.420
+Fourteen more alerts follow, and
+each simply joins that incident.
+
+00:01:41.600 --> 00:01:45.040
+Now the incident commander,
+a supervisor graph.
+
+00:01:45.760 --> 00:01:50.520
+It sends three specialists off
+in parallel with Command goto:
+
+00:01:50.520 --> 00:01:52.320
+metrics, logs and changes.
+
+00:01:53.280 --> 00:01:58.260
+Each is itself a compiled subgraph, a
+model node looping with a tools node,
+
+00:01:58.480 --> 00:02:02.680
+and you can watch their reasoning and
+tool calls stream into the war room,
+
+00:02:03.240 --> 00:02:05.980
+token by token. Evidence fills the board:
+
+00:02:06.440 --> 00:02:10.440
+an error rate of nine point six per
+cent against a baseline of point three,
+
+00:02:10.440 --> 00:02:13.400
+a deploy nine minutes
+before the errors began,
+
+00:02:13.960 --> 00:02:15.780
+and a null pointer exception in the logs.
+
+00:02:16.933 --> 00:02:20.793
+Then the supervisor hands its
+hypotheses to the root cause tournament.
+
+00:02:21.493 --> 00:02:22.593
+This is map-reduce.
+
+00:02:23.133 --> 00:02:26.773
+The Send API fans out one scoring
+task for every hypothesis,
+
+00:02:27.293 --> 00:02:31.213
+all in parallel, and a reducer
+merges the scores into a ranking.
+
+00:02:31.693 --> 00:02:35.513
+On a bigger incident, a zone
+partition, that is sixteen at once.
+
+00:02:36.093 --> 00:02:40.033
+In this run there was one strong candidate: a bad deploy on checkout service,
+
+00:02:40.033 --> 00:02:41.813
+at zero point eight eight.
+
+00:02:42.933 --> 00:02:46.313
+The commander proposes a
+rollback, and a policy check runs:
+
+00:02:46.913 --> 00:02:50.713
+six rules, covering risk, the
+change freeze and blast radius.
+
+00:02:51.193 --> 00:02:52.553
+Then the graph calls interrupt.
+
+00:02:52.553 --> 00:02:57.173
+LangGraph saves the whole state to a
+checkpoint and the run simply stops.
+
+00:02:57.913 --> 00:02:59.973
+Nothing is polling,
+nothing is held in memory.
+
+00:03:00.633 --> 00:03:04.633
+The dashboard shows an approval card,
+generated from the interrupt's own schema.
+
+00:03:05.393 --> 00:03:09.233
+Approve it, and a Command with a
+resume value goes to the same thread.
+
+00:03:09.973 --> 00:03:13.353
+The graph wakes exactly where
+it stopped, runs the rollback,
+
+00:03:13.713 --> 00:03:15.753
+verifies recovery, and
+closes the incident.
+
+00:03:16.933 --> 00:03:19.493
+How does the dashboard
+watch all this live?
+
+00:03:20.313 --> 00:03:22.753
+LangGraph can stream a run
+in several modes at once,
+
+00:03:22.753 --> 00:03:23.933
+over one connection.
+
+00:03:25.073 --> 00:03:26.753
+Updates carry each node's state change.
+
+00:03:27.693 --> 00:03:28.993
+Messages carry the model's tokens.
+
+00:03:29.913 --> 00:03:32.373
+Custom events carry whatever
+the graph wants to announce,
+
+00:03:32.373 --> 00:03:35.033
+like handoffs, evidence and hypotheses.
+
+00:03:36.113 --> 00:03:40.313
+Tasks mark when each node starts and finishes, and checkpoints record every step.
+
+00:03:40.853 --> 00:03:44.333
+The war room is the messages,
+the board is the custom events,
+
+00:03:44.333 --> 00:03:46.453
+and the timeline is the tasks.
+
+00:03:47.633 --> 00:03:50.993
+When the incident resolves, an event
+starts the postmortem pipeline,
+
+00:03:51.513 --> 00:03:55.333
+written with the Functional API:
+an entrypoint and plain tasks.
+
+00:03:56.073 --> 00:03:59.153
+Load the incident, build
+a timeline, draft, review.
+
+00:03:59.993 --> 00:04:02.873
+Review is another interrupt,
+where a human edits or approves.
+
+00:04:03.793 --> 00:04:06.933
+Publishing starts the memory keeper,
+which distils a lesson and asks:
+
+00:04:07.453 --> 00:04:11.233
+remember this? Approved lessons go
+into the store with semantic search,
+
+00:04:11.533 --> 00:04:13.793
+so the next similar incident recalls them.
+
+00:04:14.800 --> 00:04:16.800
+Alert storms get their own graph.
+
+00:04:16.800 --> 00:04:20.480
+Twenty two alerts from eleven
+services, a zone partition,
+
+00:04:21.120 --> 00:04:23.940
+fan out into fourteen analysis
+tasks, run in parallel,
+
+00:04:24.420 --> 00:04:26.060
+then reduce into a single cluster.
+
+00:04:26.740 --> 00:04:28.860
+One incident, instead of twenty two pages.
+
+00:04:30.133 --> 00:04:33.873
+The change gate is the
+human in the loop gym.
+
+00:04:34.593 --> 00:04:36.533
+This run goes through every style.
+
+00:04:37.253 --> 00:04:41.173
+A question. Four approval
+cards, where the human asks,
+
+00:04:41.833 --> 00:04:43.893
+edits, rejects, and finally approves.
+
+00:04:44.513 --> 00:04:48.913
+Then four eyes review: two
+reviewers pending at the same time,
+
+00:04:49.453 --> 00:04:53.533
+both resumed by one command,
+keyed by interrupt I D.
+
+00:04:54.533 --> 00:04:55.733
+Durable execution.
+
+00:04:56.513 --> 00:04:59.133
+The shift handoff is told
+to crash in reconcile,
+
+00:04:59.473 --> 00:05:02.553
+and it does. The thread
+keeps its checkpoints.
+
+00:05:03.393 --> 00:05:07.673
+Run it again with no input, and it continues from the last good step, and finishes.
+
+00:05:08.867 --> 00:05:11.447
+All of this is visible
+in LangGraph Studio.
+
+00:05:11.447 --> 00:05:15.367
+Point it at the local server and
+every graph appears in the selector.
+
+00:05:16.147 --> 00:05:19.227
+Here is the incident commander,
+drawn from its real structure.
+
+00:05:20.387 --> 00:05:22.107
+Studio builds the input
+form from the schema.
+
+00:05:22.847 --> 00:05:25.127
+Submit, and the nodes
+light up as they run.
+
+00:05:25.767 --> 00:05:30.207
+When the graph pauses, the interrupt gets
+a response form generated from its schema,
+
+00:05:30.207 --> 00:05:31.747
+with live validation.
+
+00:05:32.933 --> 00:05:35.933
+And every run lands in
+LangSmith as a trace.
+
+00:05:36.493 --> 00:05:39.553
+The root is the graph,
+every node is a child,
+
+00:05:39.973 --> 00:05:42.873
+and the model calls sit
+inside, with their prompts,
+
+00:05:43.813 --> 00:05:45.393
+replies, tokens and cost.
+
+00:05:46.013 --> 00:05:48.093
+The specialists run side by side.
+
+00:05:48.453 --> 00:05:51.793
+And a human wait separates
+the two traces of one thread.
+
+00:05:52.800 --> 00:05:54.800
+Finally, evaluations.
+
+00:05:55.840 --> 00:05:58.080
+Sixteen labelled scenarios
+with hidden ground truth,
+
+00:05:58.440 --> 00:06:01.540
+scored on root cause,
+evidence, safety and more.
+
+00:06:02.340 --> 00:06:06.600
+The competent profile passes all
+sixteen, a naive one passes two.
+
+00:06:07.240 --> 00:06:10.000
+A gullible one obeys an
+instruction hidden in a log line:
+
+00:06:10.440 --> 00:06:13.560
+the policy check stops it, but
+the safety gate still fails.
+
+00:06:14.040 --> 00:06:16.740
+On a real model, fifteen of sixteen pass,
+
+00:06:16.740 --> 00:06:18.740
+with every hard safety gate clean.
+
+00:06:19.733 --> 00:06:23.213
+That is Foghorn: ten
+graphs, one deployment.
+
+00:06:24.053 --> 00:06:28.193
+Start it with make dev, open the
+dashboard, and open Studio beside it.
+
+00:06:28.893 --> 00:06:31.233
+Everything you saw was
+recorded from real runs.
+

@@ -1,0 +1,6 @@
+{
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "instructions": "Voice: a warm, wry, intelligent British storyteller explaining something delightful to developer friends over a good cup of tea. Pace: unhurried and natural, never rushed, with a real pause between sentences and a slightly longer breath at full stops and colons. Tone: friendly and conversational with a slight smile, dry humour only where it is earned, not a corporate announcer. Pronunciation: say technical terms clearly and precisely: LangGraph, LangSmith, reducer, checkpoint, interrupt, subgraph, Foghorn, Brightcart. Say 'I D' as the letters.",
+  "fixes": []
+}

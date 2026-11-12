@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>live graph</title>
+<meta name="viewport" content="width=1280">
+<link rel="stylesheet" href="viz.css">
+<style>
+  #hdr { position: absolute; left: 24px; right: 24px; top: 0; height: 52px; display: flex; align-items: center; gap: 22px; }
+  .brand { display: flex; align-items: baseline; gap: 14px; min-width: 0; }
+  #gid { font-family: var(--mono); font-size: 30px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; }
+  #gsub { font-size: 18px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 330px; }
+  .thread { display: flex; align-items: center; gap: 10px; margin-left: auto; font-size: 17px; color: var(--muted); }
+  .thread .k { font-weight: 600; }
+  #tid { font-family: var(--mono); font-size: 18px; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 5px 12px; min-width: 392px; text-align: center; }
+  .pill { font-size: 17px; font-weight: 800; letter-spacing: .05em; padding: 7px 14px; border-radius: 999px; background: #1a2338; color: var(--muted); border: 2px solid var(--line); white-space: nowrap; width: 262px; text-align: center; }
+  #tid { white-space: nowrap; }
+  .pill.blue { background: #10304f; color: #bfe0ff; border-color: var(--blue); }
+  .pill.green { background: #0f3128; color: #aaf5d6; border-color: var(--green); }
+  .pill.amber { background: #3a2a0b; color: #ffdb97; border-color: var(--amber); animation: pp 1.2s ease-in-out infinite; }
+  .pill.red { background: #3a1018; color: #ffb3bb; border-color: var(--red); }
+  @keyframes pp { 50% { box-shadow: 0 0 0 6px rgba(255,185,56,.22); } }
+  #g { position: absolute; left: 24px; top: 52px; width: 1232px; height: 400px; overflow: visible; }
+  #legend { position: absolute; right: 26px; top: 424px; opacity: .95; }
+  #strip { position: absolute; left: 24px; right: 24px; top: 462px; height: 92px; display: flex; gap: 10px; padding: 0; border-radius: 16px; }
+  #strip.hi { outline: 3px solid var(--gold); outline-offset: 6px; }
+  .card { position: relative; background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 9px 14px 8px; display: flex; flex-direction: column; justify-content: space-between; min-width: 0; overflow: hidden; transition: border-color .3s, background .3s; }
+  .card.hi { outline: 3px solid var(--gold); outline-offset: 4px; }
+  .ck { font-family: var(--mono); font-size: 16px; color: var(--muted); white-space: nowrap; font-weight: 600; }
+  .cv { font-size: 26px; font-weight: 800; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.01em; }
+  .cv.dim { color: #4b5873; font-weight: 600; }
+  .ct { position: absolute; left: 12px; bottom: 8px; font-family: var(--mono); font-size: 15px; color: #1a1304; background: var(--gold); border-radius: 6px; padding: 1px 8px; font-weight: 700; line-height: 1.25; white-space: nowrap; }
+  .card.tagged .cv { margin-bottom: 20px; font-size: 23px; }
+  .card.tagged { justify-content: flex-start; gap: 2px; }
+  .card.flash { animation: fl 0.9s ease-out; }
+  @keyframes fl { 0% { border-color: var(--gold); background: #2a2410; } 100% { border-color: var(--line); background: var(--panel); } }
+  #tl { position: absolute; left: 24px; top: 562px; width: 1232px; height: 54px; overflow: visible; }
+  #cap { position: absolute; left: 24px; right: 24px; top: 622px; height: 86px; border-radius: 16px; background: linear-gradient(90deg, #172033, #121a2b); border: 2px solid var(--line); border-left: 8px solid var(--gold); display: flex; align-items: center; padding: 0 26px; opacity: .0; transition: opacity .25s; }
+  #cap.in { opacity: 1; animation: capin .45s ease both; }
+  @keyframes capin { from { transform: translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+  #cap .ctext { font-size: 29px; font-weight: 650; line-height: 1.22; color: var(--text); letter-spacing: -0.005em; }
+  #cap .ctext b { color: var(--gold); font-weight: 800; }
+  body.nocaps #cap { visibility: hidden; }
+  body.concept #tl, body.concept #cap { display: none; }
+  #over { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; pointer-events: none; }
+  .co { animation: coin .5s ease both; }
+  @keyframes coin { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+  <div id="hdr">
+    <div class="brand"><span id="gid">graph</span></div>
+    <div class="thread"><span class="k">thread_id</span><span id="tid">…</span></div>
+    <div id="status" class="pill grey">CONNECTING</div>
+  </div>
+  <svg id="g" width="1232" height="400"></svg>
+  <div id="legend"></div>
+  <div id="strip"></div>
+  <svg id="tl" width="1232" height="54"></svg>
+  <div id="cap"><div class="ctext"></div></div>
+  <div id="over"></div>
+  <script type="module" src="live.js"></script>
+  <script>if (new URLSearchParams(location.search).get('captions') === '0') document.body.classList.add('nocaps');</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+{
+ "graph_id": "memory_keeper",
+ "assistant_id": "637b2654-a50a-5780-b6c5-b7b6cd86b3b2",
+ "description": "Learns from closed incidents: semantic memory and lessons in the Store",
+ "graph": {
+  "nodes": [
+   {
+    "id": "__start__",
+    "type": "runnable",
+    "data": {
+     "name": "__start__"
+    }
+   },
+   {
+    "id": "load_source",
+    "type": "runnable",
+    "data": {
+     "name": "load_source"
+    }
+   },
+   {
+    "id": "distill",
+    "type": "runnable",
+    "data": {
+     "name": "distill"
+    }
+   },
+   {
+    "id": "dedupe",
+    "type": "runnable",
+    "data": {
+     "name": "dedupe"
+    }
+   },
+   {
+    "id": "curate",
+    "type": "runnable",
+    "data": {
+     "name": "curate"
+    }
+   },
+   {
+    "id": "write",
+    "type": "runnable",
+    "data": {
+     "name": "write"
+    }
+   },
+   {
+    "id": "scan",
+    "type": "runnable",
+    "data": {
+     "name": "scan"
+    }
+   },
+   {
+    "id": "cluster",
+    "type": "runnable",
+    "data": {
+     "name": "cluster"
+    }
+   },
+   {
+    "id": "confirm_merge",
+    "type": "runnable",
+    "data": {
+     "name": "confirm_merge"
+    }
+   },
+   {
+    "id": "apply",
+    "type": "runnable",
+    "data": {
+     "name": "apply"
+    }
+   },
+   {
+    "id": "finish",
+    "type": "runnable",
+    "data": {
+     "name": "finish"
+    }
+   },
+   {
+    "id": "__end__"
+   }
+  ],
+  "edges": [
+   {
+    "source": "__start__",
+    "target": "load_source",
+    "conditional": true
+   },
+   {
+    "source": "__start__",
+    "target": "scan",
+    "conditional": true
+   },
+   {
+    "source": "apply",
+    "target": "finish"
+   },
+   {
+    "source": "cluster",
+    "target": "apply",
+    "conditional": true
+   },
+   {
+    "source": "cluster",
+    "target": "confirm_merge",
+    "conditional": true
+   },
+   {
+    "source": "confirm_merge",
+    "target": "apply"
+   },
+   {
+    "source": "curate",
+    "target": "write"
+   },
+   {
+    "source": "dedupe",
+    "target": "curate"
+   },
+   {
+    "source": "distill",
+    "target": "dedupe"
+   },
+   {
+    "source": "load_source",
+    "target": "distill",
+    "conditional": true
+   },
+   {
+    "source": "load_source",
+    "target": "finish",
+    "conditional": true
+   },
+   {
+    "source": "scan",
+    "target": "cluster"
+   },
+   {
+    "source": "write",
+    "target": "finish"
+   },
+   {
+    "source": "finish",
+    "target": "__end__"
+   }
+  ]
+ }
+}

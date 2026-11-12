@@ -1,0 +1,68 @@
+{
+ "scenes": [
+  {
+   "id": "A",
+   "text": "This is Foghorn, an incident command app for a fictional online shop called Brightcart. Alerts arrive, AI agents investigate, a human approves the fix, and it all runs as ten LangGraph workflows. Everything here is a recorded run on a real language model. We will follow one incident through the graphs that handle it."
+  },
+  {
+   "id": "B",
+   "text": "First, the ten graphs, drawn from the live server's own structure. An event router at the front door. The incident commander, which is the big one. A root cause tournament, a storm correlator, a change gate for human approvals, a postmortem pipeline, an ops copilot, a shift handoff, a memory keeper, and an evaluator that grades the rest."
+  },
+  {
+   "id": "C",
+   "text": "Now the incident. We launch scenario one: checkout is returning errors after a deploy. Events flow into a pipeline that validates each one, drops duplicates, applies routing rules, queues by priority, and dispatches a LangGraph run. This is mission control, live over server-sent events."
+  },
+  {
+   "id": "D",
+   "text": "The first run is the event router. A LangGraph is a state machine: nodes are plain functions that return updates to a shared state, and edges decide what runs next. Here the event is validated, checked against a ledger in the store, then enriched by three parallel tasks, with a retry policy and a cache. It is classified, a decision picks a route, and the route opens an incident and hands it to the commander. Fourteen more alerts follow, and each simply joins that incident."
+  },
+  {
+   "id": "E",
+   "text": "Now the incident commander, a supervisor graph. It sends three specialists off in parallel with Command goto: metrics, logs and changes. Each is itself a compiled subgraph, a model node looping with a tools node, and you can watch their reasoning and tool calls stream into the war room, token by token. Evidence fills the board: an error rate of nine point six per cent against a baseline of point three, a deploy nine minutes before the errors began, and a null pointer exception in the logs."
+  },
+  {
+   "id": "F",
+   "text": "Then the supervisor hands its hypotheses to the root cause tournament. This is map-reduce. The Send API fans out one scoring task for every hypothesis, all in parallel, and a reducer merges the scores into a ranking. On a bigger incident, a zone partition, that is sixteen at once. In this run there was one strong candidate: a bad deploy on checkout service, at zero point eight eight."
+  },
+  {
+   "id": "G",
+   "text": "The commander proposes a rollback, and a policy check runs: six rules, covering risk, the change freeze and blast radius. Then the graph calls interrupt. LangGraph saves the whole state to a checkpoint and the run simply stops. Nothing is polling, nothing is held in memory. The dashboard shows an approval card, generated from the interrupt's own schema. Approve it, and a Command with a resume value goes to the same thread. The graph wakes exactly where it stopped, runs the rollback, verifies recovery, and closes the incident."
+  },
+  {
+   "id": "H",
+   "text": "How does the dashboard watch all this live? LangGraph can stream a run in several modes at once, over one connection. Updates carry each node's state change. Messages carry the model's tokens. Custom events carry whatever the graph wants to announce, like handoffs, evidence and hypotheses. Tasks mark when each node starts and finishes, and checkpoints record every step. The war room is the messages, the board is the custom events, and the timeline is the tasks."
+  },
+  {
+   "id": "I",
+   "text": "When the incident resolves, an event starts the postmortem pipeline, written with the Functional API: an entrypoint and plain tasks. Load the incident, build a timeline, draft, review. Review is another interrupt, where a human edits or approves. Publishing starts the memory keeper, which distils a lesson and asks: remember this? Approved lessons go into the store with semantic search, so the next similar incident recalls them."
+  },
+  {
+   "id": "J",
+   "text": "Alert storms get their own graph. Twenty two alerts from eleven services, a zone partition, fan out into fourteen analysis tasks, run in parallel, then reduce into a single cluster. One incident, instead of twenty two pages."
+  },
+  {
+   "id": "K",
+   "text": "The change gate is the human in the loop gym. This run goes through every style. A question. Four approval cards, where the human asks, edits, rejects, and finally approves. Then four eyes review: two reviewers pending at the same time, both resumed by one command, keyed by interrupt I D."
+  },
+  {
+   "id": "L",
+   "text": "Durable execution. The shift handoff is told to crash in reconcile, and it does. The thread keeps its checkpoints. Run it again with no input, and it continues from the last good step, and finishes."
+  },
+  {
+   "id": "M",
+   "text": "All of this is visible in LangGraph Studio. Point it at the local server and every graph appears in the selector. Here is the incident commander, drawn from its real structure. Studio builds the input form from the schema. Submit, and the nodes light up as they run. When the graph pauses, the interrupt gets a response form generated from its schema, with live validation."
+  },
+  {
+   "id": "N",
+   "text": "And every run lands in LangSmith as a trace. The root is the graph, every node is a child, and the model calls sit inside, with their prompts, replies, tokens and cost. The specialists run side by side. And a human wait separates the two traces of one thread."
+  },
+  {
+   "id": "O",
+   "text": "Finally, evaluations. Sixteen labelled scenarios with hidden ground truth, scored on root cause, evidence, safety and more. The competent profile passes all sixteen, a naive one passes two. A gullible one obeys an instruction hidden in a log line: the policy check stops it, but the safety gate still fails. On a real model, fifteen of sixteen pass, with every hard safety gate clean."
+  },
+  {
+   "id": "P",
+   "text": "That is Foghorn: ten graphs, one deployment. Start it with make dev, open the dashboard, and open Studio beside it. Everything you saw was recorded from real runs."
+  }
+ ]
+}

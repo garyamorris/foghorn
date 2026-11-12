@@ -1,0 +1,387 @@
+{
+ "fps": 30,
+ "total": 395.5,
+ "scenes": [
+  {
+   "id": "title",
+   "kind": "card",
+   "start": 0.0,
+   "length": 3.5,
+   "vo_start": null,
+   "vo_len": null,
+   "vo_wav": null,
+   "cuts": [],
+   "callouts": []
+  },
+  {
+   "id": "A",
+   "kind": "scene",
+   "start": 3.5,
+   "length": 21.7,
+   "vo_start": 3.8333333333333335,
+   "vo_len": 20.884313,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/A.wav",
+   "cuts": [
+    11.2
+   ],
+   "callouts": [
+    {
+     "at": 4.58,
+     "dur": 4.5,
+     "text": "Foghorn \u00b7 AI incident command"
+    },
+    {
+     "at": 16.3,
+     "dur": 4.5,
+     "text": "10 LangGraph graphs \u00b7 1 deployment"
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "kind": "scene",
+   "start": 25.2,
+   "length": 23.133333333333333,
+   "vo_start": 25.533333333333335,
+   "vo_len": 22.327813,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/B.wav",
+   "cuts": [],
+   "callouts": [
+    {
+     "at": 30.6,
+     "dur": 3.5,
+     "text": "event_router \u00b7 the front door"
+    },
+    {
+     "at": 33.04,
+     "dur": 3.5,
+     "text": "incident_commander \u00b7 the big one"
+    }
+   ]
+  },
+  {
+   "id": "C",
+   "kind": "scene",
+   "start": 48.333333333333336,
+   "length": 19.733333333333334,
+   "vo_start": 48.666666666666664,
+   "vo_len": 18.921333,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/C.wav",
+   "cuts": [],
+   "callouts": [
+    {
+     "at": 56.413333333333334,
+     "dur": 4.5,
+     "text": "validate \u00b7 dedupe \u00b7 route \u00b7 queue"
+    },
+    {
+     "at": 62.13333333333334,
+     "dur": 4.5,
+     "text": "dispatcher \u2192 LangGraph run"
+    }
+   ]
+  },
+  {
+   "id": "D",
+   "kind": "scene",
+   "start": 68.06666666666666,
+   "length": 33.2,
+   "vo_start": 68.4,
+   "vo_len": 32.405396,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/D.wav",
+   "cuts": [
+    78.26666666666667
+   ],
+   "callouts": [
+    {
+     "at": 72.16666666666666,
+     "dur": 4.5,
+     "text": "StateGraph \u00b7 nodes + edges"
+    },
+    {
+     "at": 85.32666666666667,
+     "dur": 4.5,
+     "text": "Send fan-out \u00b7 enrich \u00d73"
+    },
+    {
+     "at": 87.52666666666667,
+     "dur": 4.5,
+     "text": "RetryPolicy \u00b7 CachePolicy"
+    },
+    {
+     "at": 94.94666666666666,
+     "dur": 4.5,
+     "text": "Command \u2192 incident_commander"
+    }
+   ]
+  },
+  {
+   "id": "E",
+   "kind": "scene",
+   "start": 101.26666666666667,
+   "length": 35.333333333333336,
+   "vo_start": 101.6,
+   "vo_len": 34.536833,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/E.wav",
+   "cuts": [
+    120.43333333333334
+   ],
+   "callouts": [
+    {
+     "at": 108.38666666666667,
+     "dur": 4.5,
+     "text": "Command(goto) \u00b7 parallel routing"
+    },
+    {
+     "at": 114.50666666666666,
+     "dur": 4.5,
+     "text": "specialists = compiled subgraphs"
+    },
+    {
+     "at": 123.10666666666667,
+     "dur": 4.5,
+     "text": "stream mode: messages"
+    }
+   ]
+  },
+  {
+   "id": "F",
+   "kind": "scene",
+   "start": 136.6,
+   "length": 26.0,
+   "vo_start": 136.93333333333334,
+   "vo_len": 25.213562,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/F.wav",
+   "cuts": [
+    155.73333333333332
+   ],
+   "callouts": [
+    {
+     "at": 141.85999999999999,
+     "dur": 4.0,
+     "text": "Send map-reduce"
+    },
+    {
+     "at": 148.9,
+     "dur": 4.0,
+     "text": "reducer merges the scores"
+    },
+    {
+     "at": 154.9,
+     "dur": 4.0,
+     "text": "\u00d7 16 in parallel"
+    }
+   ]
+  },
+  {
+   "id": "G",
+   "kind": "scene",
+   "start": 162.6,
+   "length": 34.0,
+   "vo_start": 162.93333333333334,
+   "vo_len": 33.2,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/G.wav",
+   "cuts": [
+    174.1,
+    180.6,
+    187.6
+   ],
+   "callouts": [
+    {
+     "at": 165.22,
+     "dur": 4.0,
+     "text": "policy_check \u00b7 6 rules"
+    },
+    {
+     "at": 171.68,
+     "dur": 5.5,
+     "text": "interrupt() \u00b7 state saved to a checkpoint"
+    },
+    {
+     "at": 186.38,
+     "dur": 5.0,
+     "text": "Command(resume=\u2026) \u00b7 same thread"
+    }
+   ]
+  },
+  {
+   "id": "H",
+   "kind": "scene",
+   "start": 196.6,
+   "length": 30.7,
+   "vo_start": 196.93333333333334,
+   "vo_len": 29.9,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/H.wav",
+   "cuts": [],
+   "callouts": []
+  },
+  {
+   "id": "I",
+   "kind": "scene",
+   "start": 227.3,
+   "length": 27.166666666666668,
+   "vo_start": 227.63333333333333,
+   "vo_len": 26.35,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/I.wav",
+   "cuts": [
+    234.10000000000002,
+    241.83333333333334,
+    248.73333333333335
+   ],
+   "callouts": [
+    {
+     "at": 232.04000000000002,
+     "dur": 5.0,
+     "text": "Functional API \u00b7 @entrypoint / @task"
+    },
+    {
+     "at": 240.16000000000003,
+     "dur": 4.0,
+     "text": "interrupt() \u00b7 human review"
+    },
+    {
+     "at": 250.4,
+     "dur": 4.0,
+     "text": "Store \u00b7 semantic search"
+    }
+   ]
+  },
+  {
+   "id": "J",
+   "kind": "scene",
+   "start": 254.46666666666667,
+   "length": 15.333333333333334,
+   "vo_start": 254.8,
+   "vo_len": 14.55,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/J.wav",
+   "cuts": [],
+   "callouts": [
+    {
+     "at": 260.9866666666667,
+     "dur": 5.0,
+     "text": "Send \u00d714 \u2192 reduce \u2192 one cluster"
+    }
+   ]
+  },
+  {
+   "id": "K",
+   "kind": "scene",
+   "start": 269.8,
+   "length": 24.4,
+   "vo_start": 270.1333333333333,
+   "vo_len": 23.6,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/K.wav",
+   "cuts": [],
+   "callouts": [
+    {
+     "at": 284.72,
+     "dur": 5.0,
+     "text": "parallel interrupts \u00b7 resume by id"
+    }
+   ]
+  },
+  {
+   "id": "L",
+   "kind": "scene",
+   "start": 294.2,
+   "length": 14.333333333333334,
+   "vo_start": 294.53333333333336,
+   "vo_len": 13.55,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/L.wav",
+   "cuts": [],
+   "callouts": [
+    {
+     "at": 297.9,
+     "dur": 3.5,
+     "text": "durable execution"
+    },
+    {
+     "at": 303.82,
+     "dur": 4.0,
+     "text": "resume from the checkpoint"
+    }
+   ]
+  },
+  {
+   "id": "M",
+   "kind": "scene",
+   "start": 308.53333333333336,
+   "length": 24.066666666666666,
+   "vo_start": 308.8666666666667,
+   "vo_len": 23.273438,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/M.wav",
+   "cuts": [
+    314.1666666666667,
+    319.8,
+    325.43333333333334
+   ],
+   "callouts": [
+    {
+     "at": 310.81333333333333,
+     "dur": 4.5,
+     "text": "LangGraph Studio \u00b7 local server"
+    },
+    {
+     "at": 323.91333333333336,
+     "dur": 4.0,
+     "text": "live node execution"
+    },
+    {
+     "at": 328.25333333333333,
+     "dur": 5.0,
+     "text": "form generated from the response schema"
+    }
+   ]
+  },
+  {
+   "id": "N",
+   "kind": "scene",
+   "start": 332.6,
+   "length": 19.866666666666667,
+   "vo_start": 332.93333333333334,
+   "vo_len": 19.05,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/N.wav",
+   "cuts": [],
+   "callouts": [
+    {
+     "at": 334.84000000000003,
+     "dur": 4.5,
+     "text": "LangSmith \u00b7 every run is a trace"
+    }
+   ]
+  },
+  {
+   "id": "O",
+   "kind": "scene",
+   "start": 352.46666666666664,
+   "length": 26.933333333333334,
+   "vo_start": 352.8,
+   "vo_len": 26.15,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/O.wav",
+   "cuts": [],
+   "callouts": []
+  },
+  {
+   "id": "P",
+   "kind": "scene",
+   "start": 379.4,
+   "length": 12.6,
+   "vo_start": 379.73333333333335,
+   "vo_len": 11.8,
+   "vo_wav": "/Users/garyamorris/Developer/repos/langgraph-app/docs/demo/video-source/narration/audio/P.wav",
+   "cuts": [],
+   "callouts": []
+  },
+  {
+   "id": "outro",
+   "kind": "card",
+   "start": 392.0,
+   "length": 3.5,
+   "vo_start": null,
+   "vo_len": null,
+   "vo_wav": null,
+   "cuts": [],
+   "callouts": []
+  }
+ ]
+}
